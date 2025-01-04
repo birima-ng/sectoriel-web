@@ -1,0 +1,668 @@
+<!-- Card sizing section start -->
+<section id="title">
+  <div class="row match-height">
+    <div class="col-12 mb-1">
+      <div class="content-header">Détails BAAC - {{numerobaac}}</div>
+      <p class="content-sub-header mb-1 text-center"><span class="badge badge-warning mb-1 mr-2">Police Point E</span> </p>
+      <p class="content-sub-header mb-1 text-center">P.V N° : <span class="badge badge-danger mb-1 mr-2">0001</span>, Du : <span class="badge badge-light mb-1 mr-2">12/06/2024</span> N° BAAC : <span class="badge badge-success mb-1 mr-2">BAAC-0012</span> Code de référence : <span class="badge badge-info mb-1 mr-2">{{reference}}</span></p>
+    </div>
+  </div>
+
+</section>
+<!-- Card sizing section end -->
+
+<section class="users-edit">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <!-- Nav-tabs -->
+            <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-left">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink class="nav-link d-flex align-items-center">
+                  <i class="ft-user mr-1"></i>Détails
+                  <span class="d-none d-sm-block"></span>
+                </a>
+                <ng-template ngbNavContent>
+                  <!-- Account content starts -->
+                  <div class="mt-2" id="account">
+
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- Filter starts -->
+                        <div class="users-list-filter px-2">
+                          <h1 class="card-title"><i class="ft-eye mr-1"></i> Caractéristiques de l'accident: 06/08/2024 {{baac.heureaccident}} ({{joursemaine}} )</h1>
+                          <div class="row border rounded py-2 mb-2 mx-n2">
+                            <blockquote class="blockquote border-left-success border-left-3 pl-2 col-12">
+                            <div class="row col-12">
+                            <div class="col-12 col-sm-6 col-lg-3"> <p><span class="text-muted">Région :</span>{{region}} </p>
+                            </div>
+
+                              <div class="col-12 col-sm-6 col-lg-3">
+                                <p><span class="text-muted">Département :</span>{{departement}} </p>
+                              </div>
+
+                            <div class="col-12 col-sm-6 col-lg-3">
+                              <p><span class="text-muted">Commune :</span>{{commune}} </p>
+                            </div>
+
+                            <div class="col-12 col-sm-6 col-lg-3">
+                              <p><span class="text-muted">Localité :</span>{{localite}} </p>
+                            </div>
+                            </div>
+
+                              <div class="row col-12">
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">Lieu précis :</span>{{baac.lieuprecis}} </p>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">N° route: </span>12 </p>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">PK: </span> 12 </p>
+                                </div>
+
+                              </div>
+
+                              <div class="row col-12">
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">Zone :</span>Zone urbaine </p>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">Classification de la route: </span>Route nationale </p>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                  <p><span class="text-muted">Intersection: </span> Hors intersection </p>
+                                </div>
+
+                              </div>
+
+                          <!--    <div class="row col-12">
+
+                              <div class="col-12 col-sm-12 col-lg-12">
+                                <div class="row border rounded py-2 mb-2 mx-n2">
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p><span class="text-muted">Jour de la semaine :</span> <span class="badge badge-light mb-1 mr-2">{{joursemaine}} </span></p>
+                                  </div>
+
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p><span class="text-muted">Longitude :</span>14.97894567 </p>
+                                  </div>
+
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p class="m-0"><span class="text-muted">Latitude :</span> 14.556734567</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+
+                              <div class="row col-12">
+
+                                <div class="col-12 col-sm-12 col-lg-12">
+                                  <h1 class="card-title"><i class="ft-eye mr-1"></i> Circonstances résumées de l'accident</h1>
+                                  <div class="row border rounded py-2 mb-2 mx-n2">
+                                    <blockquote class="blockquote border-left-info border-left-3 pl-2 col-12">
+                                      <div class="row col-12">
+                                    <div class="col-12 col-sm-12 col-lg-3">
+                                      <p><span class="text-muted">Type de collusion :</span> {{baac.typecollusion.libelle}} </p>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-lg-3">
+                                      <p><span class="text-muted">Infractions :</span> {{baac.infraction.libelle}} </p>
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-lg-3">
+                                      <p class="m-0"><span class="text-muted"  *ngIf="(baac.nombrevictime!=0)">Victimes asssocié(e)s :</span> <span  *ngIf="(baac.nombrevictime!=0)">Oui </span>
+                                        <span class="text-muted"  *ngIf="(baac.nombrevictime==0)">Victimes asssocié(e)s :</span> <span  *ngIf="(baac.nombrevictime==0)">Non </span></p>
+                                    </div>
+                                      <div class="col-12 col-sm-12 col-lg-3">
+                                        <p class="m-0"><span *ngIf="(baac.nombrevictime!=0)" class="text-muted">Nombre :</span> <span *ngIf="(baac.nombrevictime!=0)"> {{baac.nombrevictime}} </span> </p>
+                                      </div>
+                                      </div>
+
+                                      <div class="row col-12">
+                                        <div class="col-12 col-sm-12 col-lg-5">
+                                          <p><span class="text-muted">Vitesse au moment de l’Accident :</span> {{baac.vitesseaccident}} Km/H </p>
+                                        </div>
+
+                                        <div class="col-12 col-sm-12 col-lg-7">
+                                          <p><span class="text-muted">Autres précisions sur circonstance de l'accident :</span> {{baac.autreprecision}} </p>
+                                        </div>
+
+                                      </div>
+
+                                    </blockquote>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Etat des lieux-->
+
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- Filter starts -->
+                        <div class="users-list-filter px-2">
+                          <h1 class="card-title"><i class="ft-eye mr-1"></i> Etat des lieux</h1>
+
+                          <div class="row border rounded py-2 mb-2 mx-n2">
+                            <blockquote class="blockquote border-left-warning border-left-3 pl-2 col-12">
+
+                              <div class="row col-12">
+                              <div class="row col-12 col-sm-12 col-lg-12">
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p><span class="text-muted">Lumière :</span> {{baac.lumiere.libelle}}</p>
+                                  </div>
+
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p><span class="text-muted">Conditions atmosphériques :</span>{{baac.conditionatmospherique.libelle}} </p>
+                                  </div>
+
+                                  <div class="col-12 col-sm-12 col-lg-4">
+                                    <p class="m-0"><span class="text-muted">Tracé :</span> {{baac.trace.libelle}}</p>
+                                  </div>
+
+                              </div>
+
+                            <div class="row col-12 col-sm-12 col-lg-12">
+                              <div class="col-12 col-sm-12 col-lg-4">
+                                <p><span class="text-muted">Profit :</span> {{baac.profilbaac.libelle}}</p>
+                              </div>
+
+                              <div class="col-12 col-sm-12 col-lg-4">
+                                <p><span class="text-muted">Marque au sol :</span> <span> <div class="custom-control custom-switch custom-control-inline">
+                                <input id="{{baac.marquageausol}}" type="checkbox" class="custom-control-input" [checked]="baac.marquageausol" readonly>
+                                <label for="{{baac.marquageausol}}" class="custom-control-label"></label>
+                                </div> </span></p>
+                              </div>
+
+                              <div class="col-12 col-sm-12 col-lg-4">
+                                <p class="m-0"><span class="text-muted">Etat chaussée :</span> {{baac.etatchaussee.libelle}} </p>
+                              </div>
+
+
+                            </div>
+
+                            <div class="row col-12 col-sm-12 col-lg-12">
+
+                              <div class="col-12 col-sm-12 col-lg-12">
+                                <p class="m-0"><span class="text-muted">Contrôle carrefour (accident en intersection) :</span> {{baac.controlcarrefour.libelle}}</p>
+                              </div>
+
+                            </div>
+
+                              </div>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Véhicules impliquées -->
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- Filter starts -->
+                        <div class="users-list-filter px-2">
+                          <h1 class="card-title"><i class="ft-eye mr-1"></i> Etat des lieux</h1>
+
+                          <div class="row border rounded py-2 mb-2 mx-n2">
+                            <blockquote class="blockquote border-left-danger border-left-3 pl-2 col-12">
+
+                              <div class="row col-12 col-sm-12 col-lg-12">
+                                <div class="row col-12 col-sm-12 col-lg-12">
+                                    <div style="margin:0px;margin-bottom: 10px;" *ngFor="let vehicule  of baacvehicules;">
+                                      <p-fieldset>
+                                        <ng-template pTemplate="header">
+            <span style="color:green; font-size: 1rem">
+                <i class="pi pi-truck" style="font-size: 2rem;  margin-left: 2px;margin-right: 10px;"></i>
+               {{vehicule.vehiculeimplique.numeroimmatriculation}}
+            </span></ng-template>
+                                        <p class="content-sub-header mb-1 text-center"> <span class="text-muted">Genre :</span> {{vehicule.vehiculeimplique.genrevehicule.libelle}} - <span class="text-muted">Appartenance :</span> {{vehicule.vehiculeimplique.appartenancevehicule.libelle}} - <span class="text-muted">PCM :</span> {{vehicule.vehiculeimplique.anneepcirculation}} - <span class="text-muted">Controle techique :</span> {{vehicule.vehiculeimplique.validitecontroletechnique}} <span class="text-muted">Assurance :</span> {{vehicule.vehiculeimplique.validiteassurance}} <span class="text-muted">Etat général :</span> {{vehicule.vehiculeimplique.etatgeneral.libelle}} <span class="text-muted"> Etat pneus :</span> {{vehicule.vehiculeimplique.etatpneus.libelle}} <span class="text-muted">Etat feux :</span> {{vehicule.vehiculeimplique.etatfeux.libelle}} <span class="text-muted">Type de chargemet :</span> {{vehicule.vehiculeimplique.typechargement.libelle}} <span class="text-muted">Volume chargement :</span> {{vehicule.vehiculeimplique.volumechargement.libelle}}</p>
+
+                                        <div class="row col-12 col-sm-12 col-lg-12">
+                                          <div class="col-12 col-sm-12 col-lg-8"> <!--row-->
+                                            <p-fieldset>
+                                              <ng-template pTemplate="header">
+            <span style="color:green; font-size: 0.7rem">
+                <i class="pi pi-user" style="font-size: 1rem;margin-left: 2px;margin-right: 10px;"></i> CONDUCTEURS
+            </span></ng-template>
+                                              <div *ngFor="let conducteur  of vehicule.conducteurimpliques;">
+
+                                                <div class="table-responsive">
+                                                  <table class="table  m-0 text-left">
+                                                    <tr>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Sexe :</span></p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> {{conducteur.sexe}}</p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Âge :</span></p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left">{{conducteur.age}}</p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Gravité blessure :</span></p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> {{conducteur.graviteblessure.libelle}}</p>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Numéro permis :</span> </p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> {{conducteur.numeropermis}}</p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Année obtention permis :</span></p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left">  {{conducteur.anneeobtentionpermis}}</p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Catégorie permis :</span></p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> {{conducteur.categoriepermis.libelle}}</p>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Profession :</span></p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left">{{conducteur.profession.libelle}}</p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Pays obtention permis :</span></p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left">{{conducteur.paysobtentionpermis.nom}}</p>
+                                                      </td>
+
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> <span class="text-muted">Nationalité :</span></p>
+                                                      </td>
+                                                      <td>
+                                                        <p class="content-sub-header mb-1 text-left"> {{conducteur.nationalite.nom}}</p>
+                                                      </td>
+
+                                                    </tr>
+                                                  </table>
+                                                </div>
+
+                                              </div>
+
+                                            </p-fieldset>
+                                          </div>
+
+                                          <div class="col-12 col-sm-12 col-lg-4"> <!-- row-->
+                                            <p-fieldset>
+                                              <ng-template pTemplate="header">
+            <span style="color:green; font-size: 0.7rem">
+                <i class="pi pi-user-plus" style="font-size: 1rem;margin-left: 2px;margin-right: 10px;"></i>  PASSAGERS
+            </span></ng-template>
+                                              <div class="row1" >
+                                                <div class="row col-12 col-sm-12 col-lg-12">
+                                                  <div class="table-responsive">
+                                                  <table class="table  m-0">
+                                                    <tr>
+                                                      <td>
+                                                        Tués
+                                                      </td>
+                                                      <td>
+                                                        Blessés graves
+                                                      </td>
+                                                      <td>
+                                                        Blessés légers
+                                                      </td>
+                                                    </tr>
+                                                    <tr *ngFor="let passager  of vehicule.passagersansconducteurs;">
+
+                                                      <td>
+                                                        <span class="badge badge-danger mb-1 mr-2"> {{passager.nombretues}}</span>
+                                                      </td>
+                                                      <td>
+                                                        <span class="badge badge-warning mb-1 mr-2"> {{passager.nombreblessesgrave}}</span>
+                                                      </td>
+                                                      <td>
+                                                        <span class="badge badge-light mb-1 mr-2"> {{passager.nombreblesselger}}</span>
+                                                      </td>
+                                                    </tr>
+                                                  </table>
+                                                  </div>
+                                                 <!-- <div class="col-12 col-sm-12 col-lg-3">
+                                                    <p><span class="text-muted">Gravité blessure :</span> {{passager.graviteblessure.libelle}}</p>
+                                                  </div>
+
+                                                  <div class="col-12 col-sm-12 col-lg-3">
+                                                    <p><span class="text-muted">Nombre tués :</span><span class="badge badge-danger mb-1 mr-2"> {{passager.nombretues}}</span> </p>
+                                                  </div>
+
+                                                  <div class="col-12 col-sm-12 col-lg-3">
+                                                    <p class="m-0"><span class="text-muted">Nombre blessés grave :</span> <span class="badge badge-warning mb-1 mr-2"> {{passager.nombreblessesgrave}}</span></p>
+                                                  </div>
+
+                                                  <div class="col-12 col-sm-12 col-lg-3">
+                                                    <p class="m-0"><span class="text-muted">Nombre blessés léger :</span> <span class="badge badge-light mb-1 mr-2"> {{passager.nombreblesselger}}</span></p>
+                                                  </div> -->
+                                                </div>
+
+                                              </div>
+
+                                            </p-fieldset>
+                                          </div>
+                                        </div>
+
+                                      </p-fieldset>
+                                    </div>
+
+
+                                  </div>
+
+
+
+                              </div>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <!--          <div style="margin:100px;">
+                                    <h1 style="color: green">GeeksforGeeks</h1>
+                                    <h3>Angular PrimeNG Fieldset Custom Legend</h3>
+                                    <br />
+                                    <p-fieldset>
+                                      <ng-template pTemplate="header">
+                        <span [style]="{'color':'green'}">
+                            Hi Geek !
+                            <i class="pi pi-sun pi-spin"></i>
+                        </span></ng-template>
+                                      <p>
+                                        Welcome to Geeks For Geeks!<br />
+                                        Billions of Users, Millions of Articles
+                                        Published, Thousands Got Hired by Top
+                                    Companies and the numbers are still growing.
+                                      </p>
+                                    </p-fieldset>
+                                  </div>
+
+
+                                    <div style="margin:100px;">
+                                      <h1 style="color: green;">GeeksforGeeks</h1>
+                                      <h3>Angular PrimeNG Fieldset Custom Legend</h3>
+                                      <br />
+                                      <p-fieldset>
+                                        <ng-template pTemplate="header">
+                                          <div>
+                        <span style="color:green;
+                                border: 2px green dotted;
+                                padding:5px">
+                            <i class="pi pi-star pi-spin"></i>
+                              DSA - Self Paced Course
+                             <i class="pi pi-star pi-spin"></i>
+                        </span>
+                                          </div>
+                                        </ng-template>
+                                        <p>
+                                          Most popular course on DSA trusted by
+                                          over 75,000 students! Built with years of
+                                          experience by industry experts and gives
+                                          you a complete package of video lectures,
+                                          practice problems, quizzes, discussion
+                                          forums and contests. Start Today!
+                                        </p>
+                                      </p-fieldset>
+                                    </div> -->
+
+                      </div>
+                    </div>
+
+                    <!-- Piétons-->
+
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- Filter starts -->
+                        <div class="users-list-filter px-2">
+                          <h1 class="card-title"><i class="ft-eye mr-1"></i>Piétons</h1>
+
+                          <div class="row border rounded py-2 mb-2 mx-n2">
+                            <blockquote class="blockquote border-left-warning border-left-3 pl-2 col-12">
+
+                              <div  class="row col-12" >
+                                <table class="table m-0">
+                                  <tr>
+                                    <td>
+                                      Tranches d'âge
+                                    </td>
+                                    <td class="text-center">
+                                      Tués
+                                    </td>
+                                    <td class="text-center">
+                                      Blessés graves
+                                    </td>
+                                    <td class="text-center">
+                                      Blessés légers
+                                    </td>
+                                  </tr>
+                                  <tr  *ngFor="let pieton  of pietons;">
+                                    <td>
+                                      <span class="badge badge-success mb-1 mr-2">{{pieton.trancheage.libelle}}</span>
+                                    </td>
+                                    <td class="text-center">
+                                      <span class="badge badge-danger mb-1 mr-2"> {{pieton.nombretue}}</span>
+                                    </td>
+                                    <td class="text-center">
+                                      <span class="badge badge-warning mb-1 mr-2"> {{pieton.nombreblessegrave}}</span>
+                                    </td>
+                                    <td class="text-center">
+                                      <span class="badge badge-light mb-1 mr-2"> {{pieton.nombreblesseleger}}</span>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Media object ends -->
+
+                    <!-- Account form starts -->
+
+                    <!-- Account form ends -->
+                  </div>
+                  <!-- Account content ends -->
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink class="nav-link d-flex align-items-center">
+                  <i class="ft-info mr-1"></i>
+                  <span class="d-none d-sm-block">Vue cartographique</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <!-- Information content starts -->
+                  <div class="row match-height1">
+                  <div class="col-lg-12 col-md-12">
+
+                    <div class="card">
+                      <!--<div class="card-header">
+                        <h4 class="card-title">Vue cartographique BAAC </h4>
+                      </div> -->
+                      <div class="card-content">
+                        <!--Basic google map starts-->
+                        <section id="">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card1">
+                                <div class="card-content">
+                                  <div class="card-body mt-2">
+                                    <p class="content-sub-header mb-1 text-center"> <!--<span class="text-muted">{{lat}} {{lng}}</span> -->{{lat}} {{lng}}</p>
+                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="17">
+                                      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                    </agm-map>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <!--Basic google map ends-->
+
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="mt-2" id="information">
+                    <!-- Information form starts -->
+
+                    <!-- Information form ends -->
+                  </div>
+                  <!-- Information content ends -->
+                </ng-template>
+              </li>
+
+              <li [ngbNavItem]="3">
+                <a ngbNavLink class="nav-link d-flex align-items-center">
+                  <i class="ft-info mr-1"></i>
+                  <span class="d-none d-sm-block">Documents</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <!-- Information content starts -->
+                  <div class="row match-height">
+                    <div class="col-lg-6 col-md-12">
+
+                      <div class="card">
+                        <!--<div class="card-header">
+                          <h4 class="card-title">Liste</h4>
+                          <p>Documents BAAC</p>
+                        </div> -->
+                        <div class="card-content">
+                          <div class="card-body table-responsive">
+                            <table class="table  m-0">
+                              <thead>
+                              <tr>
+                                <th>Documents associés</th>
+                              </tr>
+                              </thead>
+                              <tbody *ngIf="documents">
+                              <tr  *ngFor="let document  of documents;">
+                                <td>{{document.nom}}</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                      <div class="card">
+                        <!--<div class="card-header">
+                          <h4 class="card-title">Photos</h4>
+                          <p>Documents BAAC</p>
+                        </div>-->
+                        <div class="card-content" >
+                          <ngb-carousel >
+                            <ng-template *ngFor="let document  of documents;" ngbSlide style="width:800px! important;height:600pxx!important;">
+                              <img src="http://192.99.39.128/documents/{{document.path}}" class="d-block w-100" alt="First slide" style="width:800px! important;height:600pxx!important;">
+                              <div class="card-body">
+                                <p class="card-text">{{document.nom}}</p>
+                              </div>
+                            </ng-template>
+<!--
+                            <ng-template ngbSlide>
+                              <img src="assets/img/photos/01.jpg" class="d-block w-100" alt="First slide">
+                            </ng-template>
+                            <ng-template ngbSlide>
+                              <img src="assets/img/photos/05.jpg" class="d-block w-100" alt="Second slide">
+                            </ng-template>
+                            <ng-template ngbSlide>
+                              <img src="assets/img/photos/10.jpg" class="d-block w-100" alt="Third slide">
+                            </ng-template>
+                            -->
+                          </ngb-carousel>
+                          <!--<div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                              content.</p>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-2" id="documents">
+                    <!-- Information form starts -->
+
+                    <!-- Information form ends -->
+                  </div>
+                  <!-- Information content ends -->
+                </ng-template>
+              </li>
+
+              <li [ngbNavItem]="4">
+                <a ngbNavLink class="nav-link d-flex align-items-center">
+                  <i class="ft-info mr-1"></i>
+                  <span class="d-none d-sm-block">Historiques</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <div class="mt-2" id="historique">
+                    <div class="card-body table-responsive">
+                      <table class="table text-center m-0">
+                        <thead>
+                        <tr>
+                          <th>Identifiant</th>
+                          <th>Prénom & Nom</th>
+                          <th>Commentaire</th>
+                          <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="historiques">
+                        <tr  *ngFor="let historique  of historiques; let i = index">
+
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Information content ends -->
+                </ng-template>
+              </li>
+
+
+            </ul>
+            <div class="tab-content">
+              <div [ngbNavOutlet]="nav"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

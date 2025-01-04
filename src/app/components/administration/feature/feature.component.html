@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Feature</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th width="10%">Code</th>
+                    <th width="25%">Nom</th>
+                    <th width="25%">Module</th>
+                    <th width="30%">Path</th>
+                    <th width="10%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="features">
+                  <tr  *ngFor="let feature  of features;">
+                    <td>{{feature.code}}</td>
+                    <td>{{feature.nom}}</td>
+                    <td>{{feature.module.nom}}</td>
+                    <td>{{feature.path}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="formEdit(feature)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(feature.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

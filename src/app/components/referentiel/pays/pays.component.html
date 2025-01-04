@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Pays</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table text-center m-0">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="payss">
+                  <tr  *ngFor="let pays  of payss; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{pays.code}}</td>
+                    <td>{{pays.nom}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="formEdit(pays)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(pays.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">BAAC à compléter</div>
+  </div>
+  <div class="col-1">
+    <!--<div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="navigateTo('components/baac/add')"><i class="ft-check-square mr-1"></i>Ajouter</button></div>-->
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table text-center m-0">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Numéro baac</th>
+                    <th>Référence</th>
+                    <th>Date accident</th>
+                    <th>Heure accident</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="baacs">
+                  <tr  *ngFor="let baac  of baacs; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{baac.numerobaac}}</td>
+                    <td>{{baac.reference}}</td>
+                    <td>{{baac.dateaccident | date:'dd/MM/yyyy'}}</td>
+                    <td>{{baac.heureaccident}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="navigateTo('components/baac/add?page='+baac.id)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(baac.id)">
+                        <i class="ft-x font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="warning p-0" routerLink="/components/baac-document" [queryParams]="{ vwp: baac.id }">
+                        <i class="ft-folder font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="warning p-0" routerLink="/components/baac-details" [queryParams]="{ vwp: baac.id }">
+                        <i class="ft-more-vertical font-medium-3 mr-2"></i>
+
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

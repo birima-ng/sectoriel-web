@@ -1,0 +1,31 @@
+import {JourSemaine} from 'app/components/modeles/jour-semaine.modele';
+import {Village} from 'app/components/modeles/village.modele';
+export class Baac {
+  id: string;
+  numerobaac: string;
+  reference: string;
+  numeropv: string;
+  datepv: Date;
+  dateaccident: Date;
+  heureaccident: string;
+  lieuprecis: string;
+  latitude: number;
+  longitude: number;
+  nombrevictime: number;
+  vitesseaccident: number;
+  autreprecision: string;
+  marquageausol: number;
+  datesave: Date;
+  dateupdate: Date;
+  village: Village;
+  //controlcarrefour: ControleCarrefour;
+  //reseauroutier: ReseauRoutier;
+  joursemaine: JourSemaine;
+  //etatchaussee: EtatChaussee;
+  //trace: Trace;
+  //conditionatmospherique: ConditionAtmospherique;
+  //lumiere: Lumiere;
+  //profilbaac: ProfilBaac;
+  //infraction: Infraction;
+  //typecollusion: TypeCollusion;
+}

@@ -1,0 +1,147 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Utilisateur</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+      <div class="content-header"><h4 class="modal-title">{{nom_unitte}}</h4></div>
+      <br/>
+    </div>
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nom">Identifiant</label>
+              <input type="text" formControlName="username" class="form-control" placeholder="Identifiant" id="username"
+                     [ngClass]="{ 'is-invalid': submitted && lf.username.invalid, 'is-valid': submitted && !lf.username.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.username.invalid || lf.username.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-12">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" formControlName="nom" class="form-control" placeholder="Nom" id="nom"
+                       [ngClass]="{ 'is-invalid': submitted && lf.nom.invalid, 'is-valid': submitted && !lf.nom.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.nom.invalid || lf.nom.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" formControlName="prenom" class="form-control" placeholder="Prénom" id="prenom"
+                     [ngClass]="{ 'is-invalid': submitted && lf.prenom.invalid, 'is-valid': submitted && !lf.prenom.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.prenom.invalid || lf.prenom.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="prenom">E-mail</label>
+              <input type="text" formControlName="email" class="form-control" placeholder="E-mail" id="email"
+                     [ngClass]="{ 'is-invalid': submitted && lf.email.invalid, 'is-valid': submitted && !lf.email.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.email.invalid || lf.email.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="prenom">Téléphone</label>
+              <input type="text" formControlName="telephone" class="form-control" placeholder="Téléphone" id="telephone"
+                     [ngClass]="{ 'is-invalid': submitted && lf.telephone.invalid, 'is-valid': submitted && !lf.telephone.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.telephone.invalid || lf.telephone.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+              <div class="form-group mb-2">
+                <label for="profile">Fonction</label>
+                <select class="form-control"  [(ngModel)]="fonction" [compareWith]="compareFn" formControlName="fonction" id="fonction" name="fonction" [ngClass]="{ 'is-invalid': submitted && lf.fonction.invalid, 'is-valid': submitted && !lf.fonction.invalid }" required>
+                  <option [ngValue]="null" >-- Fonction --</option>
+                  <option *ngFor="let fonction of fonctions;" [ngValue]="fonction"  >{{fonction.libelle }}</option>
+
+                </select>
+                <div *ngIf="submitted && (lf.fonction.invalid || lf.fonction.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="profile">Service</label>
+              <select class="form-control"  [(ngModel)]="service" [compareWith]="compareFn" formControlName="service" id="service" name="service" [ngClass]="{ 'is-invalid': submitted && lf.service.invalid, 'is-valid': submitted && !lf.service.invalid }" required>
+                <option [ngValue]="null" >-- Service --</option>
+                <option *ngFor="let service of services;" [ngValue]="service"  >{{service.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.service.invalid || lf.service.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="profile">Profil</label>
+              <select class="form-control"  [(ngModel)]="profile" [compareWith]="compareFn" formControlName="profile" id="profile" name="profile" [ngClass]="{ 'is-invalid': submitted && lf.profile.invalid, 'is-valid': submitted && !lf.profile.invalid }" required>
+                <option [ngValue]="null" >-- Profil --</option>
+                <option *ngFor="let profile of profiles;" [ngValue]="profile"  >{{profile.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.profile.invalid || lf.profile.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

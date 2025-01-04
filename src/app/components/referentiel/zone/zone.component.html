@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Zone</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">
+      <app-list-actions
+        [item]="zone"
+        [addActionCode]="'5e525d47-df03-468f-8ca2-5cce8d1cd5f1'"
+        (add)="openContent()">
+      </app-list-actions>
+    </div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table  m-0">
+                  <thead>
+                  <tr>
+                    <th width="20%">Code</th>
+                    <th width="60%">Libellé</th>
+                    <th width="20%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="zones">
+                  <tr  *ngFor="let zone  of zones;">
+                    <td>{{zone.code}}</td>
+                    <td>{{zone.nom}}</td>
+                    <td class="text-truncate">
+                      <!--<a href="javascript:;" class="success p-0" (click)="formEdit(zone)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(zone.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a> -->
+                      <app-list-actions
+                        [item]="zone"
+                        [editActionCode]="'6ef35884-06e4-4bbf-92f5-1cadda40daa4'"
+                        [deleteActionCode]="'0e8f615c-e8c1-4ad4-bd20-966a47ea84ab'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

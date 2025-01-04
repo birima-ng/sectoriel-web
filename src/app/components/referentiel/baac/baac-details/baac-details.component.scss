@@ -1,0 +1,52 @@
+.ui-chart .ui-chart-legend {
+    display: inline-block; /* Pour réduire la largeur */
+    width: auto;           /* Pour éviter qu’elle prenne toute la ligne */
+}
+
+.chart-container {
+    display: flex;
+    align-items: center; /* Pour aligner verticalement */
+}
+
+legend {
+width: auto!important;
+  display: block;
+  padding: 0;
+  margin-bottom: .5rem;
+  line-height: inherit;
+  color: inherit; // 2
+  white-space: normal; // 1
+}
+
+blockquote {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 2px!important;
+    margin-inline-end: 2px!important;
+        margin: 2px!important;
+    unicode-bidi: isolate;
+    padding-right: 1px!important;
+    padding-left: 1px!important;
+    margin-right: 0!important;
+}
+
+.p-fieldset {
+  width: 100%!important;
+     padding-left: 1px!important;
+       padding: 0px!important;
+          padding-right: 2px!important;
+}
+
+agm-map {
+  height: 600px;
+}
+
+.table th, .table tr, .table td {
+     padding: 0.1rem 1rem 0.1rem 0.1rem ;
+     margin-top: 1 rem;
+    }
+.p-fieldset .p-fieldset-legend {
+   padding: 0.3rem;
+
+}

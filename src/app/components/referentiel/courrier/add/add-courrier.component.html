@@ -1,0 +1,81 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Courrier</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+      <form [formGroup]="addForm">
+        <div class="card-content">
+          <div class="card-body">
+
+            <div class="form-group">
+                <label for="destinataire">À</label>
+                <input type="text" formControlName="destinataire" class="form-control" placeholder="À" id="destinataire"
+                       [ngClass]="{ 'is-invalid': submitted && lf.destinataire.invalid, 'is-valid': submitted && !lf.destinataire.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.destinataire.invalid || lf.destinataire.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+            </div>
+
+            <div class="form-group">
+              <label for="objetcourrier">Objet</label>
+              <input type="text" id="objetcourrier" class="form-control" placeholder="Objet" formControlName="objetcourrier" >
+            </div>
+
+            <div class="form-group">
+              <label for="objetcourrier">Message</label>
+              <textarea type="text" id="message" class="form-control" placeholder="Message" formControlName="message" rows="5">
+              </textarea>
+            </div>
+
+            <!-- Compose mail Quill editor -->
+           <!-- <div class="snow-container1 border1 rounded1" height="300px" >
+
+              <quill-editor customToolbarPosition="bottom1"  class="custom-quill-editor1" id="message" formControlName="message" rows="4">
+                <div quill-editor-toolbar>
+                  <span class="ql-formats">
+                    <button class="ql-bold" [title]="'Bold'"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-link"></button>
+                    <button class="ql-image"></button>
+                  </span>
+                </div>
+              </quill-editor>
+            </div> -->
+            <div class="form-group mt-2">
+              <div class="custom-file">
+               <!-- <input type="file" class="custom-file-input" id="compose-email-attach" > -->
+                <label class="custom-file-label" for="file"></label>
+                <input type="file" multiple (change)="selectFiles($event)" formControlName="file" class="form-control" id="file">
+              </div>
+            </div>
+          </div>
+        </div>
+       <!-- <div class="card-footer d-flex justify-content-end pt-0">
+          <button type="reset" class="btn bg-light-secondary compose-cancel-btn mr-2">
+            <i class='ft-x m-0 mr-sm-1'></i>
+            <span class="d-sm-inline-block d-none">Cancel</span>
+          </button>
+          <button type="submit" class="btn-send btn btn-primary">
+            <i class='ft-send m-0 mr-sm-1'></i>
+            <span class="d-sm-inline-block d-none">Send</span>
+          </button>
+        </div> -->
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()" ><i class="ft-check-square mr-1"></i>Envoyer</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

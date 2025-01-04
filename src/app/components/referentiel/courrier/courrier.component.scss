@@ -1,0 +1,273 @@
+// Bootstrap Grids
+
+#equal-width,
+#setting-one-column-width,
+#variable-width-content,
+#equal-width-multi-row,
+#all-breakpoints,
+#stacked-to-horizontal,
+#alignment,
+#vertical-alignment,
+#horizontal-alignment,
+#column-wrapping,
+#column-breaks,
+#reordering,
+#offsetting-columns,
+#margin-utilities,
+#nesting {
+  .bd-example {
+    .row {
+
+      [class^="col-"],
+      .col {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+      }
+    }
+
+    .row+.row {
+      margin-top: 1rem;
+    }
+  }
+}
+
+
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+
+  /* Dimensions en pourcentage */
+  width: 50%; /* 30% de la largeur de l'écran */
+  max-width: 1000px; /* Limite maximale */
+  height: 60%; /* 20% de la hauteur de l'écran */
+  min-height: 100px; /* Limite minimale */
+
+  /* Animation */
+  animation: slide-in 0.5s ease-out;
+}
+
+.popup-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%; /* Assurer que le contenu occupe toute la hauteur */
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+/* Ajoute des styles pour personnaliser davantage la taille de modal-dialog */
+.custom-modal .modal-dialog {
+  max-width: 80%; /* Ajuste cette valeur selon tes besoins */
+  width: 90%; /* Ajuste cette valeur selon tes besoins */
+  max-height: 90%; /* Ajuste cette valeur selon tes besoins */
+  height: 90%; /* Ajuste cette valeur selon tes besoins */
+}
+
+.dots {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+}
+
+.cell {
+  flex: 1;
+  padding: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.subject {
+  font-weight: bold;
+  flex: 2;
+}
+
+.content {
+  flex: 5;
+}
+
+.date {
+  flex: 1;
+  text-align: right;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.cell {
+  flex: 1;
+  padding: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.actions {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.icon-attachment::before {
+  content: "📎"; /* Icône pièce jointe */
+}
+
+.icon-reply::before {
+  content: "↩️"; /* Icône répondre */
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  cursor: pointer;
+}
+
+.cell {
+  flex: 1;
+  padding: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.cell {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mail-details {
+  padding: 16px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+button {
+  margin-bottom: 16px;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+.row.read {
+  background-color: #f9f9f9; /* Couleur pour les mails déjà lus */
+}
+
+.cell {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mail-details {
+  padding: 16px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+button {
+  margin-bottom: 16px;
+}

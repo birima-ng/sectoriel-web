@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Ajoute les styles globaux pour les modales */
+.custom-quill-editor {
+min-height: calc(1.5em * 10);
+  height: 80%!important; /* Hauteur en pourcentage */
+  width: 90%!important;  /* Largeur en pourcentage */
+}
+
+.custom-quill-editor .ql-editor {
+  height: 100%!important; /* Ajuste l'éditeur interne */
+}

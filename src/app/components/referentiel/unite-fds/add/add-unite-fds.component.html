@@ -1,0 +1,129 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Unité FDS</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+        <div class="form-row">
+          <div class="col-12">
+              <div class="form-group">
+                <label for="code">Code</label>
+                <input type="text" formControlName="code" class="form-control" placeholder="Code" id="code"
+                       [ngClass]="{ 'is-invalid': submitted && lf.code.invalid, 'is-valid': submitted && !lf.code.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.code.invalid || lf.code.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" formControlName="nom" class="form-control" placeholder="Nom" id="nom"
+                     [ngClass]="{ 'is-invalid': submitted && lf.nom.invalid, 'is-valid': submitted && !lf.nom.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.nom.invalid || lf.nom.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nom">Téléphone</label>
+              <input type="text" formControlName="telephone" class="form-control" placeholder="Téléphone" id="telephone"
+                     [ngClass]="{ 'is-invalid': submitted && lf.telephone.invalid, 'is-valid': submitted && !lf.telephone.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.telephone.invalid || lf.telephone.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nom">Adresse</label>
+              <input type="text" formControlName="adresse" class="form-control" placeholder="adresse" id="adresse"
+                     [ngClass]="{ 'is-invalid': submitted && lf.adresse.invalid, 'is-valid': submitted && !lf.adresse.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.adresse.invalid || lf.adresse.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="typeunitefds">Type unité FDS</label>
+              <select class="form-control" id="typeunitefds"  [(ngModel)]="typeunitefds" [compareWith]="compareFn" formControlName="typeunitefds" id="typeunitefds" name="typeunitefds" [ngClass]="{ 'is-invalid': submitted && lf.typeunitefds.invalid, 'is-valid': submitted && !lf.typeunitefds.invalid }" required>
+                <option [ngValue]="null" >-- Type unité FDS --</option>
+                <option *ngFor="let typeunitefds of typeunitefdss;" [ngValue]="typeunitefds"  >{{typeunitefds.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.typeunitefds.invalid || lf.typeunitefds.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="village">Commune</label>
+              <select class="form-control" (ngModelChange)="onChangeCommune($event)" id="commune"  [(ngModel)]="commune" [compareWith]="compareFn" formControlName="commune" id="commune" name="commune" [ngClass]="{ 'is-invalid': submitted && lf.commune.invalid, 'is-valid': submitted && !lf.commune.invalid }" required>
+                <option [ngValue]="null" >-- Commune --</option>
+                <option *ngFor="let commune of communes;" [ngValue]="commune"  >{{commune.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.commune.invalid || lf.commune.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="village">Localité</label>
+              <select class="form-control" id="village"  [(ngModel)]="village" [compareWith]="compareFn" formControlName="village" id="village" name="village" [ngClass]="{ 'is-invalid': submitted && lf.village.invalid, 'is-valid': submitted && !lf.village.invalid }" required>
+                <option [ngValue]="null" >-- Localité --</option>
+                <option *ngFor="let village of villages;" [ngValue]="village"  >{{village.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.typeunitefds.invalid || lf.typeunitefds.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

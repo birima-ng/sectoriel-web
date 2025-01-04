@@ -1,0 +1,39 @@
+<!--Lock Screen Starts-->
+<section id="lock-screen">
+  <div class="row auth-height full-height-vh m-0">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card overflow-hidden">
+        <div class="card-content">
+          <div class="card-body auth-img">
+            <form [formGroup]="addForm">
+            <div class="row m-0">
+              <div class="col-lg-6 d-lg-flex justify-content-center align-items-center d-none text-center auth-img-bg p-3">
+                <img src="assets/img/baac/activate.png" alt="" class="img-fluid" height="230" width="280">
+              </div>
+              <div class="col-lg-6 col-md-12 py-3 px-4">
+                <h4 class="card-title mb-3">Pour activer le compte, merci de saisir le code d'activation reçu par sms</h4>
+                <br/>
+                <br/>
+                <br/>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon5"><i class="ft-rotate-cw spinner"></i></span>
+                  </div>
+                  <input type="text" formControlName="codeactivation" class="form-control" placeholder="Code d'activation" id="codeactivation"
+                         [ngClass]="{ 'is-invalid': submitted && lf.codeactivation.invalid, 'is-valid': submitted && !lf.codeactivation.invalid }" aria-describedby="basic-addon5" maxlength="6">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" (click)="onSubmit()" >Activez</button>
+                  </div>
+                </div>
+                <div *ngIf="submitted && (lf.codeactivation.invalid || lf.codeactivation.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Le code d'activation est obligatoire </div>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Lock Screen Ends-->

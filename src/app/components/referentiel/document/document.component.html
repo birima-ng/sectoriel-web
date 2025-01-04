@@ -1,0 +1,156 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Documents</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <!-- Filter starts -->
+    <div class="users-list-filter px-2">
+      <form [formGroup]="searchForm" >
+        <div class="row border rounded py-2 mb-2 mx-n2">
+          <div class="col-12 row">
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="form-group">
+                <label for="intitule">Intitulé du texte</label>
+                <input type="text" formControlName="intitule" class="form-control" placeholder="Intitulé du texte" id="intitule"
+                       >
+
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="form-group">
+                <label for="reference">Référence</label>
+                <input type="text" formControlName="reference" class="form-control" placeholder="Référence" id="reference"
+                       >
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="form-group">
+                <label for="reference">Mot clés</label>
+                <input type="text" formControlName="motcles" class="form-control" placeholder="Mot clés" id="motcles"
+                >
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
+              <div class="form-group">
+                <label for="datedocument">Date du document</label>
+                <input type="date" formControlName="datedocument" class="form-control" placeholder="Date du document" id="datedocument"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row col-12">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group mb-2">
+              <label for="naturedocument">Nature diplômatique</label>
+              <select class="form-control"  [(ngModel)]="naturedocument" [compareWith]="compareFn" formControlName="naturedocument" id="naturedocument" name="naturedocument" >
+                <option [ngValue]="null" >-- Nature diplômatique --</option>
+                <option *ngFor="let naturedocument of naturedocuments;" [ngValue]="naturedocument"  >{{naturedocument.libelle }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group mb-2">
+              <label for="thematique">Thématique</label>
+              <select class="form-control"  [(ngModel)]="thematique" [compareWith]="compareFn" formControlName="thematique" id="thematique" name="thematique">
+                <option [ngValue]="null" >-- Thématique --</option>
+                <option *ngFor="let thematique of thematiques;" [ngValue]="thematique"  >{{thematique.libelle }}</option>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group mb-2">
+              <label for="zoneapplication">Zone application</label>
+              <select class="form-control"  [(ngModel)]="zoneapplication" [compareWith]="compareFn" formControlName="zoneapplication" id="zoneapplication" name="zoneapplication" >
+                <option [ngValue]="null" >-- Zone application --</option>
+                <option *ngFor="let zoneapplication of zoneapplications;" [ngValue]="zoneapplication"  >{{zoneapplication.libelle }}</option>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
+            <button type="reset" class="btn btn-primary btn-block users-list-clear glow mb-0">
+              Rechercher
+            </button>
+          </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Filter ends -->
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th >Référence</th>
+                    <th >Intitulé</th>
+                    <th >Date</th>
+                    <th >Nature diplômatique</th>
+                    <th >Thématique</th>
+                    <th >Zone d'application</th>
+                    <th width="5%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="documents">
+                  <tr  *ngFor="let document  of documents;">
+                    <td>{{document.reference}}</td>
+                    <td>{{document.intitule}}</td>
+                    <td>{{document.datedocument}}</td>
+                    <td>{{document.naturedocument.libelle}}</td>
+                    <td>{{document.thematique.libelle}}</td>
+                    <td>{{document.zoneapplication.libelle}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="formEdit(document)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(document.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

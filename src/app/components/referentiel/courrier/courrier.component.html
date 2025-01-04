@@ -1,0 +1,219 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Courriers</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Message</button></div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+<!--
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <tbody *ngIf="courriers">
+                  <tr  *ngFor="let courrier  of courriers; let i = index">
+                    <td width="5%" style="text-align: left;white-space: nowrap!important;overflow: hidden!important;text-overflow: ellipsis!important;">{{courrier.objetcourrier}} <span class="dots">...</span></td>
+                    <td width="90%" style="text-align: left;white-space: nowrap!important;overflow: hidden!important;text-overflow: ellipsis!important;">{{courrier.message}} <span class="dots">...</span></td>
+                    <td width="5%" style="text-align: left">{{courrier.datesave}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+-->
+            <div *ngIf="!selectedMail">
+            <div class="table-container">
+              <div class="row" *ngFor="let courrier  of courriers; let i = index" (mouseover)="hoveredRow = courrier" (mouseleave)="hoveredRow = null" (click)="openMail(courrier)" [class.read]="courrier.opened">
+                <div class="cell subject">{{courrier.reference}}</div>
+                <div class="cell subject">{{courrier.objetcourrier}}</div>
+                <div class="cell content">{{courrier.message}}</div>
+                <div class="cell date">{{courrier.datesave | date:'dd/MM/yyyy HH:mm' }}</div>
+                <div class="cell actions" *ngIf="hoveredRow === courrier" (click)="openIconPopup($event, courrier)">
+                  <i class="icon-attachment"></i>
+                  <i class="icon-reply"></i>
+                </div>
+              </div>
+              <!-- Répétez les lignes -->
+            </div>
+            </div>
+            <div *ngIf="selectedMail">
+              <!-- Détails du mail -->
+              <div class="mail-details">
+                <button (click)="goBack()">Retour</button>
+                <h3>{{ selectedMail?.subject }}</h3>
+                <p>{{ selectedMail?.content }}</p>
+                <p><strong>Date :</strong> {{ selectedMail?.datesave | date:'dd/MM/yyyy'}}</p>
+                <div class="form-group">
+                  <label for="destinataire">À</label>
+                  <input type="text" formControlName="destinataire" class="form-control" placeholder="{{ selectedMail?.destinataire }}" id="destinataire">
+                </div>
+                <div class="form-group">
+                  <label for="objetcourrier">Objet</label>
+                  <input type="text" id="objetcourrier" class="form-control" placeholder="{{ selectedMail?.objetcourrier }}" formControlName="objetcourrier" >
+                </div>
+
+                <div class="form-row">
+                  <div class="col-12">
+                    <div class="form-group mb-2">
+                      <label for="message">Message</label>
+                      <div id="message" class="form-control" >
+                        {{ selectedMail.message}}
+                      </div>
+                      <!--<textarea type="text" id="message" class="form-control"  formControlName="message" rows="4" placeholder="{{ selectedMail.message}}">
+                      {{ selectedMail.message}}
+                      </textarea> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row" *ngIf="fichierjoints">
+                  <div class="col-12">
+                    <div class="form-group mb-2">
+                      <label for="thematique">Document</label>
+                    </div>
+                  </div>
+                  <tbody *ngIf="fichierjoints">
+                  <div  *ngFor="let fichierjoint  of fichierjoints; let i = index">
+                    <div style="text-align: left;white-space: nowrap!important;overflow: hidden!important;text-overflow: ellipsis!important;" (click)="showCourrier(fichierjoint)">{{fichierjoint.nom}}</div>
+                  </div>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+<!--
+<div class="popup" *ngIf="isVisible">
+
+  <section >
+    <div class="modal-header">
+      <h4 class="modal-title">Courrier</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-12">
+
+        <form [formGroup]="addForm">
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" formControlName="nom" class="form-control" placeholder="Nom" id="nom"
+                       [ngClass]="{ 'is-invalid': submitted && lf.nom.invalid, 'is-valid': submitted && !lf.nom.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.nom.invalid || lf.nom.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" formControlName="prenom" class="form-control" placeholder="Prénom" id="prenom"
+                       [ngClass]="{ 'is-invalid': submitted && lf.prenom.invalid, 'is-valid': submitted && !lf.prenom.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.prenom.invalid || lf.prenom.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="text" formControlName="telephone" class="form-control" placeholder="Téléphone" id="telephone"
+                       [ngClass]="{ 'is-invalid': submitted && lf.telephone.invalid, 'is-valid': submitted && !lf.telephone.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.telephone.invalid || lf.telephone.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="Email" id="email"
+                       [ngClass]="{ 'is-invalid': submitted && lf.email.invalid, 'is-valid': submitted && !lf.email.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.email.invalid || lf.email.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group mb-2">
+                <label for="fonction">Fonction</label>
+                <select class="form-control" [(ngModel)]="fonction" [compareWith]="compareFn" formControlName="fonction" id="fonction" name="fonction" [ngClass]="{ 'is-invalid': submitted && lf.fonction.invalid, 'is-valid': submitted && !lf.fonction.invalid }" required>
+                  <option [ngValue]="null" >-- Fonction --</option>
+                  <option *ngFor="let fonction of fonctions;" [ngValue]="fonction"  >{{fonction.libelle }}</option>
+
+                </select>
+                <div *ngIf="submitted && (lf.fonction.invalid || lf.fonction.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group mb-2">
+                <label for="servicedepartement">Fonction</label>
+                <select class="form-control" [(ngModel)]="servicedepartement" [compareWith]="compareFn" formControlName="servicedepartement" id="servicedepartement" name="servicedepartement" [ngClass]="{ 'is-invalid': submitted && lf.servicedepartement.invalid, 'is-valid': submitted && !lf.servicedepartement.invalid }" required>
+                  <option [ngValue]="null" >-- Fonction --</option>
+                  <option *ngFor="let servicedepartement of servicedepartements;" [ngValue]="servicedepartement"  >{{servicedepartement.libelle }}</option>
+
+                </select>
+                <div *ngIf="submitted && (lf.servicedepartement.invalid || lf.servicedepartement.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()" ><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+    </div>
+
+  </section>
+</div>
+-->

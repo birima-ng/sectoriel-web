@@ -1,0 +1,52 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Tracé</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+        <div class="form-row">
+          <div class="col-12">
+              <div class="form-group">
+                <label for="code">Code</label>
+                <input type="text" formControlName="code" class="form-control" placeholder="Code" id="code"
+                       [ngClass]="{ 'is-invalid': submitted && lf.code.invalid, 'is-valid': submitted && !lf.code.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.code.invalid || lf.code.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" formControlName="nom" class="form-control" placeholder="Nom" id="nom"
+                     [ngClass]="{ 'is-invalid': submitted && lf.nom.invalid, 'is-valid': submitted && !lf.nom.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.nom.invalid || lf.nom.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

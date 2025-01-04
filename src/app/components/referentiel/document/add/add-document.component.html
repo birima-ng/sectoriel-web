@@ -1,0 +1,151 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Document</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+        <div class="form-row">
+          <div class="col-4">
+            <div class="form-group mb-2">
+              <label for="naturedocument">Nature diplômatique</label>
+              <select class="form-control"  [(ngModel)]="naturedocument" [compareWith]="compareFn" formControlName="naturedocument" id="naturedocument" name="naturedocument" [ngClass]="{ 'is-invalid': submitted && lf.naturedocument.invalid, 'is-valid': submitted && !lf.naturedocument.invalid }" required>
+                <option [ngValue]="null" >-- Nature diplômatique --</option>
+                <option *ngFor="let naturedocument of naturedocuments;" [ngValue]="naturedocument"  >{{naturedocument.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.naturedocument.invalid || lf.naturedocument.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="reference">Référence</label>
+              <input type="text" formControlName="reference" class="form-control" placeholder="Référence" id="reference"
+                     [ngClass]="{ 'is-invalid': submitted && lf.reference.invalid, 'is-valid': submitted && !lf.reference.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.reference.invalid || lf.reference.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="datedocument">Date du document</label>
+              <input type="date" formControlName="datedocument" class="form-control" placeholder="Date du document" id="datedocument"
+                     [ngClass]="{ 'is-invalid': submitted && lf.datedocument.invalid, 'is-valid': submitted && !lf.datedocument.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.datedocument.invalid || lf.datedocument.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="intitule">Intitulé du texte</label>
+              <input type="text" formControlName="intitule" class="form-control" placeholder="Intitulé du texte" id="intitule"
+                     [ngClass]="{ 'is-invalid': submitted && lf.intitule.invalid, 'is-valid': submitted && !lf.intitule.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.intitule.invalid || lf.intitule.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="contenusupplementaire">Contenu supplémentaire</label>
+              <textarea formControlName="contenusupplementaire" class="form-control" placeholder="Contenu supplémentaire" id="contenusupplementaire"
+                     [ngClass]="{ 'is-invalid': submitted && lf.contenusupplementaire.invalid, 'is-valid': submitted && !lf.contenusupplementaire.invalid }"
+                        required rows="4"> </textarea>
+              <div *ngIf="submitted && (lf.contenusupplementaire.invalid || lf.contenusupplementaire.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="contenusupplementaire">Sélectionner le document</label>
+              <input type="file" multiple (change)="selectFiles($event)" formControlName="file" class="form-control" id="file">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="thematique">Thématique</label>
+              <select class="form-control"  [(ngModel)]="thematique" [compareWith]="compareFn" formControlName="thematique" id="thematique" name="thematique" [ngClass]="{ 'is-invalid': submitted && lf.thematique.invalid, 'is-valid': submitted && !lf.thematique.invalid }" required>
+                <option [ngValue]="null" >-- Thématique --</option>
+                <option *ngFor="let thematique of thematiques;" [ngValue]="thematique"  >{{thematique.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.thematique.invalid || lf.thematique.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="zoneapplication">Zone application</label>
+              <select class="form-control"  [(ngModel)]="zoneapplication" [compareWith]="compareFn" formControlName="zoneapplication" id="zoneapplication" name="zoneapplication" [ngClass]="{ 'is-invalid': submitted && lf.zoneapplication.invalid, 'is-valid': submitted && !lf.zoneapplication.invalid }" required>
+                <option [ngValue]="null" >-- Zone application --</option>
+                <option *ngFor="let zoneapplication of zoneapplications;" [ngValue]="zoneapplication"  >{{zoneapplication.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.zoneapplication.invalid || lf.zoneapplication.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+  <div class="card-content" > {{path}}
+    <ngb-carousel >
+      <ng-template ngbSlide style="width:800px! important;height:600pxx!important;" *ngIf="safeSrc">
+          <iframe frameborder="0" webkitallowfullscreen mozallowfullscreen
+                  allowfullscreen [src]="safeSrc" style="margin-top:20px;width:100%;height: 109vh!important;"></iframe>
+      </ng-template>
+      <!--
+                                  <ng-template ngbSlide>
+                                    <img src="assets/img/photos/01.jpg" class="d-block w-100" alt="First slide">
+                                  </ng-template>
+                                  <ng-template ngbSlide>
+                                    <img src="assets/img/photos/05.jpg" class="d-block w-100" alt="Second slide">
+                                  </ng-template>
+                                  <ng-template ngbSlide>
+                                    <img src="assets/img/photos/10.jpg" class="d-block w-100" alt="Third slide">
+                                  </ng-template>
+                                  -->
+    </ngb-carousel>
+  </div>
+</section>
+<!--Login Page Ends-->
