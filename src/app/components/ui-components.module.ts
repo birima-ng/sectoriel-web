@@ -200,6 +200,20 @@ import { QuillModule } from 'ngx-quill'
 import {ProduitComponent} from "./referentiel/produit/produit.component";
 import {AddProduitComponent} from "./referentiel/produit/add/add-produit.component";
 import { EmailEditorModule } from 'angular-email-editor';
+
+import {SecteurComponent} from "./referentiel/secteur/secteur.component";
+import {AddSecteurComponent} from "./referentiel/secteur/add/add-secteur.component";
+
+
+import {SecteurActiviteComponent} from "./referentiel/secteur-activite/secteur-activite.component";
+import {AddSecteurActiviteComponent} from "./referentiel/secteur-activite/add/add-secteur-activite.component";
+
+
+import {StadeCommerceComponent} from "./referentiel/stade-commerce/stade-commerce.component";
+import {AddStadeCommerceComponent} from "./referentiel/stade-commerce/add/add-stade-commerce.component";
+
+
+
 @NgModule({
     imports: [
     EmailEditorModule,
@@ -230,6 +244,10 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+StadeCommerceComponent,
+AddStadeCommerceComponent,
+AddSecteurActiviteComponent,
+SecteurActiviteComponent,
 AddProduitComponent,
 ProduitComponent,
 ShowCourrierComponent,
@@ -354,6 +372,8 @@ AddUniteOrganisationnelleComponent,
         AddGenreVehiculeComponent,
         EtatFeuxComponent,
         AddEtatFeuxComponent,
+        SecteurComponent,
+        AddSecteurComponent,
         EtatChausseeComponent,
         AddEtatChausseeComponent,
         EtatGeneralComponent,

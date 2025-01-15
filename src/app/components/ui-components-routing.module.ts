@@ -86,6 +86,11 @@ import {DocumentComponent} from "./referentiel/document/document.component";
 import {ContactComponent} from "./referentiel/contact/contact.component";
 import {CourrierComponent} from "./referentiel/courrier/courrier.component";
 import {ProduitComponent} from "./referentiel/produit/produit.component";
+import {SecteurComponent} from "./referentiel/secteur/secteur.component";
+
+import {SecteurActiviteComponent} from "./referentiel/secteur-activite/secteur-activite.component";
+import {StadeCommerceComponent} from "./referentiel/stade-commerce/stade-commerce.component";
+
 const routes: Routes = [
   {
     path: '',
@@ -97,7 +102,29 @@ const routes: Routes = [
           title: 'Buttons'
         }
       },
+{
+path: 'secteur',
+component: SecteurComponent, canActivate: [AuthGuard],
+data: {
+title: 'Secteur'
+}
+},
 
+{
+path: 'secteur-activite',
+component: SecteurActiviteComponent, canActivate: [AuthGuard],
+data: {
+title: 'secteur-activite'
+}
+},
+
+{
+path: 'stade-commerce',
+component: StadeCommerceComponent, canActivate: [AuthGuard],
+data: {
+title: 'stade-commerce'
+}
+},
       {
         path: 'jour-semaine',
         component: JourSemaineComponent, canActivate: [AuthGuard],
