@@ -212,6 +212,8 @@ import {AddSecteurActiviteComponent} from "./referentiel/secteur-activite/add/ad
 import {StadeCommerceComponent} from "./referentiel/stade-commerce/stade-commerce.component";
 import {AddStadeCommerceComponent} from "./referentiel/stade-commerce/add/add-stade-commerce.component";
 
+import {EntrepriseComponent} from "./referentiel/entreprise/entreprise.component";
+import {AddEntrepriseComponent} from "./referentiel/entreprise/add/add-entreprise.component";
 
 
 @NgModule({
@@ -244,6 +246,8 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+EntrepriseComponent,
+AddEntrepriseComponent,
 StadeCommerceComponent,
 AddStadeCommerceComponent,
 AddSecteurActiviteComponent,

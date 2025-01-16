@@ -1,0 +1,125 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Entreprise</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="region">Région</label>
+              <select class="form-control" (ngModelChange)="onChangeRegion($event)"   [(ngModel)]="region" [compareWith]="compareFn" formControlName="region" id="region" name="region" [ngClass]="{ 'is-invalid': submitted && lf.region.invalid, 'is-valid': submitted && !lf.region.invalid }" required>
+                <option [ngValue]="null" >-- Région --</option>
+                <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="departement">Departement</label>
+              <select class="form-control" [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement" [ngClass]="{ 'is-invalid': submitted && lf.departement.invalid, 'is-valid': submitted && !lf.departement.invalid }" required>
+                <option [ngValue]="null" >-- Departement --</option>
+                <option *ngFor="let departement of departements;" [ngValue]="departement"  >{{departement.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-4">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" formControlName="nom" class="form-control" placeholder="Nom" id="nom"
+                       [ngClass]="{ 'is-invalid': submitted && lf.nom.invalid, 'is-valid': submitted && !lf.nom.invalid }"
+                       required>
+                <div *ngIf="submitted && (lf.nom.invalid || lf.nom.errors?.required)"
+                     class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                  required</div>
+              </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="ninea">Ninéa</label>
+              <input type="text" formControlName="ninea" class="form-control" placeholder="Ninéa" id="ninea"
+                     [ngClass]="{ 'is-invalid': submitted && lf.ninea.invalid, 'is-valid': submitted && !lf.ninea.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.ninea.invalid || lf.ninea.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="regicommerce">Régistre commerce</label>
+              <input type="text" formControlName="regicommerce" class="form-control" placeholder="Régistre commerce" id="regicommerce"
+                     [ngClass]="{ 'is-invalid': submitted && lf.regicommerce.invalid, 'is-valid': submitted && !lf.regicommerce.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.regicommerce.invalid || lf.regicommerce.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="telephoneportable">Téléphone portable</label>
+              <input type="text" formControlName="telephoneportable" class="form-control" placeholder="Téléphone portable" id="telephoneportable"
+                     [ngClass]="{ 'is-invalid': submitted && lf.telephoneportable.invalid, 'is-valid': submitted && !lf.telephoneportable.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.telephoneportable.invalid || lf.telephoneportable.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="telephonefix">Téléphone fix</label>
+              <input type="text" formControlName="telephonefix" class="form-control" placeholder="Téléphone fix" id="telephonefix"
+                    >
+
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="telephonefix2">Téléphone fix 2</label>
+              <input type="text" formControlName="telephonefix2" class="form-control" placeholder="Téléphone fix 2" id="telephonefix2"
+                    >
+
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

@@ -90,6 +90,8 @@ import {SecteurComponent} from "./referentiel/secteur/secteur.component";
 
 import {SecteurActiviteComponent} from "./referentiel/secteur-activite/secteur-activite.component";
 import {StadeCommerceComponent} from "./referentiel/stade-commerce/stade-commerce.component";
+import {EntrepriseComponent} from "./referentiel/entreprise/entreprise.component";
+
 
 const routes: Routes = [
   {
@@ -107,6 +109,14 @@ path: 'secteur',
 component: SecteurComponent, canActivate: [AuthGuard],
 data: {
 title: 'Secteur'
+}
+},
+
+{
+path: 'entreprise',
+component: EntrepriseComponent, canActivate: [AuthGuard],
+data: {
+title: 'Entreprise'
 }
 },
 
