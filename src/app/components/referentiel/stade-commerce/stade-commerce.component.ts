@@ -33,7 +33,7 @@ p=1;
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private etatFeuxService: StadeCommerceService) {
+    private stadecommerceService: StadeCommerceService) {
     }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ getAllStadeCommerce() {
         fullScreen: true
       });
  console.log("################1");
- this.etatFeuxService.getStadeCommerces().subscribe( data => {
+ this.stadecommerceService.getStadeCommerces().subscribe( data => {
  this.spinner.hide();
  this.stadecommerces = data;
 this.cdr.detectChanges(); // Forcer la détection des changements
@@ -115,7 +115,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         fullScreen: true
       });
 
-    this.etatFeuxService.deleteStadeCommerce(id).subscribe( data => {
+    this.stadecommerceService.deleteStadeCommerce(id).subscribe( data => {
     this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
     this.spinner.hide();
     this.getAllStadeCommerce();

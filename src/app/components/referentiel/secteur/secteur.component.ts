@@ -33,7 +33,7 @@ p=1;
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private etatFeuxService: SecteurService) {
+    private secteurService: SecteurService) {
     }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ getAllSecteur() {
         fullScreen: true
       });
  console.log("################1");
- this.etatFeuxService.getSecteurs().subscribe( data => {
+ this.secteurService.getSecteurs().subscribe( data => {
  this.spinner.hide();
  this.secteurs = data;
 this.cdr.detectChanges(); // Forcer la détection des changements
@@ -115,7 +115,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         fullScreen: true
       });
 
-    this.etatFeuxService.deleteSecteur(id).subscribe( data => {
+    this.secteurService.deleteSecteur(id).subscribe( data => {
     this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
     this.spinner.hide();
     this.getAllSecteur();

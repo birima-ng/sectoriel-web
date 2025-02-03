@@ -19,7 +19,7 @@
                 <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
 
               </select>
-              <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+              <div *ngIf="submitted && (lf.region.invalid || lf.region.errors?.required)"
                    class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
                 required</div>
             </div>
@@ -80,6 +80,39 @@
 
         <div class="form-row">
           <div class="col-4">
+            <div class="form-group mb-2">
+              <label for="stadecommerce">Stade de commerce</label>
+              <select class="form-control"   [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
+                <option [ngValue]="null" >-- Stade de commerce --</option>
+                <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="number" formControlName="longitude" class="form-control" placeholder="Longitude" id="longitude"
+                     >
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="number" formControlName="latitude" class="form-control" placeholder="Latitude" id="latitude"
+              >
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-4">
             <div class="form-group">
               <label for="telephoneportable">Téléphone portable</label>
               <input type="text" formControlName="telephoneportable" class="form-control" placeholder="Téléphone portable" id="telephoneportable"
@@ -108,9 +141,15 @@
 
             </div>
           </div>
+        </div>
+        <div class="form-row">
+
+          <div class="checkbox">
+            <input type="checkbox" id="stocked"  formControlName="stocked" >
+            <label for="stocked"><span>Gestion de stock pour l'entreprise</span></label>
+          </div>
 
         </div>
-
       </form>
 
     </div>

@@ -158,7 +158,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.documentService.deleteDocument(id).subscribe( data => {
-    this.toastr.success("Document supprimée avec succès!", 'BAAC');
+    this.toastr.success("Document supprimée avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllDocument();
       },

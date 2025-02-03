@@ -92,6 +92,14 @@ import {SecteurActiviteComponent} from "./referentiel/secteur-activite/secteur-a
 import {StadeCommerceComponent} from "./referentiel/stade-commerce/stade-commerce.component";
 import {EntrepriseComponent} from "./referentiel/entreprise/entreprise.component";
 
+import {ConfigSecteurActiviteComponent} from "./referentiel/config-secteur-activite/config-secteur-activite.component";
+import {DragDropConfigComponent} from "./referentiel/config-secteur-activite/drag-drop/drag-drop.component";
+import {CategorieComponent} from "./referentiel/categorie/categorie.component";
+import {TypeProduitComponent} from "./referentiel/type-produit/type-produit.component";
+import {UniteComponent} from "./referentiel/unite/unite.component";
+import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete-config-prix.component";
+
+import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 
 const routes: Routes = [
   {
@@ -104,6 +112,64 @@ const routes: Routes = [
           title: 'Buttons'
         }
       },
+
+        {
+        path: 'unite',
+        component: UniteComponent, canActivate: [AuthGuard],
+        data: {
+        title: 'unite'
+        }
+        },
+
+
+        {
+path: 'entete-config-prix',
+component: EnteteConfigPrixComponent, canActivate: [AuthGuard],
+data: {
+title: 'Entete Config Prix'
+}
+},
+
+{
+path: 'config-secteur-activite',
+component: ConfigSecteurActiviteComponent, canActivate: [AuthGuard],
+data: {
+title: 'config-secteur-activite'
+}
+},
+
+{
+path: 'configuration-prix',
+component: ConfigPrixComponent, canActivate: [AuthGuard],
+data: {
+title: 'configuration-prix'
+}
+},
+
+{
+path: 'categorie',
+component: CategorieComponent, canActivate: [AuthGuard],
+data: {
+title: 'categorie'
+}
+},
+
+{
+path: 'type-produit',
+component: TypeProduitComponent, canActivate: [AuthGuard],
+data: {
+title: 'Type Produit'
+}
+},
+
+{
+path: 'details-config',
+component: DragDropConfigComponent, canActivate: [AuthGuard],
+data: {
+title: 'details-config'
+}
+},
+
 {
 path: 'secteur',
 component: SecteurComponent, canActivate: [AuthGuard],

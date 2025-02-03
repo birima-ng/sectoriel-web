@@ -118,7 +118,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.etatPneusService.deleteEtatPneus(id).subscribe( data => {
-    this.toastr.success("Etat pneus supprimé avec succès!", 'BAAC');
+    this.toastr.success("Etat pneus supprimé avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllEtatPneus();
       },

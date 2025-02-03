@@ -4,9 +4,12 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from 'app/shared/auth/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {Produit} from "../../../modeles/produit.modele";
-import {ProduitService} from "../../../services/produit.service";
+import {Produit} from "app/components/modeles/produit.modele";
+import {ProduitService} from "app/components/services/produit.service";
+import {TypeProduit} from "app/components/modeles/type-produit.modele";
+import {TypeProduitService} from "app/components/services/type-produit.service";
 import { ToastrService } from 'ngx-toastr';
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-add-produit',
   templateUrl: './add-produit.component.html',
@@ -18,18 +21,22 @@ invalidLogin = false;
 submitted=false;
 lng="en";
   produit: Produit;
-
+typeproduits : TypeProduit[];
+typeproduit : TypeProduit;
   isLoginFailed = false;
 
   addForm = new UntypedFormGroup({
      id: new UntypedFormControl(''),
     code: new UntypedFormControl('', [Validators.required]),
-    libelle: new UntypedFormControl('', [Validators.required])
+    libelle: new UntypedFormControl('', [Validators.required]),
+    typeproduit: new UntypedFormControl(null, [Validators.required]),
   });
 
 @Input() action: any;  // Peut être de n'importe quel type
 @Input() entity: any;  // Peut être de n'importe quel type
   constructor(
+    private cdr: ChangeDetectorRef,
+    private typeproduitService: TypeProduitService,
     public toastr: ToastrService,
     public activeModal: NgbActiveModal,
     private router: Router, private authService: AuthService,
@@ -39,13 +46,18 @@ lng="en";
   }
 
 ngOnInit(): void {
+this.typeproduit = null;
 if(this.action == 'edit'){
       this.addForm.patchValue({
       id: this.entity.id,
       code: this.entity.code,
-      libelle: this.entity.libelle
+      libelle: this.entity.libelle,
+      typeproduit: this.entity.typeproduit
     });
+
+this.typeproduit =  this.entity.typeproduit;
 }
+this.getAllTypeProduit();
 }
 
   get lf() {
@@ -85,9 +97,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
- this.toastr.success("Produit ajoutée avec succès!", 'BAAC');
+ this.toastr.success("Produit ajoutée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -109,9 +121,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
  this.activeModal.close('Data updated');
- this.toastr.success("Produit modifiée avec succès!", 'BAAC');
+ this.toastr.success("Produit modifiée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -124,5 +136,30 @@ if(data){
 );
 
 }
+
+getAllTypeProduit() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ console.log("################1");
+ this.typeproduitService.getTypeProduits().subscribe( data => {
+ this.spinner.hide();
+ this.typeproduits = data;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+ console.log("################2");
+}
+
+ compareFn(a, b) {
+  if(a==b)
+return true
+else
+    return a && b && a.id == b.id;
+  }
 
 }

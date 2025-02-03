@@ -119,7 +119,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.professionService.deleteProfession(id).subscribe( data => {
-    this.toastr.success("Profession supprimée avec succès!", 'BAAC');
+    this.toastr.success("Profession supprimée avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllProfession();
       },

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input, ViewChild} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {Observable} from 'rxjs';
 import {DecimalPipe} from '@angular/common';
@@ -13,10 +13,16 @@ import {ProduitService} from "../../services/produit.service";
 import { ToastrService } from 'ngx-toastr';
 declare var window: any;
 
+import {
+ColumnMode,
+DatatableComponent,
+SelectionType
+} from '@swimlane/ngx-datatable';
 @Component({
     selector: 'app-produit',
     templateUrl: './produit.component.html',
-    styleUrls: ['./produit.component.scss'],
+    styleUrls: ['./produit.component.scss', '../../../../assets/sass/libs/datatables.scss'],
+encapsulation: ViewEncapsulation.None
 })
 
 export class ProduitComponent implements OnInit {
@@ -28,6 +34,9 @@ edited=true;
 formModal: any;
 formModalSup: any;
  produits : Produit[];
+public ColumnMode = ColumnMode;
+@ViewChild('tableRowDetails') tableRowDetails: any;
+@ViewChild('tableResponsive') tableResponsive: any;
 p=1;
     highlighted: boolean = false;
     constructor(
@@ -128,6 +137,25 @@ this.cdr.detectChanges(); // Forcer la détection des changements
     console.log("error avant !!!");
       });
 }
+
+  /**
+   * rowDetailsToggleExpand
+   *
+   * @param row
+   */
+  rowDetailsToggleExpand(row) {
+    this.tableRowDetails.rowDetail.toggleExpandRow(row);
+  }
+
+  /**
+   * toggleExpandRowResponsive
+   *
+   * @param row
+   */
+  toggleExpandRowResponsive(row) {
+    this.tableResponsive.rowDetail.toggleExpandRow(row);
+  }
+
 
 }
 

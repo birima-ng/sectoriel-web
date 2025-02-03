@@ -33,7 +33,7 @@ p=1;
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private etatFeuxService: EtatFeuxService) {
+    private etatfeuxService: EtatFeuxService) {
     }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ getAllEtatFeux() {
         fullScreen: true
       });
  console.log("################1");
- this.etatFeuxService.getEtatFeuxs().subscribe( data => {
+ this.etatfeuxService.getEtatFeuxs().subscribe( data => {
  this.spinner.hide();
  this.etatfeuxs = data;
 this.cdr.detectChanges(); // Forcer la détection des changements
@@ -115,8 +115,8 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         fullScreen: true
       });
 
-    this.etatFeuxService.deleteEtatFeux(id).subscribe( data => {
-    this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
+    this.etatfeuxService.deleteEtatFeux(id).subscribe( data => {
+    this.toastr.success("Etat feux supprimé avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllEtatFeux();
       },

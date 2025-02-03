@@ -33,7 +33,7 @@ stadecommerce: StadeCommerce;
     public toastr: ToastrService,
 public activeModal: NgbActiveModal,
   private router: Router, private authService: AuthService,
- private etatFeuxService: StadeCommerceService,
+ private stadecommerceService: StadeCommerceService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
   }
@@ -78,7 +78,7 @@ console.log("################################ this.addForm.value ", this.addForm
 
 add(){
 
-    this.etatFeuxService.createStadeCommerce(this.addForm.value).subscribe(
+    this.stadecommerceService.createStadeCommerce(this.addForm.value).subscribe(
       data => {
  if(data){
  this.spinner.hide();
@@ -103,7 +103,7 @@ this.toastr.success("Etat feux ajouté avec succès!", 'BAAC');
 
 edit(){
 
-    this.etatFeuxService.updateStadeCommerce(this.addForm.value).subscribe(
+    this.stadecommerceService.updateStadeCommerce(this.addForm.value).subscribe(
       data => {
 if(data){
  this.spinner.hide();

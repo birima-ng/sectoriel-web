@@ -121,7 +121,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 
     this.trancheageService.deleteTrancheAge(id).subscribe( data => {
     this.spinner.hide();
-    this.toastr.success("Tranche d'âge supprimé avec succès!", 'BAAC');
+    this.toastr.success("Tranche d'âge supprimé avec succès!", 'STOCK-PRIX');
     this.getAllTrancheAge();
       },
       error => {

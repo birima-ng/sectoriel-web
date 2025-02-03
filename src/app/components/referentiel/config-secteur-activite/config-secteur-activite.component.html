@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Configuration secteur d'activité</div>
+  </div>
+  <!--<div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>-->
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th >Nom</th>
+                    <th >Ninéa</th>
+                    <th >Régistre commerce</th>
+                    <th >Département</th>
+                    <th width="5%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="entreprises">
+                  <tr  *ngFor="let entreprise  of entreprises;">
+                    <td>{{entreprise.nom}}</td>
+                    <td>{{entreprise.ninea}}</td>
+                    <td>{{entreprise.regicommerce}}</td>
+                    <td>{{entreprise.departement?.nom}}</td>
+                    <td class="text-truncate">
+                      <a routerLink="/components/details-config" [queryParams]="{ vwp: entreprise.id }" class="warning p-0">
+                        <i class="ft-edit font-medium-3 "></i></a>
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

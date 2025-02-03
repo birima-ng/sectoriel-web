@@ -1,0 +1,43 @@
+<section id="dragndrop">
+<!-- With Handle Starts -->
+<section id="dd-with-handle">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+           </div>
+        <div class="card-content">
+          <div class="card-body">
+            <p class="text-center"> <span class="badge badge-primary draggable mb-1 mr-1">Configuration des secteurs d'activités de l'entreprise </span></p>
+            <div class="row">
+              <div class="col-sm-6 mb-2 mb-sm-0">
+                <h6 class="mb-2"><span class="badge badge-warning draggable mb-1 mr-1">Activités</span></h6>
+                <ul class="list-group" id="handle-list-1" dragula="HANDLES">
+                  <li class="list-group-item" *ngFor="let secteuractivite  of secteuractivites;" ><span class="handle draggable-move" >+</span> {{secteuractivite.libelle}}</li>
+                 <!-- <li class="list-group-item"><span class="handle draggable-move">+</span>Dapibus ac facilisis in</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Morbi leo risus</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Porta ac consectetur ac</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Vestibulum at eros</li>-->
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="mb-2"><span class="badge badge-success draggable mb-1 mr-1">Activités de l'entreprise</span></h6>
+                <ul class="list-group" id="handle-list-2" dragula="HANDLES">
+                 <!-- <li class="list-group-item"><span class="handle draggable-move">+</span>Vestibulum at eros</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Porta ac consectetur ac</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Morbi leo risus</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Dapibus ac facilisis in</li>
+                  <li class="list-group-item"><span class="handle draggable-move">+</span>Cras justo odio</li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // With Handle Ends -->
+
+</section>
+<!-- Drap and Drop Ends -->

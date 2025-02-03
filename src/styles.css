@@ -10,3 +10,57 @@ min-height: calc(1.5em * 10);
 .custom-quill-editor .ql-editor {
   height: 100%!important; /* Ajuste l'éditeur interne */
 }
+
+
+
+:root {
+  --jira-blue-dark: #0747A6;
+  --jira-blue: #0052CC;
+  --jira-blue-light: #0065FF;
+  --jira-green: #00875A;
+  --jira-green-light: #36B37E;
+  --jira-red: #FF5630;
+  --jira-yellow: #FFAB00;
+  --jira-gray-dark: #091E42;
+  --jira-purple: #6554C0;
+}
+
+.jira-primary {
+  color: var(--jira-blue);
+}
+.jira-success {
+  color: var(--jira-green);
+}
+.jira-danger {
+  color: var(--jira-red);
+}
+.jira-warning {
+  color: var(--jira-yellow);
+}
+
+@use '@angular/material' as mat;
+
+$jira-primary: mat.define-palette(mat.$indigo-palette, 500, 700, 900);
+$jira-accent: mat.define-palette(mat.$green-palette, A200, A400, A700);
+$jira-warn: mat.define-palette(mat.$red-palette);
+
+$jira-theme: mat.define-light-theme((
+  color: (
+    primary: $jira-primary,
+    accent: $jira-accent,
+    warn: $jira-warn,
+  )
+));
+
+@include mat.all-component-themes($jira-theme);
+
+
+.btn-primary: hover {
+    color: #fff!important;
+    background-color: #0052CC!important;
+    border-color: #0052CC!important;
+}
+
+.table th, .table td {
+    padding: 0.1rem 0.1rem !important;
+}

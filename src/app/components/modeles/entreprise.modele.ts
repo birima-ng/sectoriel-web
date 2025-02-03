@@ -1,10 +1,10 @@
 import {Departement} from 'app/components/modeles/departement.modele';
 import {StadeCommerce} from 'app/components/modeles/stade-commerce.modele';
-import {SecteurActivite} from 'app/components/modeles/secteur-activite.modele';
 
 export class Entreprise {
    id: string;
    nom: string;
+   stocked: boolean;
    ninea: string;
    regicommerce: string;
    adresse: string;
@@ -15,8 +15,7 @@ export class Entreprise {
    telephoneportable: string;
    email: string;
    departement: Departement;
-   secteuractivite: StadeCommerce;
-   stadecommerce: SecteurActivite;
+   stadecommerce: StadeCommerce;
    datesave: Date;
    dateupdate: Date;
 }

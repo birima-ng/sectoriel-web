@@ -5,8 +5,8 @@ import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 import { AddSecteurActiviteComponent } from './add/add-secteur-activite.component';
 import { ModalConfirmComponent } from 'app/components/modal-confirm/modal-confirm.component';
 import { ChangeDetectorRef } from '@angular/core';
-import {SecteurActivite} from "../../modeles/secteur-activite.modele";
-import {SecteurActiviteService} from "../../services/secteur-activite.service";
+import {SecteurActivite} from "app/components/modeles/secteur-activite.modele";
+import {SecteurActiviteService} from "app/components/services/secteur-activite.service";
 import { ToastrService } from 'ngx-toastr';
 declare var window: any;
 
@@ -33,7 +33,7 @@ p=1;
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private etatFeuxService: SecteurActiviteService) {
+    private secteurService: SecteurActiviteService) {
     }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ getAllSecteurActivite() {
         fullScreen: true
       });
  console.log("################1");
- this.etatFeuxService.getSecteurActivites().subscribe( data => {
+ this.secteurService.getSecteurActivites().subscribe( data => {
  this.spinner.hide();
  this.secteuractivites = data;
 this.cdr.detectChanges(); // Forcer la détection des changements
@@ -115,7 +115,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         fullScreen: true
       });
 
-    this.etatFeuxService.deleteSecteurActivite(id).subscribe( data => {
+    this.secteurService.deleteSecteurActivite(id).subscribe( data => {
     this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
     this.spinner.hide();
     this.getAllSecteurActivite();

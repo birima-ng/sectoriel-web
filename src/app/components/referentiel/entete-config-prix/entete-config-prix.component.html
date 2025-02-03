@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Entête configuration prix</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table  m-0">
+                  <thead>
+                  <tr>
+                    <th >Date de collecte</th>
+                    <th >Unité</th>
+                    <th >Entreprise</th>
+                    <th width="5%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="enteteconfigprixs">
+                  <tr  *ngFor="let enteteconfigprix  of enteteconfigprixs;">
+                    <td>{{enteteconfigprix.datecollecte | date:'dd/MM/yyyy'}}</td>
+                    <td>{{enteteconfigprix.unite?.libelle}}</td>
+                    <td>{{enteteconfigprix.entreprise?.nom}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="formEdit(enteteconfigprix)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(enteteconfigprix.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a>
+                      <a href="javascript:;" class="warning p-0" routerLink="/components/configuration-prix" [queryParams]="{ vwp: enteteconfigprix.id }">
+                        <i class="ft-more-vertical font-medium-3 mr-2"></i>
+                      </a>
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

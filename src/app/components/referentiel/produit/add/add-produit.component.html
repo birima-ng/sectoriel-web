@@ -38,6 +38,21 @@
           </div>
         </div>
 
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group mb-2">
+              <label for="typeproduit">Type de produit</label>
+              <select class="form-control"  [(ngModel)]="typeproduit" [compareWith]="compareFn" formControlName="typeproduit" id="typeproduit" name="typeproduit" [ngClass]="{ 'is-invalid': submitted && lf.typeproduit.invalid, 'is-valid': submitted && !lf.typeproduit.invalid }" required>
+                <option [ngValue]="null" >-- Type de produit --</option>
+                <option *ngFor="let typeproduit of typeproduits;" [ngValue]="typeproduit"  >{{typeproduit.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.typeproduit.invalid || lf.typeproduit.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
       </form>
 
     </div>

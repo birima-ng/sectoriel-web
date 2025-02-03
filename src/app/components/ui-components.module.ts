@@ -215,6 +215,23 @@ import {AddStadeCommerceComponent} from "./referentiel/stade-commerce/add/add-st
 import {EntrepriseComponent} from "./referentiel/entreprise/entreprise.component";
 import {AddEntrepriseComponent} from "./referentiel/entreprise/add/add-entreprise.component";
 
+import {ConfigSecteurActiviteComponent} from "./referentiel/config-secteur-activite/config-secteur-activite.component";
+import {DragDropConfigComponent} from "./referentiel/config-secteur-activite/drag-drop/drag-drop.component";
+
+import {CategorieComponent} from "./referentiel/categorie/categorie.component";
+import {AddCategorieComponent} from "./referentiel/categorie/add/add-categorie.component";
+
+import {TypeProduitComponent} from "./referentiel/type-produit/type-produit.component";
+import {AddTypeProduitComponent} from "./referentiel/type-produit/add/add-type-produit.component";
+
+import {UniteComponent} from "./referentiel/unite/unite.component";
+import {AddUniteComponent} from "./referentiel/unite/add/add-unite.component";
+
+import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete-config-prix.component";
+import {AddEnteteConfigPrixComponent} from "./referentiel/entete-config-prix/add/add-entete-config-prix.component";
+
+import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
+
 
 @NgModule({
     imports: [
@@ -246,6 +263,17 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+ConfigPrixComponent,
+EnteteConfigPrixComponent,
+AddEnteteConfigPrixComponent,
+AddUniteComponent,
+UniteComponent,
+TypeProduitComponent,
+AddTypeProduitComponent,
+CategorieComponent,
+AddCategorieComponent,
+DragDropConfigComponent,
+ConfigSecteurActiviteComponent,
 EntrepriseComponent,
 AddEntrepriseComponent,
 StadeCommerceComponent,

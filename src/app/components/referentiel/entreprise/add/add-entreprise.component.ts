@@ -7,11 +7,15 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import {Entreprise} from "../../../modeles/entreprise.modele";
 import {EntrepriseService} from "../../../services/entreprise.service";
 import { ToastrService } from 'ngx-toastr';
-
+import { ChangeDetectorRef } from '@angular/core';
 import {Region} from 'app/components/modeles/region.modele';
 import {RegionService} from 'app/components/services/region.service';
+
 import {Departement} from 'app/components/modeles/departement.modele';
 import {DepartementService} from 'app/components/services/departement.service';
+
+import {StadeCommerce} from 'app/components/modeles/stade-commerce.modele';
+import {StadeCommerceService} from 'app/components/services/stade-commerce.service';
 
 @Component({
   selector: 'app-add-entreprise',
@@ -26,29 +30,38 @@ lng="en";
 
 departements : Departement[];
 departement: Departement;
+
 regions : Region[];
 region: Region;
 
+stadecommerces : StadeCommerce[];
+stadecommerce: StadeCommerce;
 
 entreprise: Entreprise;
 
   isLoginFailed = false;
 
   addForm = new UntypedFormGroup({
-     id: new UntypedFormControl(''),
+    id: new UntypedFormControl(''),
+    stocked: new UntypedFormControl(false),
     nom: new UntypedFormControl('', [Validators.required]),
     ninea: new UntypedFormControl('', [Validators.required]),
     telephoneportable: new UntypedFormControl('', [Validators.required]),
     regicommerce: new UntypedFormControl('', [Validators.required]),
     telephonefix: new UntypedFormControl(''),
     telephonefix2: new UntypedFormControl(''),
+    longitude: new UntypedFormControl(''),
+    latitude: new UntypedFormControl(''),
     departement: new UntypedFormControl(null, [Validators.required]),
     region: new UntypedFormControl(null, [Validators.required]),
+    stadecommerce: new UntypedFormControl(null, [Validators.required]),
   });
 
 @Input() action: any;  // Peut être de n'importe quel type
 @Input() entity: any;  // Peut être de n'importe quel type
   constructor(
+    private cdr: ChangeDetectorRef,
+    private stadecommerceService: StadeCommerceService,
     private departementService: DepartementService,
     private regionService: RegionService,
     public toastr: ToastrService,
@@ -62,22 +75,27 @@ entreprise: Entreprise;
 ngOnInit(): void {
 this.departement = null;
 this.region = null;
+this.stadecommerce = null;
 if(this.action == 'edit'){
       this.addForm.patchValue({
       id: this.entity.id,
       nom: this.entity.nom,
       ninea: this.entity.ninea,
-telephoneportable: this.entity.telephoneportable,
-telephonefix: this.entity.telephonefix,
-telephonefix2: this.entity.telephonefix2,
-regicommerce: this.entity.regicommerce,
-departement: this.entity.departement,
-region: this.entity.departement.region,
+      telephoneportable: this.entity.telephoneportable,
+      telephonefix: this.entity.telephonefix,
+      telephonefix2: this.entity.telephonefix2,
+      regicommerce: this.entity.regicommerce,
+      departement: this.entity.departement,
+      region: this.entity.departement.region,
+      stocked: this.entity.stocked,
     });
 this.region = this.entity.departement.region;
 this.departement = this.entity.departement;
+this.stadecommerce = this.entity.stadecommerce;
+
 }
    this.getAllRegion();
+   this.getAllStadeCommerce();
 }
 
   get lf() {
@@ -198,5 +216,22 @@ getDepartementsByRegion(id: string) {
  });
 }
 
+getAllStadeCommerce() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ console.log("################1");
+ this.stadecommerceService.getStadeCommerces().subscribe( data => {
+ this.spinner.hide();
+ this.stadecommerces = data;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+ console.log("################2");
+}
 
 }

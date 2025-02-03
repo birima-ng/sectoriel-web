@@ -33,7 +33,7 @@ etatfeux: EtatFeux;
     public toastr: ToastrService,
 public activeModal: NgbActiveModal,
   private router: Router, private authService: AuthService,
- private etatFeuxService: EtatFeuxService,
+ private etatfeuxService: EtatFeuxService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
   }
@@ -78,16 +78,16 @@ console.log("################################ this.addForm.value ", this.addForm
 
 add(){
 
-    this.etatFeuxService.createEtatFeux(this.addForm.value).subscribe(
+    this.etatfeuxService.createEtatFeux(this.addForm.value).subscribe(
       data => {
  if(data){
  this.spinner.hide();
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Etat feux ajouté avec succès!", 'BAAC');
+this.toastr.success("Etat feux ajouté avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -103,16 +103,16 @@ this.toastr.success("Etat feux ajouté avec succès!", 'BAAC');
 
 edit(){
 
-    this.etatFeuxService.updateEtatFeux(this.addForm.value).subscribe(
+    this.etatfeuxService.updateEtatFeux(this.addForm.value).subscribe(
       data => {
 if(data){
  this.spinner.hide();
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Etat feux modifié avec succès!", 'BAAC');
+this.toastr.success("Etat feux modifié avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

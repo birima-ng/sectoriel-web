@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Entête configuration prix</div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <form *ngIf="configprixsForm" [formGroup]="configprixsForm">
+                <table class="table  m-0">
+                  <thead>
+                  <tr>
+                    <th >Produit {{enteteconfigprix.entreprise.stocked}}</th>
+                    <th >Prix (F cfa)</th>
+                    <th *ngIf="enteteconfigprix.entreprise.stocked">Stock</th>
+                    <th >Unité</th>
+                  </tr>
+                  </thead>
+                  <tbody formArrayName="configprixarrys">
+                  <tr *ngFor="let configprix of configprixarrys.controls; let i = index" [formGroupName]="i">
+                    <td>{{ configprix.get('produit').value?.libelle }}</td>
+
+                    <td>
+                      <input formControlName="prix" (blur)="onEditValue(i)"
+                             type="number" >
+                    </td>
+
+                    <td *ngIf="enteteconfigprix.entreprise.stocked">
+                      <input formControlName="stock" (blur)="onEditValue(i)"
+                             type="number" >
+                    </td>
+
+                    <td>
+                      {{ configprix.get('unite').value?.libelle }}
+                    </td>
+
+                  </tr>
+                  </tbody>
+                </table>
+                </form>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

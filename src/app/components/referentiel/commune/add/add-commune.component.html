@@ -46,7 +46,7 @@
                 <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
 
               </select>
-              <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+              <div *ngIf="submitted && (lf.region.invalid || lf.region.errors?.required)"
                    class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
                 required</div>
             </div>
