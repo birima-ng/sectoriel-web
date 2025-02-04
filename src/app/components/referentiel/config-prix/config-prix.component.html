@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-11">
-    <div class="content-header">Entête configuration prix</div>
+  <div class="col-12">
+    <p class="content-sub-header mb-1 text-center">Point de collecte : <span class="badge badge-danger mb-1 mr-2">{{enteteconfigprix.entreprise.nom}}</span>, Ninéa : <span class="badge badge-light mb-1 mr-2">{{enteteconfigprix?.entreprise.ninea}}</span>, <span *ngIf="enteteconfigprix.entreprise.stocked" class="badge badge-success mb-1 mr-2">Gestion de stock</span><span *ngIf="!enteteconfigprix.entreprise.stocked" class="badge badge-success mb-1 mr-2">Pas Gestion de stock</span>, Date collecte : <span class="badge badge-info mb-1 mr-2">{{enteteconfigprix?.datecollecte  | date:'dd/MM/yyyy'}}</span></p>
+
   </div>
 </div>
 <!--Grid options Starts-->
@@ -36,12 +37,12 @@
                     <td>{{ configprix.get('produit').value?.libelle }}</td>
 
                     <td>
-                      <input formControlName="prix" (blur)="onEditValue(i)"
+                      <input class="form-control"  formControlName="prix" (blur)="onEditValue(i)"
                              type="number" >
                     </td>
 
                     <td *ngIf="enteteconfigprix.entreprise.stocked">
-                      <input formControlName="stock" (blur)="onEditValue(i)"
+                      <input class="form-control" formControlName="stock" (blur)="onEditValue(i)"
                              type="number" >
                     </td>
 

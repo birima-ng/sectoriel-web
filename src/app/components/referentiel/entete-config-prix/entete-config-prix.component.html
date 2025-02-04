@@ -30,6 +30,7 @@
                     <th >Date de collecte</th>
                     <th >Unité</th>
                     <th >Entreprise</th>
+                    <th >Gestion stock</th>
                     <th width="5%">Actions</th>
                   </tr>
                   </thead>
@@ -38,6 +39,8 @@
                     <td>{{enteteconfigprix.datecollecte | date:'dd/MM/yyyy'}}</td>
                     <td>{{enteteconfigprix.unite?.libelle}}</td>
                     <td>{{enteteconfigprix.entreprise?.nom}}</td>
+                    <td *ngIf="enteteconfigprix.entreprise.stocked"> <span  class="badge badge-success mb-0 mr-0">Gestion stock</span> </td>
+                    <td *ngIf="!enteteconfigprix.entreprise.stocked"> <span  class="badge badge-danger mb-0 mr-0">Pas Gestion stock</span></td>
                     <td class="text-truncate">
                       <a href="javascript:;" class="success p-0" (click)="formEdit(enteteconfigprix)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>

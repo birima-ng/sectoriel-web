@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-11">
-    <div class="content-header">Entreprise</div>
+    <div class="content-header text-center"><span class="badge badge-info draggable mb-1 mr-1">Points de collecte des prix et stock</span></div>
   </div>
   <div class="col-1">
     <div class="content-header">    <button type="button" class="btn jira-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
@@ -41,8 +41,8 @@
                     <td>{{entreprise.ninea}}</td>
                     <td>{{entreprise.regicommerce}}</td>
                     <td>{{entreprise.departement?.nom}}</td>
-                    <td *ngIf="entreprise.stocked">Gestion stock</td>
-                    <td *ngIf="!entreprise.stocked">Pas Gestion stock</td>
+                    <td *ngIf="entreprise.stocked"> <span  class="badge badge-success mb-0 mr-0">Gestion stock</span> </td>
+                    <td *ngIf="!entreprise.stocked"> <span  class="badge badge-danger mb-0 mr-0">Pas Gestion stock</span></td>
                     <td class="text-truncate">
                       <a href="javascript:;" class="success p-0" (click)="formEdit(entreprise)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>

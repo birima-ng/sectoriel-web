@@ -6,7 +6,7 @@ export class EnteteConfigPrix {
    config: number;
    entreprise: Entreprise;
    unite: Unite;
-   datecolleecte: Date;
+   datecollecte: Date;
    datesave: Date;
    dateupdate: Date;
 }
