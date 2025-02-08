@@ -85,9 +85,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('Zone ajouté avec succès!', 'BAAC');
+this.toastr.success('Zone ajouté avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le nom  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le nom  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -110,9 +110,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('Zone modifié avec succès!', 'BAAC');
+this.toastr.success('Zone modifié avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le nom  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le nom  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

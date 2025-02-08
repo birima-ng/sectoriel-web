@@ -4,6 +4,7 @@ import {Produit} from 'app/components/modeles/produit.modele';
 export class ConfigPrix {
    id: string;
    config: number;
+   prixachat: number;
    prix: number;
    stock: number;
    enteteconfigprix: EnteteConfigPrix;

@@ -86,9 +86,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Tranche d'âge ajouté avec succès!", 'BAAC');
+this.toastr.success("Tranche d'âge ajouté avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -111,9 +111,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Tranche d'âge modifié avec succès!", 'BAAC');
+this.toastr.success("Tranche d'âge modifié avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
 
       },

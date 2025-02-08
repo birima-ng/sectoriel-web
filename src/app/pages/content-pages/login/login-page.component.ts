@@ -102,11 +102,11 @@ console.log("############################################ roles ",data);
 
 );
 }else {
- this.toastr.error('Identifiant ou mot de passe incorrect!!!', 'BAAC');
+ this.toastr.error('Identifiant ou mot de passe incorrect!!!', 'STOCK-PRIX');
 }
       },
       error => {
-        this.toastr.error('Erreur serveur!', 'BAAC');
+        this.toastr.error('Erreur serveur!', 'STOCK-PRIX');
         this.isLoginFailed = true;
         this.spinner.hide();
         console.log('error: '+error)

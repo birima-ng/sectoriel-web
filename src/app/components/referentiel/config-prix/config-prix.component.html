@@ -26,8 +26,9 @@
                 <table class="table  m-0">
                   <thead>
                   <tr>
-                    <th >Produit {{enteteconfigprix.entreprise.stocked}}</th>
-                    <th >Prix (F cfa)</th>
+                    <th >Produit</th>
+                    <th >Prix d'achat (F cfa)</th>
+                    <th >Prix de vente (F cfa)</th>
                     <th *ngIf="enteteconfigprix.entreprise.stocked">Stock</th>
                     <th >Unité</th>
                   </tr>
@@ -35,6 +36,11 @@
                   <tbody formArrayName="configprixarrys">
                   <tr *ngFor="let configprix of configprixarrys.controls; let i = index" [formGroupName]="i">
                     <td>{{ configprix.get('produit').value?.libelle }}</td>
+
+                    <td>
+                      <input class="form-control"  formControlName="prixachat" (blur)="onEditValue(i)"
+                             type="number" >
+                    </td>
 
                     <td>
                       <input class="form-control"  formControlName="prix" (blur)="onEditValue(i)"

@@ -85,9 +85,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Condition atmosphérique ajoutée avec succès!", 'BAAC');
+this.toastr.success("Condition atmosphérique ajoutée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -110,9 +110,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Condition atmosphérique modifiée avec succès!", 'BAAC');
+this.toastr.success("Condition atmosphérique modifiée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

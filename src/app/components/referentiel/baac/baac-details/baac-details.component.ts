@@ -87,7 +87,7 @@ lng: number = 7.809007;
         this.baacId = params['vwp'];
 
         this.baacService.getBaacById(this.baacId ).subscribe( data => {
-        console.log("############### data BAAC ",data);
+        console.log("############### data STOCK-PRIX ",data);
         this.baac = data;
         this.numerobaac = data.numerobaac;
         this.joursemaine = data.joursemaine.libelle;

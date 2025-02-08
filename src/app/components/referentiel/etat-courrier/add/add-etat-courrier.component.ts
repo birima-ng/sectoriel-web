@@ -86,9 +86,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Etat général ajouté avec succès!", 'BAAC');
+this.toastr.success("Etat général ajouté avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -112,9 +112,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Etat général modifié avec succès!", 'BAAC');
+this.toastr.success("Etat général modifié avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

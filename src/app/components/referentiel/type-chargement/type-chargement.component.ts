@@ -120,7 +120,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
     this.typechargementService.deleteTypeChargement(id).subscribe( data => {
 console.log("############### ID",id);
     this.spinner.hide();
-this.toastr.success('Type de charge supprimé avec succès!', 'BAAC');
+this.toastr.success('Type de charge supprimé avec succès!', 'STOCK-PRIX');
     this.getAllTypeChargement();
       },
       error => {

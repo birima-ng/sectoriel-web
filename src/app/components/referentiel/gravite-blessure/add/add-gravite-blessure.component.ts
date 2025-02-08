@@ -85,9 +85,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Gravité blessure ajoutée avec succès!", 'BAAC');
+this.toastr.success("Gravité blessure ajoutée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -111,9 +111,9 @@ if(data){
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Gravité blessure modifiée avec succès!", 'BAAC');
+this.toastr.success("Gravité blessure modifiée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

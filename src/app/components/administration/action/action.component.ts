@@ -121,7 +121,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 console.log("############### ID",id);
     this.spinner.hide();
     this.getAllAction();
-    this.toastr.success('Action supprimé avec succès!', 'BAAC');
+    this.toastr.success('Action supprimé avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

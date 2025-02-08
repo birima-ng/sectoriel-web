@@ -87,10 +87,10 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('CategoriePermis ajouté avec succès!', 'BAAC');
+this.toastr.success('CategoriePermis ajouté avec succès!', 'STOCK-PRIX');
 }else {
  this.spinner.hide();
- this.toastr.error('Le code ou le libelle  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libelle  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -114,9 +114,9 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('CategoriePermis modifié avec succès!', 'BAAC');
+this.toastr.success('CategoriePermis modifié avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellelibelle  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellelibelle  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

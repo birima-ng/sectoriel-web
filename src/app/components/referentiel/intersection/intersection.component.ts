@@ -119,7 +119,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 
     this.intersectionService.deleteIntersection(id).subscribe( data => {
     this.spinner.hide();
-    this.toastr.success("Intersection supprimée avec succès!", 'BAAC');
+    this.toastr.success("Intersection supprimée avec succès!", 'STOCK-PRIX');
     this.getAllIntersection();
       },
       error => {

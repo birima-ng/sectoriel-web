@@ -41,11 +41,11 @@ submenu: [
     ]
   },
 {
-path: '', title: 'Suivi BAAC', icon: 'ft-book', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
-{ path: '/components/baac/add', title: 'Nouveau BAAC', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-{ path: '/components/baac', title: 'Registre BAAC à compléter', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+path: '', title: 'Suivi STOCK-PRIX', icon: 'ft-book', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
+{ path: '/components/baac/add', title: 'Nouveau STOCK-PRIX', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+{ path: '/components/baac', title: 'Registre STOCK-PRIX à compléter', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 {
-path: '', title: 'Registre BAAC', icon: 'ft-arrow-right submenu-icon', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+path: '', title: 'Registre STOCK-PRIX', icon: 'ft-arrow-right submenu-icon', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
 submenu: [
 { path: '/pages/gallery', title: 'À completer', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 { path: '/pages/search', title: 'À valider', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -137,8 +137,8 @@ submenu: [
 
 
 {
-path: '', title: 'Suivi BAAC', icon: 'ft-book', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
-{ path: '/components/baac', title: 'Nouveau BAAC', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+path: '', title: 'Suivi STOCK-PRIX', icon: 'ft-book', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
+{ path: '/components/baac', title: 'Nouveau STOCK-PRIX', icon: 'ft-arrow-right submenu-icon', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
 ]
 },
 */

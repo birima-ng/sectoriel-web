@@ -84,9 +84,9 @@ add(){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Genre véhicule supprimé avec succès!", 'BAAC');
+this.toastr.success("Genre véhicule supprimé avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -108,9 +108,9 @@ edit(){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Genre véhicule modifié avec succès!", 'BAAC');
+this.toastr.success("Genre véhicule modifié avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

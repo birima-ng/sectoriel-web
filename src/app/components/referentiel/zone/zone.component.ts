@@ -119,7 +119,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.zoneService.deleteZone(id).subscribe( data => {
-    this.toastr.success('Zone supprimé avec succès!', 'BAAC');
+    this.toastr.success('Zone supprimé avec succès!', 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllZone();
       },

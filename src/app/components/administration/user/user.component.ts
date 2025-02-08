@@ -212,7 +212,7 @@ else
     console.log("############### ID",id);
     this.spinner.hide();
     this.getAllUser();
-    this.toastr.success('Profil supprimé avec succès!', 'BAAC');
+    this.toastr.success('Profil supprimé avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

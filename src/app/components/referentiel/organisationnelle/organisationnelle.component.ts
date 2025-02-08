@@ -125,7 +125,7 @@ getAllOrganisationnelle() {
 console.log("############### ID",id);
     this.spinner.hide();
     this.getAllOrganisationnelle();
-    this.toastr.success('Unité organisationnelle supprimée avec succès!', 'BAAC');
+    this.toastr.success('Unité organisationnelle supprimée avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

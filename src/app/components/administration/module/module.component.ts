@@ -121,7 +121,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 console.log("############### ID",id);
     this.spinner.hide();
     this.getAllModule();
-    this.toastr.success('Module supprimé avec succès!', 'BAAC');
+    this.toastr.success('Module supprimé avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

@@ -85,9 +85,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
 this.activeModal.close('Data updated');
- this.toastr.success("AppartenanceVehicule ajoutée avec succès!", 'BAAC');
+ this.toastr.success("AppartenanceVehicule ajoutée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -109,9 +109,9 @@ if(data){
  this.spinner.hide();
 //fermer le popup
  this.activeModal.close('Data updated');
- this.toastr.success("AppartenanceVehicule modifiée avec succès!", 'BAAC');
+ this.toastr.success("AppartenanceVehicule modifiée avec succès!", 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

@@ -121,7 +121,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 console.log("############### ID",id);
     this.spinner.hide();
     this.getAllProfil();
-    this.toastr.success('Profil supprimé avec succès!', 'BAAC');
+    this.toastr.success('Profil supprimé avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

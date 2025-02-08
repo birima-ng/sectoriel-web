@@ -116,7 +116,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.secteurService.deleteSecteur(id).subscribe( data => {
-    this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
+    this.toastr.success("Etat feux supprimé avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllSecteur();
       },

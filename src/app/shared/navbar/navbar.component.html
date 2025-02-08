@@ -20,7 +20,7 @@
             <div class="search-input-icon">
               <i class="ft-search font-medium-3"></i>
             </div>
-            <input [formControl]="control" #search class="input" type="text" placeholder="Recherche BAAC..." tabindex="0"
+            <input [formControl]="control" #search class="input" type="text" placeholder="Recherche STOCK-PRIX..." tabindex="0"
               autofocus data-search="template-search" [appAutocomplete]="autocomplete" (keyup.enter)="onEnter()" (keydown.esc)="onEscEvent()" (keyup)="onSearchKey($event)" />
             <div class="search-input-close" (click)="toggleSearchOpenClass(false)">
               <i class="ft-x font-medium-3"></i>
@@ -50,7 +50,7 @@
             <li class="nav-item">
               <div class="logo"><a class="logo-text" [routerLink]="['/']" *ngIf="config?.layout.menuPosition === 'Top'">
                   <div class="logo-img"><img class="logo-img" alt="Apex logo" [src]="logoUrl"></div><span
-                    class="text">BAAC</span>
+                    class="text">STOCK-PRIX</span>
                 </a></div>
             </li>
           </ul>

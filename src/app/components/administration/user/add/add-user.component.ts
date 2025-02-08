@@ -153,10 +153,10 @@ if(data){
 
 //fermer le popup
  this.activeModal.close('Data updated');
- this.toastr.success('Utilisateur ajouté avec succès!', 'BAAC');
+ this.toastr.success('Utilisateur ajouté avec succès!', 'STOCK-PRIX');
 }else {
  this.spinner.hide();
- this.toastr.error("L'identifiant  existe déjà!", 'BAAC');
+ this.toastr.error("L'identifiant  existe déjà!", 'STOCK-PRIX');
 }
 
       },

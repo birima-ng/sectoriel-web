@@ -61,11 +61,11 @@ console.log("################################ Data ", data);
 if(data){
  this.spinner.hide();
 
- //this.toastr.success('Utilisateur ajouté avec succès!', 'BAAC');
+ //this.toastr.success('Utilisateur ajouté avec succès!', 'STOCK-PRIX');
    this.router.navigate(['/pages/change-password'],{ queryParams: { pwal: data.id } });
 }else {
  this.spinner.hide();
- this.toastr.error("Le code d'activation est incorrect!", 'BAAC');
+ this.toastr.error("Le code d'activation est incorrect!", 'STOCK-PRIX');
 }
 
       },

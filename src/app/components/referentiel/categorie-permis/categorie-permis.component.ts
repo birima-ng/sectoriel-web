@@ -121,7 +121,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 console.log("############### ID",id);
     this.spinner.hide();
     this.getAllCategoriePermis();
-    this.toastr.success('CategoriePermis supprimé avec succès!', 'BAAC');
+    this.toastr.success('CategoriePermis supprimé avec succès!', 'STOCK-PRIX');
       },
       error => {
     this.spinner.hide();

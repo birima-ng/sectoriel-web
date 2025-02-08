@@ -118,7 +118,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.etatChausseeService.deleteEtatChaussee(id).subscribe( data => {
-    this.toastr.success("Etat chaussée supprimé avec succès!", 'BAAC');
+    this.toastr.success("Etat chaussée supprimé avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllEtatChaussee();
       },

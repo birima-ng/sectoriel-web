@@ -119,7 +119,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 
     this.volumechargementService.deleteVolumeChargement(id).subscribe( data => {
 console.log("############### ID",id);
-this.toastr.success('Volume de chargement supprimé avec succès!', 'BAAC');
+this.toastr.success('Volume de chargement supprimé avec succès!', 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllVolumeChargement();
       },

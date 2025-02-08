@@ -95,6 +95,7 @@ console.log("#######################biribiri ", configprix);
       prix: [configprix.prix],
       unite: [configprix.enteteconfigprix.unite],
       stock: [configprix.stock],
+      prixachat: [configprix.prixachat],
     });
   }
 

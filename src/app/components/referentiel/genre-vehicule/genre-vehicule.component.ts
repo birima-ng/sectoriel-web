@@ -119,7 +119,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.genrevehiculeService.deleteGenreVehicule(id).subscribe( data => {
-    this.toastr.success("Genre véhicule supprimé avec succès!", 'BAAC');
+    this.toastr.success("Genre véhicule supprimé avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllGenreVehicule();
       },

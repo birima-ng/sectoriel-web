@@ -69,12 +69,12 @@ console.log("################################ Data ", data);
 if(data.result){
  this.spinner.hide();
 
- this.toastr.success('Modification du mot de passe effectuée avec succès!', 'BAAC');
+ this.toastr.success('Modification du mot de passe effectuée avec succès!', 'STOCK-PRIX');
 this.success = true;
 this.cdr.detectChanges();
 }else {
  this.spinner.hide();
- this.toastr.error("Erreur de la modificcation du mot de passe!", 'BAAC');
+ this.toastr.error("Erreur de la modificcation du mot de passe!", 'STOCK-PRIX');
 }
 
       },

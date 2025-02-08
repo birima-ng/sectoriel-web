@@ -86,10 +86,10 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('UniteOrganisationnelle ajouté avec succès!', 'BAAC');
+this.toastr.success('UniteOrganisationnelle ajouté avec succès!', 'STOCK-PRIX');
 }else {
  this.spinner.hide();
- this.toastr.error('Le code ou le nom  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le nom  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -113,9 +113,9 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('UniteOrganisationnelle modifié avec succès!', 'BAAC');
+this.toastr.success('UniteOrganisationnelle modifié avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le nom  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le nom  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

@@ -128,7 +128,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.produitService.deleteProduit(id).subscribe( data => {
-    this.toastr.success("Produit supprimée avec succès!", 'BAAC');
+    this.toastr.success("Produit supprimée avec succès!", 'STOCK-PRIX');
     this.spinner.hide();
     this.getAllProduit();
       },

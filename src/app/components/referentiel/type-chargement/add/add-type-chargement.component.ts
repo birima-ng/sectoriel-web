@@ -86,9 +86,9 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('Type de charge ajouté avec succès!', 'BAAC');
+this.toastr.success('Type de charge ajouté avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {
@@ -112,9 +112,9 @@ console.log("################################ Data ", data);
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success('Type de charge modifié avec succès!', 'BAAC');
+this.toastr.success('Type de charge modifié avec succès!', 'STOCK-PRIX');
 }else {
- this.toastr.error('Le code ou le libellé  existe déjà!', 'BAAC');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'STOCK-PRIX');
 }
       },
       error => {

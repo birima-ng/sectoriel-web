@@ -62,7 +62,7 @@ console.log("################################ this.personalForm.value ", this.pe
     return this.personalForm.controls;
   }
 
-add(){ //ADD BAAC
+add(){ //ADD STOCK-PRIX
 
     this.baacService.createBaac(this.personalForm.value).subscribe(
       data => {
