@@ -42,6 +42,7 @@ var firebaseConfig = {
   measurementId: "G-ZVSYZRJ211" //YOUR_MEASUREMENT_ID
 };
 
+//import {GoogleMapsModule} from '@angular/google-maps';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,

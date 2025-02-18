@@ -1,0 +1,18 @@
+<!-- google-map-popup.component.html -->
+<div class="modal-header">
+  <h4 class="modal-title">Recherche d'adresse</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- Champ de recherche pour l'autocomplétion -->
+  <div>
+      <input id="pac-input" class="controls" type="text" placeholder="Rechercher une adresse" />
+  </div>
+  <!-- Conteneur pour la carte -->
+  <div id="map" style="height: 400px; width: 100%;"></div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="closePopup()">Fermer et récupérer les coordonnées</button>
+</div>

@@ -231,7 +231,7 @@ import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete
 import {AddEnteteConfigPrixComponent} from "./referentiel/entete-config-prix/add/add-entete-config-prix.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
-
+import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
 
 @NgModule({
     imports: [
@@ -263,6 +263,7 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+GoogleMapPopupComponent,
 ConfigPrixComponent,
 EnteteConfigPrixComponent,
 AddEnteteConfigPrixComponent,

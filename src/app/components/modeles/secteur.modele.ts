@@ -1,10 +1,10 @@
-import {Village} from 'app/components/modeles/village.modele';
+import {Departement} from 'app/components/modeles/departement.modele';
 
 export class Secteur {
   id: string;
   libelle: string;
   code: string;
-  village: Village
+  departement: Departement
   datesave: Date;
   dateupdate: Date;
 }

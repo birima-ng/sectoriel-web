@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-11">
-    <div class="content-header">Entête configuration prix</div>
+    <div class="content-header">Configuration période prix et stock</div>
   </div>
   <div class="col-1">
     <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
@@ -24,6 +24,80 @@
           <div class="card-body">
 
               <div class="card-body table-responsive">
+                <form [formGroup]="addForm">
+                <div class="form-row">
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                      <label for="region">Région</label>
+                      <select class="form-control" (ngModelChange)="onChangeRegion($event)"   [(ngModel)]="region" [compareWith]="compareFn" formControlName="region" id="region" name="region" [ngClass]="{ 'is-invalid': submitted && lf.region.invalid, 'is-valid': submitted && !lf.region.invalid }" required>
+                        <option [ngValue]="null" >-- Région --</option>
+                        <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.region.invalid || lf.region.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                      <label for="departement">Departement</label>
+                      <select class="form-control" (ngModelChange)="onChangeDepartement($event)" [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement" [ngClass]="{ 'is-invalid': submitted && lf.departement.invalid, 'is-valid': submitted && !lf.departement.invalid }" required>
+                        <option [ngValue]="null" >-- Departement --</option>
+                        <option *ngFor="let departement of departements;" [ngValue]="departement"  >{{departement.nom }}</option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                      <label for="secteur">Secteur</label>
+                      <select class="form-control"  (ngModelChange)="onChangeSecteur($event)" [(ngModel)]="secteur" [compareWith]="compareFn" formControlName="secteur" id="secteur" name="secteur" [ngClass]="{ 'is-invalid': submitted && lf.secteur.invalid, 'is-valid': submitted && !lf.secteur.invalid }" required>
+                        <option [ngValue]="null" >-- Secteur --</option>
+                        <option *ngFor="let secteur of secteurs;" [ngValue]="secteur"  >{{secteur.libelle }}</option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.secteur.invalid || lf.secteur.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                      <label for="stadecommerce">Stade de commerce</label>
+                      <select class="form-control"   (ngModelChange)="onChangeStadeCommerce($event)" [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
+                        <option [ngValue]="null" >-- Stade de commerce --</option>
+                        <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                      <label for="entreprise">Entreprise</label>
+                      <select class="form-control"   (ngModelChange)="onChangeEntreprise($event)" [(ngModel)]="entreprise" [compareWith]="compareFn" formControlName="entreprise" id="entreprise" name="entreprise" [ngClass]="{ 'is-invalid': submitted && lf.entreprise.invalid, 'is-valid': submitted && !lf.entreprise.invalid }" required>
+                        <option [ngValue]="null" >-- Entreprise --</option>
+                        <option *ngFor="let entreprise of entreprises;" [ngValue]="entreprise"  >{{entreprise.nom }}</option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.entreprise.invalid || lf.entreprise.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                </div>
+                </form>
                 <table class="table  m-0">
                   <thead>
                   <tr>
@@ -31,6 +105,7 @@
                     <th >Unité</th>
                     <th >Entreprise</th>
                     <th >Gestion stock</th>
+                    <th >Stade de commerce</th>
                     <th width="5%">Actions</th>
                   </tr>
                   </thead>
@@ -39,8 +114,9 @@
                     <td>{{enteteconfigprix.datecollecte | date:'dd/MM/yyyy'}}</td>
                     <td>{{enteteconfigprix.unite?.libelle}}</td>
                     <td>{{enteteconfigprix.entreprise?.nom}}</td>
-                    <td *ngIf="enteteconfigprix.entreprise.stocked"> <span  class="badge badge-success mb-0 mr-0">Gestion stock</span> </td>
-                    <td *ngIf="!enteteconfigprix.entreprise.stocked"> <span  class="badge badge-danger mb-0 mr-0">Pas Gestion stock</span></td>
+                    <td *ngIf="enteteconfigprix.entreprise.stocked"> <span  class="badge badge-success mb-0 mr-0">Stock et Prix importateur</span> </td>
+                    <td *ngIf="!enteteconfigprix.entreprise.stocked"> <span  class="badge badge-danger mb-0 mr-0">Prix détaillant</span></td>
+                    <td>{{enteteconfigprix.entreprise?.stadecommerce?.libelle}}</td>
                     <td class="text-truncate">
                       <a href="javascript:;" class="success p-0" (click)="formEdit(enteteconfigprix)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>

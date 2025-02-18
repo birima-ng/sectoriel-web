@@ -35,4 +35,12 @@ constructor(private http: HttpClient) { }
           return secteurData;
          }));
   }
+
+  getSecteursByDepartement(id: string) {
+      return this.http.get<any>(this.baseUrl+'api/secteur/'+id+'/departement').pipe(
+       map(
+         secteurData => {
+          return secteurData;
+         }));
+  }
 }

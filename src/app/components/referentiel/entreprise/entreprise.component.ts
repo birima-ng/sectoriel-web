@@ -117,7 +117,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.entrepriseService.deleteEntreprise(id).subscribe( data => {
-    this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
+    this.toastr.success("Entreprise supprimée avec succès!", 'BAAC');
     this.spinner.hide();
     this.getAllEntreprise();
       },

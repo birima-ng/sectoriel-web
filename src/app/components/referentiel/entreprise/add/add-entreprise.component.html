@@ -1,7 +1,7 @@
 <!--Login Page Starts-->
 <section >
   <div class="modal-header">
-    <h4 class="modal-title">Entreprise</h4>
+    <h4 class="modal-title">Point de collectes</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -11,7 +11,7 @@
 
       <form [formGroup]="addForm">
         <div class="form-row">
-          <div class="col-6">
+          <div class="col-3">
             <div class="form-group mb-2">
               <label for="region">Région</label>
               <select class="form-control" (ngModelChange)="onChangeRegion($event)"   [(ngModel)]="region" [compareWith]="compareFn" formControlName="region" id="region" name="region" [ngClass]="{ 'is-invalid': submitted && lf.region.invalid, 'is-valid': submitted && !lf.region.invalid }" required>
@@ -25,15 +25,43 @@
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-3">
             <div class="form-group mb-2">
               <label for="departement">Departement</label>
-              <select class="form-control" [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement" [ngClass]="{ 'is-invalid': submitted && lf.departement.invalid, 'is-valid': submitted && !lf.departement.invalid }" required>
+              <select class="form-control" (ngModelChange)="onChangeDepartement($event)" [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement" [ngClass]="{ 'is-invalid': submitted && lf.departement.invalid, 'is-valid': submitted && !lf.departement.invalid }" required>
                 <option [ngValue]="null" >-- Departement --</option>
                 <option *ngFor="let departement of departements;" [ngValue]="departement"  >{{departement.nom }}</option>
 
               </select>
               <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-group mb-2">
+              <label for="secteur">Secteur</label>
+              <select class="form-control" [(ngModel)]="secteur" [compareWith]="compareFn" formControlName="secteur" id="secteur" name="secteur" [ngClass]="{ 'is-invalid': submitted && lf.secteur.invalid, 'is-valid': submitted && !lf.secteur.invalid }" required>
+                <option [ngValue]="null" >-- Secteur --</option>
+                <option *ngFor="let secteur of secteurs;" [ngValue]="secteur"  >{{secteur.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.secteur.invalid || lf.secteur.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-group mb-2">
+              <label for="stadecommerce">Stade de commerce</label>
+              <select class="form-control"   [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
+                <option [ngValue]="null" >-- Stade de commerce --</option>
+                <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
                    class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
                 required</div>
             </div>
@@ -79,19 +107,6 @@
         </div>
 
         <div class="form-row">
-          <div class="col-4">
-            <div class="form-group mb-2">
-              <label for="stadecommerce">Stade de commerce</label>
-              <select class="form-control"   [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
-                <option [ngValue]="null" >-- Stade de commerce --</option>
-                <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
-
-              </select>
-              <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
-                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
-                required</div>
-            </div>
-          </div>
 
           <div class="col-4">
             <div class="form-group">
@@ -109,6 +124,11 @@
             </div>
           </div>
 
+          <div class="col-4">
+            <div class="form-group">
+              <button class="btn btn-danger" (click)="openPopup()" id="boutoncarte">Prendre position</button>
+            </div>
+          </div>
         </div>
 
         <div class="form-row">

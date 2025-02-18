@@ -24,12 +24,12 @@
           <div class="card-body">
 
               <div class="card-body table-responsive">
-                <table class="table text-center m-0">
+                <table class="table m-0">
                   <thead>
                   <tr>
                     <th width="10%">Code</th>
                     <th width="40%">Libellé</th>
-                    <th width="40%">Localité</th>
+                    <th width="40%">Département</th>
                     <th width="10%">Actions</th>
                   </tr>
                   </thead>
@@ -37,7 +37,7 @@
                   <tr  *ngFor="let secteur  of secteurs;">
                     <td>{{secteur.code}}</td>
                     <td>{{secteur.libelle}}</td>
-                    <td>{{secteur.village?.nom}}</td>
+                    <td>{{secteur.departement?.nom}}</td>
                     <td class="text-truncate">
                       <a href="javascript:;" class="success p-0" (click)="formEdit(secteur)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>

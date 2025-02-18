@@ -4,6 +4,8 @@ import {Observable} from "rxjs/index";
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import {Entreprise} from "../modeles/entreprise.modele";
+import {SearchDto} from "../modeles/search-dto.modele";
+
 @Injectable({
 providedIn: 'root'
 })
@@ -27,11 +29,20 @@ constructor(private http: HttpClient) { }
     return this.http.delete<Entreprise>(this.baseUrl +'api/entreprise/'+ id);
   }
 
-  getEntreprises() {
+  getEntrepriseSearch(searchdto: SearchDto) {
+      return this.http.post<any>(this.baseUrl+'api/entreprise/search', searchdto).pipe(
+       map(
+         entrepriseData => {
+          return entrepriseData;
+         }));
+  }
+
+ getEntreprises() {
       return this.http.get<any>(this.baseUrl+'api/entreprise').pipe(
        map(
          entrepriseData => {
           return entrepriseData;
          }));
   }
+
 }

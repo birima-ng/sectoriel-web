@@ -1,7 +1,7 @@
 <!--Login Page Starts-->
 <section >
   <div class="modal-header">
-    <h4 class="modal-title">Entête configuration prix</h4>
+    <h4 class="modal-title">Configuration période prix et stock</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,8 +10,68 @@
     <div class="col-12">
 
       <form [formGroup]="addForm">
+
         <div class="form-row">
-          <div class="col-12">
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="region">Région</label>
+              <select class="form-control" (ngModelChange)="onChangeRegion($event)"   [(ngModel)]="region" [compareWith]="compareFn" formControlName="region" id="region" name="region" [ngClass]="{ 'is-invalid': submitted && lf.region.invalid, 'is-valid': submitted && !lf.region.invalid }" required>
+                <option [ngValue]="null" >-- Région --</option>
+                <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.region.invalid || lf.region.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="departement">Departement</label>
+              <select class="form-control" (ngModelChange)="onChangeDepartement($event)" [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement" [ngClass]="{ 'is-invalid': submitted && lf.departement.invalid, 'is-valid': submitted && !lf.departement.invalid }" required>
+                <option [ngValue]="null" >-- Departement --</option>
+                <option *ngFor="let departement of departements;" [ngValue]="departement"  >{{departement.nom }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.departement.invalid || lf.departement.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="secteur">Secteur</label>
+              <select class="form-control"  (ngModelChange)="onChangeSecteur($event)" [(ngModel)]="secteur" [compareWith]="compareFn" formControlName="secteur" id="secteur" name="secteur" [ngClass]="{ 'is-invalid': submitted && lf.secteur.invalid, 'is-valid': submitted && !lf.secteur.invalid }" required>
+                <option [ngValue]="null" >-- Secteur --</option>
+                <option *ngFor="let secteur of secteurs;" [ngValue]="secteur"  >{{secteur.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.secteur.invalid || lf.secteur.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group mb-2">
+              <label for="stadecommerce">Stade de commerce</label>
+              <select class="form-control"   (ngModelChange)="onChangeStadeCommerce($event)" [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
+                <option [ngValue]="null" >-- Stade de commerce --</option>
+                <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
+
+              </select>
+              <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-6">
               <div class="form-group">
                 <label for="datecollecte">Date collecte</label>
                 <input type="date" formControlName="datecollecte" class="form-control" placeholder="Date collecte" id="datecollecte"
@@ -22,14 +82,12 @@
                   required</div>
               </div>
           </div>
-        </div>
 
-        <div class="form-row">
-          <div class="col-12">
+          <div class="col-6">
             <div class="form-group mb-2">
-              <label for="entreprise">Unité de mesure</label>
+              <label for="entreprise">Entreprise</label>
               <select class="form-control"  [(ngModel)]="entreprise" [compareWith]="compareFn" formControlName="entreprise" id="entreprise" name="entreprise" [ngClass]="{ 'is-invalid': submitted && lf.entreprise.invalid, 'is-valid': submitted && !lf.entreprise.invalid }" required>
-                <option [ngValue]="null" >-- Unité de mesure --</option>
+                <option [ngValue]="null" >-- Entreprise --</option>
                 <option *ngFor="let entreprise of entreprises;" [ngValue]="entreprise"  >{{entreprise.nom }}</option>
 
               </select>
@@ -38,10 +96,8 @@
                 required</div>
             </div>
           </div>
-        </div>
-
-        <div class="form-row">
-          <div class="col-12">
+<!--
+          <div class="col-4">
             <div class="form-group mb-2">
               <label for="unite">Unité de mesure</label>
               <select class="form-control"  [(ngModel)]="unite" [compareWith]="compareFn" formControlName="unite" id="unite" name="unite" [ngClass]="{ 'is-invalid': submitted && lf.unite.invalid, 'is-valid': submitted && !lf.unite.invalid }" required>
@@ -53,7 +109,7 @@
                    class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
                 required</div>
             </div>
-          </div>
+          </div> -->
         </div>
 
 

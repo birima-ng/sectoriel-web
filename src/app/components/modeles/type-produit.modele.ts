@@ -4,6 +4,7 @@ export class TypeProduit {
   id: string;
   libelle: string;
   code: string;
+  image: string;
   categorie: Categorie;
   datesave: Date;
   dateupdate: Date;

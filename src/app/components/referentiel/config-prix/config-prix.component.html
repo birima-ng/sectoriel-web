@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <p class="content-sub-header mb-1 text-center">Point de collecte : <span class="badge badge-danger mb-1 mr-2">{{enteteconfigprix.entreprise.nom}}</span>, Ninéa : <span class="badge badge-light mb-1 mr-2">{{enteteconfigprix?.entreprise.ninea}}</span>, <span *ngIf="enteteconfigprix.entreprise.stocked" class="badge badge-success mb-1 mr-2">Gestion de stock</span><span *ngIf="!enteteconfigprix.entreprise.stocked" class="badge badge-success mb-1 mr-2">Pas Gestion de stock</span>, Date collecte : <span class="badge badge-info mb-1 mr-2">{{enteteconfigprix?.datecollecte  | date:'dd/MM/yyyy'}}</span></p>
+    <p class="content-sub-header mb-1 text-center">Point de collecte : <span class="badge badge-danger mb-1 mr-2">{{enteteconfigprix?.entreprise?.nom}}</span>, Ninéa : <span class="badge badge-light mb-1 mr-2">{{enteteconfigprix?.entreprise?.ninea}}</span>, <span *ngIf="enteteconfigprix?.entreprise?.stocked" class="badge badge-success mb-1 mr-2">Gestion de stock</span><span *ngIf="!enteteconfigprix?.entreprise?.stocked" class="badge badge-success mb-1 mr-2">Pas Gestion de stock</span>, Date collecte : <span class="badge badge-info mb-1 mr-2">{{enteteconfigprix?.datecollecte  | date:'dd/MM/yyyy'}}</span></p>
 
   </div>
 </div>
@@ -9,19 +9,23 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-       <!-- <div class="card-header">
-          <div class="col-11">
-
-          </div>
-          <div class="col-1">
-            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
-          </div>
-
-        </div>-->
         <div class="card-content">
+
           <div class="card-body">
 
               <div class="card-body table-responsive">
+                <div class="form-row">
+                  <div class="col-1 text-center"  *ngFor="let typeproduit of typeproduits;" >
+                    <div class="media-right align-self-center">
+                      <img class="rounded-circle mr-1" src="assets/img/produits/{{typeproduit.image}}"
+                           height="50" width="50" alt="datatable-avatar" (click)="chargerProduit(typeproduit)">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 text-center" style="padding: 0.5rem!important;">
+                  <span class="badge badge-light mb-2 mr-2">{{title}}</span>
+                </div>
+
                 <form *ngIf="configprixsForm" [formGroup]="configprixsForm">
                 <table class="table  m-0">
                   <thead>
@@ -53,7 +57,12 @@
                     </td>
 
                     <td>
-                      {{ configprix.get('unite').value?.libelle }}
+                      <div class="form-group mb-2">
+                        <select class="form-control"  [compareWith]="compareFn" (change)="onEditValue(i)" formControlName="unite" >
+                          <option [ngValue]="null" >-- Unité de mesure --</option>
+                          <option *ngFor="let unite of unites;" [ngValue]="unite"  >{{unite.libelle }}</option>
+                        </select>
+                      </div>
                     </td>
 
                   </tr>

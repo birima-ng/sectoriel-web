@@ -7,12 +7,6 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import {Secteur} from "../../../modeles/secteur.modele";
 import {SecteurService} from "../../../services/secteur.service";
 import { ToastrService } from 'ngx-toastr';
-
-
-import {Village} from 'app/components/modeles/village.modele';
-import {VillageService} from 'app/components/services/village.service';
-import {Commune} from 'app/components/modeles/commune.modele';
-import {CommuneService} from 'app/components/services/commune.service';
 import {Region} from 'app/components/modeles/region.modele';
 import {RegionService} from 'app/components/services/region.service';
 import {Departement} from 'app/components/modeles/departement.modele';
@@ -28,13 +22,8 @@ export class AddSecteurComponent {
 invalidLogin = false;
 submitted=false;
 lng="en";
-
-villages : Village[];
-village: Village;
 departements : Departement[];
 departement: Departement;
-communes : Commune[];
-commune: Commune;
 regions : Region[];
 region: Region;
 
@@ -47,8 +36,6 @@ secteur: Secteur;
      id: new UntypedFormControl(''),
     code: new UntypedFormControl('', [Validators.required]),
     libelle: new UntypedFormControl('', [Validators.required]),
-    village: new UntypedFormControl(null, [Validators.required]),
-    commune: new UntypedFormControl(null, [Validators.required]),
     departement: new UntypedFormControl(null, [Validators.required]),
     region: new UntypedFormControl(null, [Validators.required]),
   });
@@ -58,8 +45,6 @@ secteur: Secteur;
   constructor(
     private departementService: DepartementService,
     private regionService: RegionService,
-    private communeService: CommuneService,
-    private villageService: VillageService,
     public toastr: ToastrService,
     public activeModal: NgbActiveModal,
     private router: Router, private authService: AuthService,
@@ -71,8 +56,6 @@ secteur: Secteur;
 ngOnInit(): void {
 this.departement = null;
 this.region = null;
-this.commune = null;
-this.village = null;
 if(this.action == 'edit'){
       this.addForm.patchValue({
       id: this.entity.id,
@@ -190,8 +173,6 @@ if(region){
 console.log("################", region.nom);
 this.getDepartementsByRegion(region.id);
 }
-this.communes = [];
-this.commune = null;
 this.departement = null;
 }
 
@@ -203,35 +184,6 @@ getDepartementsByRegion(id: string) {
  });
 }
 
-onChangeDepartement(departement: Departement) {
-if(departement){
-console.log("################", departement.nom);
-this.getCommunesByDepartement(departement.id);
-}
-}
-
-getVillagesByCommune(id: string) {
- console.log("################1");
- this.villageService.getVillagesByCommune(id).subscribe( data => {
- this.villages = data;
-//this.cdr.detectChanges(); // Forcer la détection des changements
- });
-}
-
-getCommunesByDepartement(id: string) {
- console.log("################1");
- this.communeService.getCommunesByDepartement(id).subscribe( data => {
- this.communes = data;
-//this.cdr.detectChanges(); // Forcer la détection des changements
- });
-}
-
-onChangeCommune(commune: Commune) {
-if(commune){
-console.log("################", commune.nom);
-this.getVillagesByCommune(commune.id);
-}
-}
 
 
 }

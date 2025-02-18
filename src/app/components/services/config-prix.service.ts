@@ -44,6 +44,15 @@ constructor(private http: HttpClient) { }
          }));
   }
 
+  getConfigPrixTypeProduitId(id: string, idtypeproduit: string): Observable<ConfigPrixDTO>  {
+      return this.http.get<any>(this.baseUrl+'api/config-prix/'+id+'/entete-config-prix-dto/'+idtypeproduit+'/typeproduit').pipe(
+       map(
+         configprixData => {
+          return configprixData;
+         }));
+  }
+
+
   getConfigPrixByEntete(id: string): Observable<ConfigPrixDTO>  {
       return this.http.get<any>(this.baseUrl+'api/config-prix/'+id+'/entete-config-prix-dto').pipe(
        map(

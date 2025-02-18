@@ -32,3 +32,11 @@
     }
   }
 }
+
+/* Ajoute des styles pour personnaliser davantage la taille de modal-dialog */
+.custom-modal .modal-dialog {
+  max-width: 70%; /* Ajuste cette valeur selon tes besoins */
+  width: 80%; /* Ajuste cette valeur selon tes besoins */
+  max-height: 90%; /* Ajuste cette valeur selon tes besoins */
+  height: 90%; /* Ajuste cette valeur selon tes besoins */
+}

@@ -27,6 +27,14 @@ constructor(private http: HttpClient) { }
     return this.http.delete<EnteteConfigPrix>(this.baseUrl +'api/entete-config-prix/'+ id);
   }
 
+  getEnteteConfigPrixByEntreprise(id: string) {
+      return this.http.get<any>(this.baseUrl+'api/entete-config-prix/'+id+'/entreprise').pipe(
+       map(
+         enteteconfigprixData => {
+          return enteteconfigprixData;
+         }));
+  }
+
   getEnteteConfigPrixs() {
       return this.http.get<any>(this.baseUrl+'api/entete-config-prix').pipe(
        map(
