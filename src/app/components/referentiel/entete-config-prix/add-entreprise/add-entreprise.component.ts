@@ -4,40 +4,36 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from 'app/shared/auth/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {EnteteConfigPrix} from "app/components/modeles/entete-config-prix.modele";
-import {EnteteConfigPrixService} from "app/components/services/entete-config-prix.service";
-import {Unite} from "app/components/modeles/unite.modele";
-import {UniteService} from "app/components/services/unite.service";
-import {Entreprise} from "app/components/modeles/entreprise.modele";
-import {EntrepriseService} from "app/components/services/entreprise.service";
+import {Entreprise} from "../../../modeles/entreprise.modele";
+import {EntrepriseService} from "../../../services/entreprise.service";
 import { ToastrService } from 'ngx-toastr';
 import { ChangeDetectorRef } from '@angular/core';
 import {Region} from 'app/components/modeles/region.modele';
 import {RegionService} from 'app/components/services/region.service';
+
 import {Departement} from 'app/components/modeles/departement.modele';
 import {DepartementService} from 'app/components/services/departement.service';
+
 import {StadeCommerce} from 'app/components/modeles/stade-commerce.modele';
 import {StadeCommerceService} from 'app/components/services/stade-commerce.service';
+
 import {Secteur} from 'app/components/modeles/secteur.modele';
 import {SecteurService} from 'app/components/services/secteur.service';
-import {SearchDto} from 'app/components/modeles/search-dto.modele';
 
-
+import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
 @Component({
-  selector: 'app-add-entete-config-prix',
-  templateUrl: './add-entete-config-prix.component.html',
-  styleUrls: ['./add-entete-config-prix.component.scss']
+  selector: 'app-add-entreprise',
+  templateUrl: './add-entreprise.component.html',
+  styleUrls: ['./add-entreprise.component.scss']
 })
 
-export class AddEnteteConfigPrixComponent {
+export class AddEntrepriseNewComponent {
+
+coordinates: { lat: number, lng: number } | undefined;
+showPopup = false;
 invalidLogin = false;
 submitted=false;
 lng="en";
-enteteconfigprix: EnteteConfigPrix;
-unites : Unite[];
-unite : Unite;
-entreprises : Entreprise[];
-entreprise : Entreprise;
 
 departements : Departement[];
 departement: Departement;
@@ -50,65 +46,74 @@ stadecommerce: StadeCommerce;
 
 secteurs : Secteur[];
 secteur: Secteur;
-searchdto: SearchDto = {departement: null, secteur: null, stadecommerce: null, nom: null, telephonefix: null};
+
+entreprise: Entreprise;
+
   isLoginFailed = false;
 
   addForm = new UntypedFormGroup({
     id: new UntypedFormControl(''),
-    datecollecte: new UntypedFormControl('', [Validators.required]),
-    entreprise: new UntypedFormControl(null, [Validators.required]),
-    stadecommerce: new UntypedFormControl(null),
-    region: new UntypedFormControl(null),
+    stocked: new UntypedFormControl(false),
+    nom: new UntypedFormControl('', [Validators.required]),
+    ninea: new UntypedFormControl('', [Validators.required]),
+    telephoneportable: new UntypedFormControl('', [Validators.required]),
+    regicommerce: new UntypedFormControl('', [Validators.required]),
+    telephonefix: new UntypedFormControl(''),
+    telephonefix2: new UntypedFormControl(''),
+    longitude: new UntypedFormControl(''),
+    latitude: new UntypedFormControl(''),
     departement: new UntypedFormControl(null),
+    region: new UntypedFormControl(null),
+    stadecommerce: new UntypedFormControl(null, [Validators.required]),
     secteur: new UntypedFormControl(null),
   });
 
 @Input() action: any;  // Peut être de n'importe quel type
 @Input() entity: any;  // Peut être de n'importe quel type
+@Input() departement1: any;  // Peut être de n'importe quel type
   constructor(
+    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef,
     private secteurService: SecteurService,
     private stadecommerceService: StadeCommerceService,
     private departementService: DepartementService,
     private regionService: RegionService,
-    private uniteService: UniteService,
-    private entrepriseService: EntrepriseService,
     public toastr: ToastrService,
-    private cdr: ChangeDetectorRef,
     public activeModal: NgbActiveModal,
     private router: Router, private authService: AuthService,
-    private enteteconfigprixService: EnteteConfigPrixService,
+    private entrepriseService: EntrepriseService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
   }
 
 ngOnInit(): void {
-this.unite = null;
-this.entreprise = null;
-this.region = null;
-this.departement = null;
-this.secteur = null;
+console.log("############################## -- departement1 --",this.departement1);
+this.departement = this.departement1;
+//this.region = null;
 this.stadecommerce = null;
+//this.secteur = null;
 if(this.action == 'edit'){
       this.addForm.patchValue({
       id: this.entity.id,
-      datecollecte: this.entity.datecollecte,
-      entreprise: this.entity.entreprise,
-      departement: this.entity.entreprise.departement,
-      region: this.entity.entreprise.departement.region,
-      secteur: this.entity.entreprise.secteur,
-      stadecommerce: this.entity.entreprise.stadecommerce,
+      nom: this.entity.nom,
+      ninea: this.entity.ninea,
+      telephoneportable: this.entity.telephoneportable,
+      telephonefix: this.entity.telephonefix,
+      telephonefix2: this.entity.telephonefix2,
+      regicommerce: this.entity.regicommerce,
+      departement: this.entity.departement,
+      region: this.entity.departement.region,
+      stocked: this.entity.stocked,
+      secteur: this.entity.secteur,
     });
-//this.unite = this.entity.unite;
-this.entreprise = this.entity.entreprise;
-this.departement = this.entity.entreprise.departement;
-this.region = this.entity.entreprise.departement.region;
-this.secteur = this.entity.entreprise.secteur;
-this.stadecommerce = this.entity.entreprise.stadecommerce;
+this.region = this.entity.departement.region;
+this.departement = this.entity.departement;
+this.stadecommerce = this.entity.stadecommerce;
+this.secteur = this.entity.secteur;
 }
-  // this.getAllUnite();
-   this.getAllEntreprise();
    this.getAllRegion();
    this.getAllStadeCommerce();
+   //this.getAllSecteur();
 }
 
   get lf() {
@@ -140,17 +145,17 @@ console.log("################################ this.addForm.value ", this.addForm
 }
 
 add(){
-
-    this.enteteconfigprixService.createEnteteConfigPrix(this.addForm.value).subscribe(
+    this.addForm.value.departement = this.departement;
+    this.entrepriseService.createEntreprise(this.addForm.value).subscribe(
       data => {
  if(data){
  this.spinner.hide();
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Date de collecte ajoutée avec succès!", 'STOCK-PRIX');
+this.toastr.success("Entreprise ajoutée avec succès!", 'PRIX-STOCK');
 }else {
- this.toastr.error('La date de collecte existe déjà pour cette entreprise!', 'STOCK-PRIX');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'PRIX-STOCK');
 }
       },
       error => {
@@ -159,23 +164,22 @@ this.toastr.success("Date de collecte ajoutée avec succès!", 'STOCK-PRIX');
         console.log('error: '+error)
 
       }
-
 );
 
 }
 
 edit(){
-
-    this.enteteconfigprixService.updateEnteteConfigPrix(this.addForm.value).subscribe(
+this.addForm.value.departement = this.departement1;
+    this.entrepriseService.updateEntreprise(this.addForm.value).subscribe(
       data => {
 if(data){
  this.spinner.hide();
 
 //fermer le popup
 this.activeModal.close('Data updated');
-this.toastr.success("Date de collecte modifiée avec succès!", 'STOCK-PRIX');
+this.toastr.success("Entreprise modifiée avec succès!", 'PRIX-STOCK');
 }else {
- this.toastr.error('La date de collecte existe déjà pour cette entreprise!', 'STOCK-PRIX');
+ this.toastr.error('Le code ou le libellé  existe déjà!', 'PRIX-STOCK');
 }
       },
       error => {
@@ -189,49 +193,38 @@ this.toastr.success("Date de collecte modifiée avec succès!", 'STOCK-PRIX');
 
 }
 
-getAllUnite() {
-    this.spinner.show(undefined,
-      {
-        type: 'ball-triangle-path',
-        size: 'medium',
-        bdColor: 'rgba(0, 0, 0, 0.8)',
-        color: '#fff',
-        fullScreen: true
-      });
+
+getAllDepartement() {
  console.log("################1");
- this.uniteService.getUnites().subscribe( data => {
- this.spinner.hide();
- this.unites = data;
-this.cdr.detectChanges(); // Forcer la détection des changements
-  console.log("################",data); });
- console.log("################2");
+ this.departementService.getDepartements().subscribe( data => {
+ this.departements = data;
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
 }
-
-getAllEntreprise() {
-    this.spinner.show(undefined,
-      {
-        type: 'ball-triangle-path',
-        size: 'medium',
-        bdColor: 'rgba(0, 0, 0, 0.8)',
-        color: '#fff',
-        fullScreen: true
-      });
- console.log("################1");
- this.entrepriseService.getEntreprises().subscribe( data => {
- this.spinner.hide();
- this.entreprises = data;
-this.cdr.detectChanges(); // Forcer la détection des changements
-  console.log("################",data); });
- console.log("################2");
-}
-
-
  compareFn(a, b) {
   if(a==b)
 return true
 else
     return a && b && a.id == b.id;
   }
+
+getAllRegion() {
+ console.log("################1");
+ this.regionService.getRegions().subscribe( data => {
+ this.regions = data;
+ console.log("################1111 regions ",this.regions);
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+
+getAllSecteur() {
+ console.log("################1");
+ this.secteurService.getSecteurs().subscribe( data => {
+ this.secteurs = data;
+ console.log("################1111 regions ",this.secteurs);
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
 
 
 onChangeRegion(region: Region) {
@@ -240,8 +233,6 @@ console.log("################", region.nom);
 this.getDepartementsByRegion(region.id);
 }
 this.departement = null;
-this.entreprise = null;
-this.entreprises = [];
 }
 
 
@@ -257,8 +248,6 @@ getDepartementsByRegion(id: string) {
 onChangeDepartement(departement: Departement) {
 if(departement){
 console.log("################", departement);
-this.searchdto.departement = departement.id;
-this.getEntrepriseSearch(this.searchdto);
 this.getSecteursByDepartement(departement.id);
 }
 this.secteur = null;
@@ -290,39 +279,21 @@ this.cdr.detectChanges(); // Forcer la détection des changements
  console.log("################2");
 }
 
-getAllRegion() {
- console.log("################1");
- this.regionService.getRegions().subscribe( data => {
- this.regions = data;
- console.log("################1111 regions ",this.regions);
-//this.cdr.detectChanges(); // Forcer la détection des changements
- });
-}
+  openPopup() {
+       const modalRef = this.modalService.open(GoogleMapPopupComponent, { size: 'lg' });
 
-getEntrepriseSearch(serachdto: SearchDto) {
- console.log("################1");
- this.entrepriseService.getEntrepriseSearch(serachdto).subscribe( data => {
- this.entreprises = data;
- this.entreprise = null;
-//this.cdr.detectChanges(); // Forcer la détection des changements
- });
-}
+       // Récupérer les coordonnées quand la modale est fermée
+      modalRef.componentInstance.coordinates.subscribe((coords: { lat: number, lng: number }) => {
+      this.coordinates = coords;
+  this.addForm.patchValue({
+      longitude: coords.lng,
+      latitude: coords.lat,
+    });
+    });
+  }
 
-onChangeSecteur(secteur: Secteur) {
-if(secteur){
-console.log("################", secteur);
-this.searchdto.secteur = secteur.id;
-this.getEntrepriseSearch(this.searchdto);
-}
-this.secteur = null;
-}
+  closePopup() {
+    this.showPopup = false;
+  }
 
-onChangeStadeCommerce(stadecommerce: StadeCommerce) {
-if(stadecommerce){
-console.log("################", stadecommerce);
-this.searchdto.stadecommerce = stadecommerce.id;
-this.getEntrepriseSearch(this.searchdto);
-}
-this.stadecommerce = null;
-}
 }

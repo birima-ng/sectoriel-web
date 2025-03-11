@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import {ConfigPrix} from "../modeles/config-prix.modele";
 import {ConfigPrixDTO} from "../modeles/config-prix-dto.modele";
+import {CollecteDTO} from "../modeles/collecte-dto.modele";
+import {ConfigPrixEntrepriseDTO} from "../modeles/config-prix-entreprise-dto.modele";
 @Injectable({
 providedIn: 'root'
 })
@@ -55,6 +57,14 @@ constructor(private http: HttpClient) { }
 
   getConfigPrixByEntete(id: string): Observable<ConfigPrixDTO>  {
       return this.http.get<any>(this.baseUrl+'api/config-prix/'+id+'/entete-config-prix-dto').pipe(
+       map(
+         configprixData => {
+          return configprixData;
+         }));
+  }
+
+  getConfigPrixByEntreprise(collectedto: CollecteDTO): Observable<ConfigPrixEntrepriseDTO>  {
+      return this.http.post<any>(this.baseUrl+'api/config-prix/entreprise/typeproduit/datecollecte',collectedto).pipe(
        map(
          configprixData => {
           return configprixData;

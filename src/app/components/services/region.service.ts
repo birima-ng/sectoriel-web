@@ -42,4 +42,12 @@ constructor(private http: HttpClient) { }
           return regionData;
          }));
   }
+
+  getRegionsDto() {
+      return this.http.get<any>(this.baseUrl+'api/region/departement').pipe(
+       map(
+         regionData => {
+          return regionData;
+         }));
+  }
 }

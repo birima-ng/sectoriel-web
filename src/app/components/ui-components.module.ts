@@ -229,14 +229,19 @@ import {AddUniteComponent} from "./referentiel/unite/add/add-unite.component";
 
 import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete-config-prix.component";
 import {AddEnteteConfigPrixComponent} from "./referentiel/entete-config-prix/add/add-entete-config-prix.component";
+import {AddEntrepriseNewComponent} from "./referentiel/entete-config-prix/add-entreprise/add-entreprise.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
-
+import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
     imports: [
     EmailEditorModule,
 QuillModule.forRoot(),
+MatSidenavModule,
+MatToolbarModule,
 AgmCoreModule,
 FieldsetModule,
 TreeViewModule,
@@ -263,6 +268,8 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+ConfigUniteComponent,
+AddEntrepriseNewComponent,
 GoogleMapPopupComponent,
 ConfigPrixComponent,
 EnteteConfigPrixComponent,

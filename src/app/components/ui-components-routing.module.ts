@@ -100,6 +100,7 @@ import {UniteComponent} from "./referentiel/unite/unite.component";
 import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete-config-prix.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
+import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
 
 const routes: Routes = [
   {
@@ -121,12 +122,19 @@ const routes: Routes = [
         }
         },
 
-
         {
 path: 'entete-config-prix',
 component: EnteteConfigPrixComponent, canActivate: [AuthGuard],
 data: {
 title: 'Entete Config Prix'
+}
+},
+
+{
+path: 'config-unite',
+component: ConfigUniteComponent, canActivate: [AuthGuard],
+data: {
+title: 'Config Unite'
 }
 },
 

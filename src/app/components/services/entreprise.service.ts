@@ -45,4 +45,12 @@ constructor(private http: HttpClient) { }
          }));
   }
 
+ getEntreprisesByDepartement(id:string) {
+      return this.http.get<any>(this.baseUrl+'api/entreprise/'+id+'/departement').pipe(
+       map(
+         entrepriseData => {
+          return entrepriseData;
+         }));
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <p class="content-sub-header mb-1 text-center">Point de collecte : <span class="badge badge-danger mb-1 mr-2">{{enteteconfigprix?.entreprise?.nom}}</span>, Ninéa : <span class="badge badge-light mb-1 mr-2">{{enteteconfigprix?.entreprise?.ninea}}</span>, <span *ngIf="enteteconfigprix?.entreprise?.stocked" class="badge badge-success mb-1 mr-2">Gestion de stock</span><span *ngIf="!enteteconfigprix?.entreprise?.stocked" class="badge badge-success mb-1 mr-2">Pas Gestion de stock</span>, Date collecte : <span class="badge badge-info mb-1 mr-2">{{enteteconfigprix?.datecollecte  | date:'dd/MM/yyyy'}}</span></p>
+    <p class="content-sub-header mb-1 text-center">Point de collecte : <span class="badge badge-danger mb-1 mr-2">{{entreprise?.nom}}</span>, Ninéa : <span class="badge badge-light mb-1 mr-2">{{entreprise?.ninea}}</span>, <span *ngIf="entreprise?.stocked" class="badge badge-success mb-1 mr-2">Gestion de stock</span><span *ngIf="!entreprise?.stocked" class="badge badge-success mb-1 mr-2">Pas Gestion de stock</span>, Date collecte : <span class="badge badge-info mb-1 mr-2">{{datecollecte  | date:'dd/MM/yyyy'}}</span></p>
 
   </div>
 </div>
@@ -13,17 +13,34 @@
 
           <div class="card-body">
 
+
+
               <div class="card-body table-responsive">
+                <div class="col-12 text-center" style="padding: 0.1rem!important;">
+                  <table class="table  text-center m-0">
+                  <tr>
+                    <th >Date collecte</th>
+                    <th>
+                      <form [formGroup]="addForm">
+                      <input (change)="onDateChange($event)" type="date" formControlName="datecollecte" class="form-control" placeholder="Date collecte" id="datecollecte" [max]="today"
+                             [ngClass]="{ 'is-invalid': submitted && lf.datecollecte.invalid, 'is-valid': submitted && !lf.datecollecte.invalid }"
+                             required>
+                      </form>
+                    </th>
+                  </tr>
+                  </table>
+                </div>
                 <div class="form-row">
                   <div class="col-1 text-center"  *ngFor="let typeproduit of typeproduits;" >
                     <div class="media-right align-self-center">
                       <img class="rounded-circle mr-1" src="assets/img/produits/{{typeproduit.image}}"
                            height="50" width="50" alt="datatable-avatar" (click)="chargerProduit(typeproduit)">
                     </div>
+                    <span class="badge badge-light mb-2 mr-2">{{typeproduit?.libelle}}</span>
                   </div>
                 </div>
                 <div class="col-12 text-center" style="padding: 0.5rem!important;">
-                  <span class="badge badge-light mb-2 mr-2">{{title}}</span>
+                      <span class="badge badge-light mb-2 mr-2">{{title}}</span>
                 </div>
 
                 <form *ngIf="configprixsForm" [formGroup]="configprixsForm">
@@ -33,7 +50,7 @@
                     <th >Produit</th>
                     <th >Prix d'achat (F cfa)</th>
                     <th >Prix de vente (F cfa)</th>
-                    <th *ngIf="enteteconfigprix.entreprise.stocked">Stock</th>
+                    <th *ngIf="entreprise.stocked">Stock</th>
                     <th >Unité</th>
                   </tr>
                   </thead>
@@ -51,18 +68,20 @@
                              type="number" >
                     </td>
 
-                    <td *ngIf="enteteconfigprix.entreprise.stocked">
+                    <td *ngIf="entreprise.stocked">
                       <input class="form-control" formControlName="stock" (blur)="onEditValue(i)"
                              type="number" >
                     </td>
 
                     <td>
-                      <div class="form-group mb-2">
+                     <!--<div class="form-group mb-2">
                         <select class="form-control"  [compareWith]="compareFn" (change)="onEditValue(i)" formControlName="unite" >
                           <option [ngValue]="null" >-- Unité de mesure --</option>
                           <option *ngFor="let unite of unites;" [ngValue]="unite"  >{{unite.libelle }}</option>
                         </select>
-                      </div>
+                      </div> -->
+                      <span *ngIf="configprix.get('unite').value" class="badge badge-info mb-1 mr-1">{{ configprix.get('unite').value?.libelle }}</span>
+                      <span *ngIf="!configprix.get('unite').value" class="badge badge-danger mb-1 mr-1">Configurer l'unité</span>
                     </td>
 
                   </tr>

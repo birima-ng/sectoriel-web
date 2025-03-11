@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input} 
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
 import {FormBuilder, FormGroup, Validators, FormControl, UntypedFormControl, UntypedFormGroup} from "@angular/forms";
-import { AddEnteteConfigPrixComponent } from './add/add-entete-config-prix.component';
+import { AddEntrepriseNewComponent } from './add-entreprise/add-entreprise.component';
 import { ModalConfirmComponent } from 'app/components/modal-confirm/modal-confirm.component';
 import { ChangeDetectorRef } from '@angular/core';
 import {EnteteConfigPrix} from "../../modeles/entete-config-prix.modele";
@@ -23,6 +23,15 @@ import {EntrepriseService} from "app/components/services/entreprise.service";
 import { ToastrService } from 'ngx-toastr';
 declare var window: any;
 
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { NestedTreeControl } from '@angular/cdk/tree';
+
+interface TreeNode {
+id: string;
+nom: string;
+departements?: TreeNode[];
+}
+
 @Component({
     selector: 'app-entete-config-prix',
     templateUrl: './entete-config-prix.component.html',
@@ -30,6 +39,11 @@ declare var window: any;
 })
 
 export class EnteteConfigPrixComponent implements OnInit {
+
+treeControl = new NestedTreeControl<TreeNode>(node => node.departements);
+dataSource = new MatTreeNestedDataSource<TreeNode>();
+selectedDepartmentId = '';
+openedRegion: TreeNode | null = null; // Région actuellement ouverte
 
 supForm: FormGroup;
 submitted = false;
@@ -52,15 +66,14 @@ stadecommerce: StadeCommerce;
 
 secteurs : Secteur[];
 secteur: Secteur;
-searchdto: SearchDto = {departement: null, secteur: null, stadecommerce: null};
+searchdto: SearchDto = {departement: null, secteur: null, stadecommerce: null, nom: null, telephonefix: null};
 p=1;
     highlighted: boolean = false;
 addForm = new UntypedFormGroup({
     entreprise: new UntypedFormControl(null, [Validators.required]),
+    telephone: new UntypedFormControl(''),
     stadecommerce: new UntypedFormControl(null),
-    region: new UntypedFormControl(null),
-    departement: new UntypedFormControl(null),
-    secteur: new UntypedFormControl(null),
+    pointcollecte: new UntypedFormControl(''),
   });
 
     constructor(
@@ -75,15 +88,73 @@ addForm = new UntypedFormGroup({
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
     private enteteconfigprixService: EnteteConfigPrixService) {
+/*
+    this.dataSource.data = [
+      {
+id: 1,
+        name: 'Région 1',
+        departements: [
+          { id: 1, name: 'Département 1.1' },
+          { id: 2, name: 'Département 1.2' }
+        ]
+      },
+      {
+id: 2,
+        name: 'Région 2',
+        departements: [
+          { id: 3, name: 'Département 2.1' },
+          { id: 4, name: 'Département 2.2' }
+        ]
+      }
+    ];
+*/
     }
+
+ hasChild = (_: number, node: TreeNode) => !!node.departements && node.departements.length > 0;
+
+  // Ouvrir/fermer une région
+ toggleRegion(node: TreeNode) {
+    if (this.openedRegion === node) {
+      this.treeControl.collapse(node); // Si on clique sur la même région, on la ferme
+      this.openedRegion = null;
+    } else {
+      if (this.openedRegion) {
+        this.treeControl.collapse(this.openedRegion); // Ferme l'ancienne région
+      }
+      this.treeControl.expand(node); // Ouvre la nouvelle
+      this.openedRegion = node;
+    }
+  }
+
+  toggleNode(node: TreeNode) {
+    if (this.treeControl.isExpanded(node)) {
+      this.treeControl.collapse(node);
+    } else {
+      this.treeControl.expand(node);
+    }
+  }
+selectDepartment(node: TreeNode) {
+    if (!node.departements) { // Vérifie si c'est un département
+      console.log("############################################ node ",node);
+      this.selectedDepartmentId = node.id || null;
+      this.getEntreprisesByDepartement(this.selectedDepartmentId);
+      this.getDepartementById(this.selectedDepartmentId);
+
+     this.addForm.patchValue({
+      telephone: null,
+      stadecommerce: null,
+      pointcollecte: null,
+      });
+    }
+  }
 
   ngOnInit(): void {
 this.region = null;
 this.stadecommerce = null;
    this.getAllEntreprise();
    this.getAllRegion();
+   this.getRegionsDto();
    this.getAllStadeCommerce();
-
    this.getAllEnteteConfigPrix();
   }
     ngAfterViewChecked() {
@@ -109,29 +180,33 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 }
 
     openContent() {
-        const modalRef = this.modalService.open(AddEnteteConfigPrixComponent, { windowClass: 'custom-modal' });
+        const modalRef = this.modalService.open(AddEntrepriseNewComponent, { windowClass: 'custom-modal' });
  modalRef.result.then((result) => {
       if (result === 'Data updated') {
-        this.getAllEnteteConfigPrix();
+        //this.getAllEnteteConfigPrix();
+        this.getEntreprisesByDepartement(this.selectedDepartmentId);
       }
     }, (reason) => {
       // Handle dismiss reason if needed
     });
         modalRef.componentInstance.action = 'add';
+        modalRef.componentInstance.departement1 = this.departement;
     }
 
 
     formEdit(enteteconfigprix: EnteteConfigPrix) {
-        const modalRef = this.modalService.open(AddEnteteConfigPrixComponent, { windowClass: 'custom-modal' });
+        const modalRef = this.modalService.open(AddEntrepriseNewComponent, { windowClass: 'custom-modal' });
  modalRef.result.then((result) => {
       if (result === 'Data updated') {
-        this.getAllEnteteConfigPrix();
+        //this.getAllEnteteConfigPrix();
+  this.getEntreprisesByDepartement(this.selectedDepartmentId);
       }
     }, (reason) => {
       // Handle dismiss reason if needed
     });
         modalRef.componentInstance.action = 'edit';
         modalRef.componentInstance.entity = enteteconfigprix;
+        modalRef.componentInstance.departement1 = this.departement;
     }
 
 
@@ -178,11 +253,11 @@ this.cdr.detectChanges(); // Forcer la détection des changements
   }
 
 getEntrepriseSearch(serachdto: SearchDto) {
- console.log("################1");
+ console.log("################ serachdto",serachdto);
  this.entrepriseService.getEntrepriseSearch(serachdto).subscribe( data => {
  this.entreprises = data;
  this.entreprise = null;
-//this.cdr.detectChanges(); // Forcer la détection des changements
+ this.cdr.detectChanges(); // Forcer la détection des changements
  });
 }
 
@@ -197,11 +272,24 @@ this.secteur = null;
 
 onChangeStadeCommerce(stadecommerce: StadeCommerce) {
 if(stadecommerce){
-console.log("################", stadecommerce);
+this.stadecommerce = stadecommerce;
 this.searchdto.stadecommerce = stadecommerce.id;
+this.searchdto.departement = this.selectedDepartmentId;
+this.searchdto.nom = this.addForm.value.pointcollecte;
+this.searchdto.telephonefix = this.addForm.value.telephone;
 this.getEntrepriseSearch(this.searchdto);
 }
-this.stadecommerce = null;
+
+}
+
+onSearch() {
+
+if(this.stadecommerce!=null)
+this.searchdto.stadecommerce = this.stadecommerce.id;
+this.searchdto.departement = this.selectedDepartmentId;
+this.searchdto.nom = this.addForm.value.pointcollecte;
+this.searchdto.telephonefix = this.addForm.value.telephone;
+this.getEntrepriseSearch(this.searchdto);
 }
 
  compareFn(a, b) {
@@ -275,6 +363,15 @@ this.cdr.detectChanges(); // Forcer la détection des changements
  console.log("################2");
 }
 
+
+getEntreprisesByDepartement(id:string) {
+ console.log("################1");
+ this.entrepriseService.getEntreprisesByDepartement(id).subscribe( data => {
+ this.entreprises = data;
+ console.log("################1111 regions ",this.regions);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
 getAllRegion() {
  console.log("################1");
  this.regionService.getRegions().subscribe( data => {
@@ -283,6 +380,16 @@ getAllRegion() {
 //this.cdr.detectChanges(); // Forcer la détection des changements
  });
 }
+
+getRegionsDto(){
+ console.log("################1");
+ this.regionService.getRegionsDto().subscribe( data => {
+ this.dataSource.data = data;
+ console.log("################1111 regions ",this.regions);
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+
 
 getAllStadeCommerce() {
     this.spinner.show(undefined,
@@ -311,5 +418,13 @@ getEnteteConfigPrixByEntreprise(id: string) {
  });
 }
 
+getDepartementById(id:string) {
+ console.log("################1");
+ this.departementService.getDepartementById(id).subscribe( data => {
+ this.departement = data;
+ console.log("################1111 regions ",this.departement);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
 }
 

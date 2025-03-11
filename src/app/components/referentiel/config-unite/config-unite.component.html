@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-12">
+    <p class="content-sub-header mb-1 text-center"><span  class="badge badge-success mb-1 mr-2">Configuration unité de mesure</span></p>
+
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-content">
+
+          <div class="card-body">
+
+
+
+              <div class="card-body table-responsive">
+                <div class="col-12 text-center" style="padding: 0.1rem!important;">
+                  <table class="table  text-center m-0">
+                  <tr>
+                    <th > <label for="stadecommerce">Stade de commerce</label></th>
+                    <th>
+                      <form [formGroup]="addForm">
+                        <div class="form-group mb-2">
+
+                          <select class="form-control"   (ngModelChange)="onChangeStadeCommerce($event)" [(ngModel)]="stadecommerce" [compareWith]="compareFn" formControlName="stadecommerce" id="stadecommerce" name="stadecommerce" [ngClass]="{ 'is-invalid': submitted && lf.stadecommerce.invalid, 'is-valid': submitted && !lf.stadecommerce.invalid }" required>
+                            <option [ngValue]="null" >-- Stade de commerce --</option>
+                            <option *ngFor="let stadecommerce of stadecommerces;" [ngValue]="stadecommerce"  >{{stadecommerce.libelle }}</option>
+
+                          </select>
+                          <div *ngIf="submitted && (lf.stadecommerce.invalid || lf.stadecommerce.errors?.required)"
+                               class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                            required</div>
+                        </div>
+                      </form>
+                    </th>
+                  </tr>
+                  </table>
+                </div>
+                <div class="form-row text-center ">
+                  <div class="col-1 text-center"  *ngFor="let typeproduit of typeproduits;">
+                    <div class="media-right align-self-center">
+                      <img class="rounded-circle mr-1" src="assets/img/produits/{{typeproduit.image}}"
+                           height="50" width="50" alt="datatable-avatar" (click)="chargerProduit(typeproduit)">
+                    </div>
+                    <span class="badge badge-light mb-2 mr-2">{{typeproduit?.libelle}}</span>
+                  </div>
+                </div>
+                <div class="col-12 text-center" style="padding: 0.5rem!important;">
+                      <span class="badge badge-light mb-2 mr-2">{{title}}</span>
+                </div>
+
+                <form *ngIf="configunitesForm" [formGroup]="configunitesForm">
+                <table class="table  m-0">
+                  <thead>
+                  <tr>
+                    <th >Produit</th>
+                    <th >Unité</th>
+                  </tr>
+                  </thead>
+                  <tbody formArrayName="configunitearrys">
+                  <tr *ngFor="let configunite of configunitearrys.controls; let i = index" [formGroupName]="i">
+                    <td>{{ configunite.get('produit').value?.libelle }}</td>
+                    <td>
+                      <div class="form-group mb-2">
+                        <select class="form-control"  [compareWith]="compareFn" (change)="onEditValue(i)" formControlName="unite" >
+                          <option [ngValue]="null" >-- Unité de mesure --</option>
+                          <option *ngFor="let unite of unites;" [ngValue]="unite"  >{{unite.libelle }}</option>
+                        </select>
+                      </div>
+                    </td>
+
+                  </tr>
+                  </tbody>
+                </table>
+                </form>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+
