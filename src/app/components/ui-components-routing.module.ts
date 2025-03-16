@@ -101,7 +101,7 @@ import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
-
+import {CumulComponent} from "./referentiel/cumul/cumul.component";
 const routes: Routes = [
   {
     path: '',
@@ -121,6 +121,14 @@ const routes: Routes = [
         title: 'unite'
         }
         },
+
+{
+path: 'cumul-prix',
+component: CumulComponent, canActivate: [AuthGuard],
+data: {
+title: 'cumule'
+}
+},
 
         {
 path: 'entete-config-prix',

@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import {ConfigPrix} from "../modeles/config-prix.modele";
 import {ConfigPrixDTO} from "../modeles/config-prix-dto.modele";
 import {CollecteDTO} from "../modeles/collecte-dto.modele";
+import {CumulResultDTO} from "../modeles/cumul-result-dto.modele";
 import {ConfigPrixEntrepriseDTO} from "../modeles/config-prix-entreprise-dto.modele";
 @Injectable({
 providedIn: 'root'
@@ -71,4 +72,11 @@ constructor(private http: HttpClient) { }
          }));
   }
 
+  getConfigPrixCumul(): Observable<CumulResultDTO[]>  {
+      return this.http.get<any>(this.baseUrl+'api/config-prix/cumule').pipe(
+       map(
+         configprixData => {
+          return configprixData;
+         }));
+  }
 }

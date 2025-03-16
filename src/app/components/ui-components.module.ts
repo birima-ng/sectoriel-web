@@ -234,6 +234,7 @@ import {AddEntrepriseNewComponent} from "./referentiel/entete-config-prix/add-en
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
 import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
+import {CumulComponent} from "./referentiel/cumul/cumul.component";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
@@ -268,6 +269,7 @@ MatButtonModule,
         PipeModule
     ],
     declarations: [
+CumulComponent,
 ConfigUniteComponent,
 AddEntrepriseNewComponent,
 GoogleMapPopupComponent,
