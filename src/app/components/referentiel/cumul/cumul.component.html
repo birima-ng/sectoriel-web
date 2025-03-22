@@ -17,15 +17,44 @@
 
 
               <div class="card-body table-responsive">
-                <!--<div class="col-12 text-center" style="padding: 0.1rem!important;">
+                <div class="col-12 text-center" style="padding: 0.1rem!important;">
+                  <form [formGroup]="addForm">
                   <table class="table  text-center m-0">
                   <tr>
-                    <th >Date collecte</th>
-                    <th >Date collecte</th>
-                    <th >Date collecte</th>
+                    <th >            <div class="form-group mb-2">
+                      <label for="region">Région</label>
+                      <select class="form-control" (ngModelChange)="onChangeRegion($event)"   [(ngModel)]="region" [compareWith]="compareFn" formControlName="region" id="region" name="region" >
+                        <option [ngValue]="null" >-- Région --</option>
+                        <option *ngFor="let region of regions;" [ngValue]="region"  >{{region.nom }}</option>
+
+                      </select>
+
+                    </div></th>
+                    <th >            <div class="form-group mb-2">
+                      <label for="departement">Departement</label>
+                      <select class="form-control"  [(ngModel)]="departement" [compareWith]="compareFn" formControlName="departement" id="departement" name="departement">
+                        <option [ngValue]="null" >-- Departement --</option>
+                        <option *ngFor="let departement of departements;" [ngValue]="departement"  >{{departement.nom }}</option>
+
+                      </select>
+                    </div></th>
+                    <th >   <div class="form-group">
+                      <label for="startDate">Date debut</label>
+                      <input type="date" formControlName="startDate" class="form-control" placeholder="Date debut" id="startDate" (change)="onDateChange()">
+                    </div>
+                    </th>
+                    <th >
+                      <div class="form-group">
+                      <label for="endDate">Date fin</label>
+                      <input type="date" formControlName="endDate" class="form-control" placeholder="Date fin" id="endDate" (change)="onDateChange()">
+                    </div></th>
+                    <th>
+                      <button type="button" class="btn btn-primary mr-2" (click)="onSearch()"><i class="ft-check-square mr-1"></i>Filtrer</button>
+                    </th>
                   </tr>
                   </table>
-                </div> -->
+                  </form>
+                </div>
 
                 <form >
                 <table class="table  m-0">

@@ -79,4 +79,12 @@ constructor(private http: HttpClient) { }
           return configprixData;
          }));
   }
+
+  getConfigPrixCumulDTO(search: any): Observable<CumulResultDTO[]>  {
+      return this.http.post<any>(this.baseUrl+'api/config-prix/cumule',search).pipe(
+       map(
+         configprixData => {
+          return configprixData;
+         }));
+  }
 }

@@ -15,6 +15,11 @@ import {Entreprise} from "app/components/modeles/entreprise.modele";
 import {CollecteDTO} from "app/components/modeles/collecte-dto.modele";
 import {CumulResultDTO} from "app/components/modeles/cumul-result-dto.modele";
 import {EntrepriseService} from "app/components/services/entreprise.service";
+import {Region} from 'app/components/modeles/region.modele';
+import {RegionService} from 'app/components/services/region.service';
+import {Departement} from 'app/components/modeles/departement.modele';
+import {DepartementService} from 'app/components/services/departement.service';
+
 declare var window: any;
 
 @Component({
@@ -37,6 +42,10 @@ typeproduit : TypeProduit;
 enteteconfigprix : EnteteConfigPrix;
 entreprise : Entreprise;
 cumuls : CumulResultDTO[];
+departements : Departement[];
+departement: Departement;
+regions : Region[];
+region: Region;
 idEntete = '';
 title = 'Configuration produit pour tous les types de produits'
 p=1;
@@ -45,10 +54,14 @@ today: string = new Date().toISOString().split('T')[0];
     highlighted: boolean = false;
   addForm = new UntypedFormGroup({
    datecollecte: new UntypedFormControl(new Date().toISOString().split('T')[0]),
-   entreprise: new UntypedFormControl(null),
-   idtypeproduit: new UntypedFormControl(null),
+   startDate: new UntypedFormControl(null),
+   endDate: new UntypedFormControl(null),
+   region: new UntypedFormControl(null),
+   departement: new UntypedFormControl(null),
   });
     constructor(
+    private departementService: DepartementService,
+    private regionService: RegionService,
     private typeproduitService: TypeProduitService,
     private fb: UntypedFormBuilder,
     private actRoute: ActivatedRoute,
@@ -60,7 +73,10 @@ today: string = new Date().toISOString().split('T')[0];
     }
 
   ngOnInit(): void {
+    this.region = null;
+    this.departement = null;
     this.getConfigPrixCumul();
+    this.getAllRegion();
   }
 
   ngAfterViewChecked() {
@@ -93,6 +109,71 @@ console.log("############################# ----- @@@@@@@@@@", data);
   get lf() {
     return this.addForm.controls;
   }
+
+
+onChangeRegion(region: Region) {
+if(region){
+console.log("################", region.nom);
+this.getDepartementsByRegion(region.id);
+}
+this.departement = null;
+}
+
+
+getDepartementsByRegion(id: string) {
+ console.log("################1");
+ this.departementService.getDepartementsByRegion(id).subscribe( data => {
+ this.departements = data;
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+
+getAllRegion() {
+ console.log("################1");
+ this.regionService.getRegions().subscribe( data => {
+ this.regions = data;
+ console.log("################1111 regions ",this.regions);
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+startDate = null;
+endDate = null;
+onDateChange(): void {
+     this.startDate  = this.addForm.value.startDate;
+     this.endDate  = this.addForm.value.endDate;
+console.log("Date debut", this.startDate);
+console.log("Date fin", this.endDate);
+
+    if (this.startDate && this.endDate && new Date(this.startDate) > new Date(this.endDate)) {
+     this.addForm.patchValue({endDate: null});
+     this.toastr.error('La date de début doit être avant la date de fin.', 'PRIX-STOCK');
+     this.addForm.value.endDate = null;
+      return;
+    }
+   // this.dateRangeSelected.emit({ startDate, endDate });
+  }
+
+onSearch(){
+console.log("################################################## this.addForm.value ",this.addForm.value);
+this.getConfigPrixCumulDTO(this.addForm.value);
+}
+
+getConfigPrixCumulDTO(search: any) {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ this.configprixService.getConfigPrixCumulDTO(search).subscribe( data => {
+ this.spinner.hide();
+ this.cumuls = data;
+console.log("############################# ----- @@@@@@@@@@", data);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+  });
+}
 
 }
 
