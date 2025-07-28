@@ -13,6 +13,7 @@ import { LockScreenPageComponent } from "./lock-screen/lock-screen-page.componen
 import { LoginPageComponent } from "./login/login-page.component";
 import { MaintenancePageComponent } from "./maintenance/maintenance-page.component";
 import { RegisterPageComponent } from "./register/register-page.component";
+import { EcowasComponent } from "./ecowas/ecowas.component";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -47,7 +48,8 @@ ActivationComponent,
     LockScreenPageComponent,
     LoginPageComponent,
     MaintenancePageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+EcowasComponent
   ]
 })
 export class ContentPagesModule { }

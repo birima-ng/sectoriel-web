@@ -165,6 +165,7 @@ import { ZoneApplicationComponent } from 'app/components/ged/zone-application/zo
 import { AddZoneApplicationComponent } from 'app/components/ged/zone-application/add/add-zone-application.component';
 import { BaacDetailsComponent } from 'app/components/referentiel/baac/baac-details/baac-details.component';
 import { ListActionsComponent } from 'app/components/referentiel/list-actions/list-actions.component';
+import { ConfigPaginationComponent } from 'app/components/referentiel/config-pagination/config-pagination.component';
 
 import { BaacACompleterComponent } from 'app/components/referentiel/baac/acompleter/baac-acompleter.component';
 import { BaacAValiderComponent } from 'app/components/referentiel/baac/avalider/baac-avalider.component';
@@ -230,6 +231,22 @@ import {AddUniteComponent} from "./referentiel/unite/add/add-unite.component";
 import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete-config-prix.component";
 import {AddEnteteConfigPrixComponent} from "./referentiel/entete-config-prix/add/add-entete-config-prix.component";
 import {AddEntrepriseNewComponent} from "./referentiel/entete-config-prix/add-entreprise/add-entreprise.component";
+
+
+import { TypeUniteComponent } from 'app/components/referentiel/type-unite/type-unite.component';
+import { AddTypeUniteComponent } from 'app/components/referentiel/type-unite/add/add-type-unite.component';
+
+import {StructureComponent} from "./referentiel/structure/structure.component";
+import {AddStructureComponent} from "./referentiel/structure/add/add-structure.component";
+
+import {Decoupage1Component} from "./referentiel/decoupage1/decoupage1.component";
+import {AddDecoupage1Component} from "./referentiel/decoupage1/add/add-decoupage1.component";
+
+import {Decoupage2Component} from "./referentiel/decoupage2/decoupage2.component";
+import {AddDecoupage2Component} from "./referentiel/decoupage2/add/add-decoupage2.component";
+
+import {CategorieSpeculationComponent} from "./referentiel/categorie-speculation/categorie-speculation.component";
+import {AddCategorieSpeculationComponent} from "./referentiel/categorie-speculation/add/add-categorie-speculation.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
@@ -311,6 +328,7 @@ AddFonctionComponent,
 BaacACompleterComponent,
 BaacAValiderComponent,
 ListActionsComponent,
+ConfigPaginationComponent,
 BaacDetailsComponent,
 AddZoneApplicationComponent,
 ZoneApplicationComponent,
@@ -337,14 +355,14 @@ DivisionAdministrativeComponent,
 UserLogComponent,
 UniteOrganisationnelleComponent,
 AddUniteOrganisationnelleComponent,
-        ProfilComponent,
-        AddProfilComponent,
-        UserComponent,
-        AddUserComponent,
-        TypeChargementComponent,
-        AddTypeChargementComponent,
-        VolumeChargementComponent,
-        AddVolumeChargementComponent,
+ProfilComponent,
+AddProfilComponent,
+UserComponent,
+AddUserComponent,
+TypeChargementComponent,
+AddTypeChargementComponent,
+VolumeChargementComponent,
+AddVolumeChargementComponent,
         ZoneComponent,
         AddZoneComponent,
         VillageComponent,
@@ -422,8 +440,18 @@ AddUniteOrganisationnelleComponent,
         AddEtatGeneralComponent,
         EtatPneusComponent,
         AddEtatPneusComponent,
-      ConditionAtmospheriqueComponent,
-      AddConditionAtmospheriqueComponent,
+        ConditionAtmospheriqueComponent,
+        AddConditionAtmospheriqueComponent,
+        TypeUniteComponent,
+AddTypeUniteComponent,
+StructureComponent,
+AddStructureComponent,
+Decoupage2Component,
+AddDecoupage2Component,
+Decoupage1Component,
+AddDecoupage1Component,
+CategorieSpeculationComponent,
+AddCategorieSpeculationComponent
 
     ]
 })

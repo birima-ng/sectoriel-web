@@ -34,4 +34,8 @@ constructor(private http: HttpClient) { }
           return uniteData;
          }));
   }
+
+  getUnitePages(page: number, size: number): Observable<any> {
+     return this.http.get<any>(this.baseUrl+'api/unite-page?page='+page+'&size='+size);
+  }
 }

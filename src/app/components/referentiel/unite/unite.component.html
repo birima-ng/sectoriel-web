@@ -3,7 +3,7 @@
     <div class="content-header">Unité de mesure</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -24,18 +24,20 @@
           <div class="card-body">
 
               <div class="card-body table-responsive">
-                <table class="table text-center m-0">
+                <table class="table m-0">
                   <thead>
                   <tr>
-                    <th width="20%">Code</th>
-                    <th width="60%">Libellé</th>
-                    <th width="20%">Actions</th>
+                    <th width="10%">Code</th>
+                    <th width="40%">Libellé</th>
+                    <th width="40%">Type unité</th>
+                    <th width="10%">Actions</th>
                   </tr>
                   </thead>
                   <tbody *ngIf="unites">
                   <tr  *ngFor="let unite  of unites;">
                     <td>{{unite.code}}</td>
                     <td>{{unite.libelle}}</td>
+                    <td>{{unite.typeunite.libelle}}</td>
                     <td class="text-truncate">
                       <a href="javascript:;" class="success p-0" (click)="formEdit(unite)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
@@ -48,6 +50,13 @@
                   </tr>
                   </tbody>
                 </table>
+                <app-config-pagination
+                  [currentPage]="currentPage"
+                  [totalPages]="totalPages"
+                  [pageSize]="pageSize"
+                  (pageChange)="onPageChange($event)"
+                  (pageSizeChange)="onPageSizeChange($event)">
+                </app-config-pagination>
               </div>
 
           </div>

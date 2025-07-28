@@ -8,6 +8,7 @@ import { LockScreenPageComponent } from "./lock-screen/lock-screen-page.componen
 import { LoginPageComponent } from "./login/login-page.component";
 import { MaintenancePageComponent } from "./maintenance/maintenance-page.component";
 import { RegisterPageComponent } from "./register/register-page.component";
+import { EcowasComponent } from "./ecowas/ecowas.component";
 import { ActivationComponent } from "./activation/activation.component";
 import { PasswordComponent } from './password/password.component';
 const routes: Routes = [
@@ -82,7 +83,14 @@ title: 'Coming Soon page'
           title: 'Register Page'
         }
       }
-
+,
+{
+path: 'ecowas',
+component: EcowasComponent,
+data: {
+title: 'Register Page'
+}
+}
     ]
   }
 ];

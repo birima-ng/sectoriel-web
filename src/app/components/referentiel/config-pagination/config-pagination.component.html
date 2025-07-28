@@ -1,0 +1,24 @@
+<div class="pagination-container">
+  <!-- Colonne gauche : pagination -->
+  <div class="pagination-pages">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">◀</button>
+
+    <button
+      *ngFor="let page of getPages()"
+      [class.active]="page === currentPage + 1"
+      [disabled]="page === '...'"
+      (click)="onClickPage(page)">
+      {{ page }}
+    </button>
+
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">▶</button>
+  </div>
+
+  <!-- Colonne droite : sélecteur -->
+  <div class="pagination-page-size">
+    <label for="size">Éléments par page:</label>
+    <select id="size" [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)">
+      <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+</div>

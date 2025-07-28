@@ -102,6 +102,12 @@ import {EnteteConfigPrixComponent} from "./referentiel/entete-config-prix/entete
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
 import {CumulComponent} from "./referentiel/cumul/cumul.component";
+import { TypeUniteComponent } from 'app/components/referentiel/type-unite/type-unite.component';
+import {StructureComponent} from "./referentiel/structure/structure.component";
+import {Decoupage2Component} from "./referentiel/decoupage2/decoupage2.component";
+import {Decoupage1Component} from "./referentiel/decoupage1/decoupage1.component";
+import {CategorieSpeculationComponent} from "./referentiel/categorie-speculation/categorie-speculation.component";
+
 const routes: Routes = [
   {
     path: '',
@@ -130,6 +136,45 @@ title: 'cumule'
 }
 },
 
+{
+path: 'type-unite',
+component: TypeUniteComponent, canActivate: [AuthGuard],
+data: {
+title: 'cumule'
+}
+},
+
+{
+path: 'structure',
+component: StructureComponent, canActivate: [AuthGuard],
+data: {
+title: 'structure'
+}
+},
+
+{
+path: 'decoupage2',
+component: Decoupage2Component, canActivate: [AuthGuard],
+data: {
+title: 'decoupage2'
+}
+},
+
+{
+path: 'decoupage1',
+component: Decoupage1Component, canActivate: [AuthGuard],
+data: {
+title: 'decoupage1'
+}
+},
+
+{
+path: 'categorie-speculation',
+component: CategorieSpeculationComponent, canActivate: [AuthGuard],
+data: {
+title: 'decoupage1'
+}
+},
         {
 path: 'entete-config-prix',
 component: EnteteConfigPrixComponent, canActivate: [AuthGuard],

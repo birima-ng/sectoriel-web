@@ -79,6 +79,8 @@ console.log("############################################### data.token", data.t
        localStorage.setItem('lnom', data.prenom+" " +data.nom);
        //localStorage.setItem('lorganisation', data.organisationnelle.nom);
        localStorage.setItem('lorganisation', "Service");
+localStorage.setItem('systeme', "Service");
+localStorage.setItem('pays', "Service");
 
        localStorage.setItem('profil', data.profile.id);
     this.profilactionService.getProfilActionRole(data.profile.id).subscribe( data => {

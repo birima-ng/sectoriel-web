@@ -25,6 +25,9 @@ edited=true;
 formModal: any;
 formModalSup: any;
 unites : Unite[];
+totalPages: number = 0;
+currentPage: number = 0;
+pageSize = 15;
 p=1;
     highlighted: boolean = false;
     constructor(
@@ -37,13 +40,12 @@ p=1;
     }
 
   ngOnInit(): void {
-   this.getAllUnite();
+   this.loadItems();
   }
     ngAfterViewChecked() {
     }
 
-
-getAllUnite() {
+loadItems() {
     this.spinner.show(undefined,
       {
         type: 'ball-triangle-path',
@@ -53,9 +55,10 @@ getAllUnite() {
         fullScreen: true
       });
  console.log("################1");
- this.uniteService.getUnites().subscribe( data => {
+ this.uniteService.getUnitePages(this.currentPage, this.pageSize).subscribe( data => {
  this.spinner.hide();
- this.unites = data;
+ this.unites = data.content;
+ this.totalPages = data.totalPages;
 this.cdr.detectChanges(); // Forcer la détection des changements
   console.log("################",data); });
  console.log("################2");
@@ -65,7 +68,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         const modalRef = this.modalService.open(AddUniteComponent);
  modalRef.result.then((result) => {
       if (result === 'Data updated') {
-        this.getAllUnite();
+        this.loadItems();
       }
     }, (reason) => {
       // Handle dismiss reason if needed
@@ -78,7 +81,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
         const modalRef = this.modalService.open(AddUniteComponent);
  modalRef.result.then((result) => {
       if (result === 'Data updated') {
-        this.getAllUnite();
+        this.loadItems();
       }
     }, (reason) => {
       // Handle dismiss reason if needed
@@ -118,13 +121,32 @@ this.cdr.detectChanges(); // Forcer la détection des changements
     this.uniteService.deleteUnite(id).subscribe( data => {
     this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
     this.spinner.hide();
-    this.getAllUnite();
+    this.loadItems();
       },
       error => {
     this.spinner.hide();
     console.log("error avant !!!");
       });
 }
+
+
+goToPage(page: number): void {
+if (page >= 0 && page < this.totalPages) {
+  this.loadItems();
+}
+}
+
+onPageChange(page: number) {
+  this.currentPage = page;
+  this.loadItems();
+}
+
+onPageSizeChange(size: number) {
+  this.pageSize = size;
+  this.currentPage = 0;
+  this.loadItems();
+}
+
 
 }
 

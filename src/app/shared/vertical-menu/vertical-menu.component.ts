@@ -29,7 +29,7 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('toggleIcon') toggleIcon: ElementRef;
   public menuItems: any[];
   level: number = 0;
-  logoUrl = 'assets/img/logo.png';
+  logoUrl = 'assets/ecowas/ecoagris_logo.png';
   public config: any = {};
   protected innerWidth: any;
   layoutSub: Subscription;
@@ -122,10 +122,10 @@ console.log("####################################### this.menuItems ",this.menuI
 
 
     if (this.config.layout.sidebar.backgroundColor === 'white') {
-      this.logoUrl = 'assets/img/logo-dark.png';
+      this.logoUrl = 'assets/ecowas/ecoagris_logo.png';
     }
     else {
-      this.logoUrl = 'assets/img/logo.png';
+      this.logoUrl = 'assets/ecowas/ecoagris_logo.png';
     }
 
     if(this.config.layout.sidebar.collapsed) {
