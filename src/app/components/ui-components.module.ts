@@ -248,6 +248,14 @@ import {AddDecoupage2Component} from "./referentiel/decoupage2/add/add-decoupage
 import {CategorieSpeculationComponent} from "./referentiel/categorie-speculation/categorie-speculation.component";
 import {AddCategorieSpeculationComponent} from "./referentiel/categorie-speculation/add/add-categorie-speculation.component";
 
+import {SystemeComponent} from "./referentiel/systeme/systeme.component";
+import {AddSystemeComponent} from "./referentiel/systeme/add/add-systeme.component";
+
+import {SpeculationComponent} from "./referentiel/speculation/speculation.component";
+import {AddSpeculationComponent} from "./referentiel/speculation/add/add-speculation.component";
+
+import {SpeculationSystemeComponent} from "./referentiel/speculation/speculation-systeme/speculation-systeme.component";
+
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
 import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
@@ -451,7 +459,12 @@ AddDecoupage2Component,
 Decoupage1Component,
 AddDecoupage1Component,
 CategorieSpeculationComponent,
-AddCategorieSpeculationComponent
+AddCategorieSpeculationComponent,
+SystemeComponent,
+AddSystemeComponent,
+SpeculationComponent,
+AddSpeculationComponent,
+SpeculationSystemeComponent
 
     ]
 })

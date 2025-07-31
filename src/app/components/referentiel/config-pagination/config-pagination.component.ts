@@ -11,11 +11,11 @@ export class ConfigPaginationComponent {
 @Input() pageSize: number = 10;
 
 // 👇 Défini par défaut dans le composant, mais surchageable
-private _pageSizeOptions: number[] = [10, 15, 25, 50];
+private _pageSizeOptions: number[] = [10, 15, 20, 25, 50];
 
 @Input()
 set pageSizeOptions(value: number[]) {
-    this._pageSizeOptions = value?.length ? value : [10, 15, 25, 50];
+    this._pageSizeOptions = value?.length ? value : [10, 15, 20, 25, 50];
   }
 
   get pageSizeOptions(): number[] {

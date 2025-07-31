@@ -107,6 +107,9 @@ import {StructureComponent} from "./referentiel/structure/structure.component";
 import {Decoupage2Component} from "./referentiel/decoupage2/decoupage2.component";
 import {Decoupage1Component} from "./referentiel/decoupage1/decoupage1.component";
 import {CategorieSpeculationComponent} from "./referentiel/categorie-speculation/categorie-speculation.component";
+import {SystemeComponent} from "./referentiel/systeme/systeme.component";
+import {SpeculationComponent} from "./referentiel/speculation/speculation.component";
+import {SpeculationSystemeComponent} from "./referentiel/speculation/speculation-systeme/speculation-systeme.component";
 
 const routes: Routes = [
   {
@@ -172,7 +175,31 @@ title: 'decoupage1'
 path: 'categorie-speculation',
 component: CategorieSpeculationComponent, canActivate: [AuthGuard],
 data: {
-title: 'decoupage1'
+title: 'categorie speculation'
+}
+},
+
+{
+path: 'speculation',
+component: SpeculationComponent, canActivate: [AuthGuard],
+data: {
+title: 'speculation'
+}
+},
+
+{
+path: 'systeme',
+component: SystemeComponent, canActivate: [AuthGuard],
+data: {
+title: 'systeme'
+}
+},
+
+{
+path: 'speculation-systeme',
+component: SpeculationSystemeComponent, canActivate: [AuthGuard],
+data: {
+title: 'speculationn systeme'
 }
 },
         {

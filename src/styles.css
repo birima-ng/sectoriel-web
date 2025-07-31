@@ -72,3 +72,10 @@ $jira-theme: mat.define-light-theme((
   max-height: 90%; /* Ajuste cette valeur selon tes besoins */
   height: 90%; /* Ajuste cette valeur selon tes besoins */
 }
+
+/* style tableau*/
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 12px;
+}

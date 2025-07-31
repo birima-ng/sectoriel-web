@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">CONFIGURATION DES PRODUITS DU SYSTEME SECTORIEL</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th width="15%">Code</th>
+                    <th width="40%">Libellé</th>
+                    <th width="40%">Type unité</th>
+                    <th width="5%" align="center">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="speculationsystemes">
+                  <tr  *ngFor="let speculationsysteme  of speculationsystemes;">
+                    <td>{{speculationsysteme.speculation.code}}</td>
+                    <td>{{speculationsysteme.speculation.libelle}}</td>
+                    <td>{{speculationsysteme.speculation.categorie.libelle}}</td>
+                    <td class="text-truncate" align="center">
+
+                      <a href="javascript:;" class="danger p-0" (click)="formDisable(speculationsysteme.id)">
+                        <i class="ft-x font-medium-3" title="Désactiver"></i>
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <app-config-pagination
+                  [currentPage]="currentPage"
+                  [totalPages]="totalPages"
+                  [pageSize]="pageSize"
+                  (pageChange)="onPageChange($event)"
+                  (pageSizeChange)="onPageSizeChange($event)">
+                </app-config-pagination>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+
