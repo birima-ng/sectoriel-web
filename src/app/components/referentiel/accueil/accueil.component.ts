@@ -1,44 +1,52 @@
-import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input} from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {Observable} from 'rxjs';
-import {DecimalPipe} from '@angular/common';
-import { NgxSpinnerService } from "ngx-spinner";
-import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
-import { ModalConfirmComponent } from 'app/components/modal-confirm/modal-confirm.component';
-import { ChangeDetectorRef } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-declare var window: any;
+// geo-chart-benin.component.ts
+import { Component, AfterViewInit } from '@angular/core';
+declare var google: any;
 
 @Component({
-    selector: 'app-accueil',
-    templateUrl: './accueil.component.html',
-    styleUrls: ['./accueil.component.scss'],
+selector: 'app-accueil',
+templateUrl: './accueil.component.html',
 })
-
-export class AccueilComponent implements OnInit {
-safeSrc: SafeResourceUrl;
-addForm: FormGroup;
-supForm: FormGroup;
-submitted = false;
-edited=true;
-formModal: any;
-formModalSup: any;
-
-p=1;
-    highlighted: boolean = false;
-    constructor(
-    private domSanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef,
-    private modalService: NgbModal,
-    private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService,) {
-    }
-
-  ngOnInit(): void {
-  //this.safeSrc =  this.domSanitizer.bypassSecurityTrustResourceUrl("http://docsarre.senhts.com/accueil1.php");
+export class AccueilComponent implements AfterViewInit {
+ngAfterViewInit() {
+    google.charts.load('current', { packages: ['geochart'] });
+    google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
   }
-    ngAfterViewChecked() {
-    }
 
+  drawBeninByRegion() {
+    const data = google.visualization.arrayToDataTable([
+      ['Department', 'Value'],
+      ['Alibori', 30],
+      ['Atakora', 50],
+      ['Atlantique', 70],
+      ['Borgou', 45],
+      ['Collines', 55],
+      ['Donga', 40],
+      ['Kouffo', 65],
+      ['Littoral', 90],
+      ['Mono', 60],
+      ['Ouémé', 80],
+      ['Plateau', 35],
+      ['Zou', 75],
+    ]);
+
+    const options = {
+      region: 'BJ',            // ISO Alpha-2 du Bénin
+      resolution: 'provinces', // Provinces (départements)
+      backgroundColor: '#f9f9f9',
+      datalessRegionColor: '#f0f0f0',
+      legend: { textStyle: { color: '#333', fontSize: 14 } },
+
+      // 🎨 Dégradé de couleurs selon les valeurs
+      colorAxis: {
+        colors: ['#e0f7fa', '#80deea', '#26c6da', '#00838f']
+        // clair -> foncé en fonction des valeurs min -> max
+      }
+    };
+
+    const chart = new google.visualization.GeoChart(
+      document.getElementById('geochart_benin')
+    );
+
+    chart.draw(data, options);
+  }
 }
-

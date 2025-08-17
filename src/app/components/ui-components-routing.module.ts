@@ -110,7 +110,8 @@ import {CategorieSpeculationComponent} from "./referentiel/categorie-speculation
 import {SystemeComponent} from "./referentiel/systeme/systeme.component";
 import {SpeculationComponent} from "./referentiel/speculation/speculation.component";
 import {SpeculationSystemeComponent} from "./referentiel/speculation/speculation-systeme/speculation-systeme.component";
-
+import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/configuration-fiche.component";
+import {AnneeComponent} from "./referentiel/annee/annee.component";
 const routes: Routes = [
   {
     path: '',
@@ -188,6 +189,14 @@ title: 'speculation'
 },
 
 {
+path: 'configuration-fiche',
+component: ConfigurationFicheComponent, canActivate: [AuthGuard],
+data: {
+title: 'configuration fiche'
+}
+},
+
+{
 path: 'systeme',
 component: SystemeComponent, canActivate: [AuthGuard],
 data: {
@@ -239,6 +248,14 @@ path: 'categorie',
 component: CategorieComponent, canActivate: [AuthGuard],
 data: {
 title: 'categorie'
+}
+},
+
+{
+path: 'annee',
+component: AnneeComponent, canActivate: [AuthGuard],
+data: {
+title: 'annee'
 }
 },
 

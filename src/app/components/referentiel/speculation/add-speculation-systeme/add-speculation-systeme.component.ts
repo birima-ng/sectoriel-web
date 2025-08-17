@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input} from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
 import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 import { ModalConfirmComponent } from 'app/components/modal-confirm/modal-confirm.component';
@@ -8,16 +8,15 @@ import {SpeculationSysteme} from "app/components/modeles/speculation-systeme.mod
 import {SpeculationSystemeService} from "app/components/services/speculation-systeme.service";
 import { ToastrService } from 'ngx-toastr';
 declare var window: any;
-import {AddSpeculationSystemeComponent} from "app/components/referentiel/speculation/add-speculation-systeme/add-speculation-systeme.component";
-import {PrincipauxProduitsComponent} from "app/components/referentiel/speculation/principaux-produits/principaux-produits.component";
 
 @Component({
-    selector: 'app-speculation-systeme',
-    templateUrl: './speculation-systeme.component.html',
-    styleUrls: ['./speculation-systeme.component.scss'],
+selector: 'app-add-speculation-systeme',
+templateUrl: './add-speculation-systeme.component.html',
+styleUrls: ['./add-speculation-systeme.component.scss'],
+encapsulation: ViewEncapsulation.None // très important
 })
 
-export class SpeculationSystemeComponent implements OnInit {
+export class AddSpeculationSystemeComponent implements OnInit {
 
 addForm: FormGroup;
 supForm: FormGroup;
@@ -30,8 +29,12 @@ totalPages: number = 0;
 currentPage: number = 0;
 pageSize = 15;
 p=1;
-    highlighted: boolean = false;
-    constructor(
+highlighted: boolean = false;
+selectedVals: any[] = [];
+speculationSelectionnes = [];
+columns = ['Code', 'Libellé', 'Type unité', 'Action'];
+constructor(
+    public activeModal: NgbActiveModal,
     public toastr: ToastrService,
     private cdr: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -56,7 +59,7 @@ loadItems() {
         fullScreen: true
       });
  console.log("################1");
- this.speculationsystemeService.getSpeculationSystemePageConfigures(this.currentPage, this.pageSize).subscribe( data => {
+ this.speculationsystemeService.getSpeculationSystemePageConfigureFalses(this.currentPage, this.pageSize).subscribe( data => {
  this.spinner.hide();
  this.speculationsystemes = data.content;
  this.totalPages = data.totalPages;
@@ -66,29 +69,13 @@ this.cdr.detectChanges(); // Forcer la détection des changements
 }
 
     openContent() {
-        const modalRef = this.modalService.open(AddSpeculationSystemeComponent, { windowClass: 'custom-modal' });
- modalRef.result.then((result) => {
-      if (result === 'Data updated') {
-        this.loadItems();
-      }
-    }, (reason) => {
-      // Handle dismiss reason if needed
- this.loadItems();
-    });
-        modalRef.componentInstance.action = 'add';
+
+    if(!this.speculationSelectionnes || this.speculationSelectionnes.length === 0){
+       this.toastr.error("Merci de choisir un produit!", 'ECOWAS');
+    }else{
+       this.updaleConfig(this.speculationSelectionnes);
     }
 
-    openPrincipauxProduits() {
-        const modalRef = this.modalService.open(PrincipauxProduitsComponent, { windowClass: 'custom-modal' });
-        modalRef.result.then((result) => {
-        if (result === 'Data updated') {
-           this.loadItems();
-        }
-    }, (reason) => {
-      // Handle dismiss reason if needed
- this.loadItems();
-    });
-        modalRef.componentInstance.action = 'add';
     }
 
 
@@ -105,24 +92,6 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       if (result === 'Yes') { // suppression de l'element
          console.log("YES");
          this.onDelete(id);
-      } else if (result === 'No') {
-        console.log("NO");
-      }
-    }, (reason) => {
-      // Handle dismiss reason if needed
-    });
-    }
-//updateSpeculationSystemeDetache
-
-    formConfig(speculationsysteme: SpeculationSysteme) {
-    const modalRef = this.modalService.open(ModalConfirmComponent);
-    modalRef.componentInstance.title = 'Confirmation';
-    modalRef.componentInstance.message = 'Voulez-vous supprimer cet élément ?';
-
-    modalRef.result.then((result) => {
-      if (result === 'Yes') { // suppression de l'element
-         console.log("YES");
-         this.onConfig(speculationsysteme);
       } else if (result === 'No') {
         console.log("NO");
       }
@@ -148,27 +117,6 @@ this.cdr.detectChanges(); // Forcer la détection des changements
     });
     }
 
-   onConfig(speculationsysteme: SpeculationSysteme) {
-    this.spinner.show(undefined,
-      {
-        type: 'ball-triangle-path',
-        size: 'medium',
-        bdColor: 'rgba(0, 0, 0, 0.8)',
-        color: '#fff',
-        fullScreen: true
-      });
-
-    this.speculationsystemeService.updateSpeculationSystemeDetache(speculationsysteme).subscribe( data => {
-    this.toastr.success("Produit configuré avec succès!!!", 'ECOWAS');
-    this.spinner.hide();
-    this.loadItems();
-      },
-      error => {
-    this.spinner.hide();
-    console.log("error avant !!!");
-      });
-}
-
    onDelete(id: string) {
     this.spinner.show(undefined,
       {
@@ -180,7 +128,7 @@ this.cdr.detectChanges(); // Forcer la détection des changements
       });
 
     this.speculationsystemeService.deleteSpeculationSysteme(id).subscribe( data => {
-    this.toastr.success("Etat feux supprimé avec succès!", 'ECOWAS');
+    this.toastr.success("Etat feux supprimé avec succès!", 'BAAC');
     this.spinner.hide();
     this.loadItems();
       },
@@ -207,6 +155,64 @@ onPageSizeChange(size: number) {
   this.currentPage = 0;
   this.loadItems();
 }
+
+
+
+isSelected(val: any): boolean {
+  return this.selectedVals.includes(val);
+}
+
+onCheckboxChange(val: any, isChecked: boolean) {
+  if (isChecked) {
+    this.selectedVals.push(val);
+  } else {
+    this.selectedVals = this.selectedVals.filter(v => v !== val);
+  }
+}
+
+toggleSelection(val: any): void {
+  const index = this.selectedVals.indexOf(val);
+  if (index === -1) {
+    this.selectedVals.push(val);
+  } else {
+    this.selectedVals.splice(index, 1);
+  }
+}
+
+isChecked(val: any): boolean {
+  return this.selectedVals.includes(val);
+}
+
+toggleAll(): void {
+  if (this.selectedVals.length === this.speculationsystemes.length) {
+    this.selectedVals = [];
+  } else {
+    this.selectedVals = [...this.speculationsystemes];
+  }
+}
+
+
+   updaleConfig(speculations: any) {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+
+    this.speculationsystemeService.updateSpeculationSystemeconfiguration(speculations).subscribe( data => {
+    this.toastr.success("Produits configurés avec succès!", 'BAAC');
+    this.spinner.hide();
+    this.loadItems();
+      },
+      error => {
+    this.spinner.hide();
+    console.log("error avant !!!");
+      });
+}
+
 
 
 }

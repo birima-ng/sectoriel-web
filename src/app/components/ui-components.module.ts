@@ -255,15 +255,30 @@ import {SpeculationComponent} from "./referentiel/speculation/speculation.compon
 import {AddSpeculationComponent} from "./referentiel/speculation/add/add-speculation.component";
 
 import {SpeculationSystemeComponent} from "./referentiel/speculation/speculation-systeme/speculation-systeme.component";
+import {AddSpeculationSystemeComponent} from "./referentiel/speculation/add-speculation-systeme/add-speculation-systeme.component";
+
+import {AnneeComponent} from "./referentiel/annee/annee.component";
+import {AddAnneeComponent} from "./referentiel/annee/add/add-annee.component";
+
+import {PrincipauxProduitsComponent} from "./referentiel/speculation/principaux-produits/principaux-produits.component";
+import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/configuration-fiche.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
-import { GoogleMapPopupComponent } from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
+import {GoogleMapPopupComponent} from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
 import {ConfigUniteComponent} from "./referentiel/config-unite/config-unite.component";
 import {CumulComponent} from "./referentiel/cumul/cumul.component";
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+import { TableModule } from 'primeng/table';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PaginatorModule } from 'primeng/paginator';
+
 @NgModule({
     imports: [
+TableModule,
+CheckboxModule,
+PaginatorModule,
     EmailEditorModule,
 QuillModule.forRoot(),
 MatSidenavModule,
@@ -464,7 +479,12 @@ SystemeComponent,
 AddSystemeComponent,
 SpeculationComponent,
 AddSpeculationComponent,
-SpeculationSystemeComponent
+SpeculationSystemeComponent,
+AddSpeculationSystemeComponent,
+PrincipauxProduitsComponent,
+ConfigurationFicheComponent,
+AnneeComponent,
+AddAnneeComponent
 
     ]
 })

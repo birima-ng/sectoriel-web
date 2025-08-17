@@ -1,9 +1,12 @@
 <div class="row">
-  <div class="col-11">
+  <div class="col-10">
     <div class="content-header">CONFIGURATION DES PRODUITS DU SYSTEME SECTORIEL</div>
   </div>
   <div class="col-1">
     <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openPrincipauxProduits()"><i class="ft-check-square mr-0"></i>Configurer produits principaux</button></div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -40,7 +43,7 @@
                     <td>{{speculationsysteme.speculation.categorie.libelle}}</td>
                     <td class="text-truncate" align="center">
 
-                      <a href="javascript:;" class="danger p-0" (click)="formDisable(speculationsysteme.id)">
+                      <a href="javascript:;" class="danger p-0" (click)="formConfig(speculationsysteme)">
                         <i class="ft-x font-medium-3" title="Désactiver"></i>
                       </a>
 

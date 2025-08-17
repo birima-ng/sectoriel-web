@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">Configuration fiches de collecte</div>
+    <p class="content-sub-header mb-1">Attribuez les produits à une fiche.</p>
+  </div>
+</div>
+<!-- Account Settings starts -->
+<div class="row">
+  <div class="col-md-3 mt-3">
+    <!-- Nav tabs -->
+    <ul class="nav flex-column nav-pills" id="myTab" role="tablist">
+      <li class="nav-item" *ngFor="let module  of typefichecollectes;">
+        <a class="nav-link" href="javascript:;" [ngClass]="{active: activeTab === module.id}"
+           (click)="setActiveTab(module.id)" id="module.id" data-toggle="tab" role="tab"
+           aria-controls="notifications" aria-selected="false">
+          <i class="{{module.icon}} mr-1 align-middle"></i>
+          <span class="align-middle">{{module.libelle}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <!-- Tab panes -->
+    <div class="card">
+      <div class="card-content">
+        <div class="card-body">
+          <div class="tab-content">
+            <!-- Notifications Tab -->
+            <div class="row">
+              <div class="col-md-6">
+            <div class="card-body table-responsive">
+              <table class="table m-0">
+                <thead>
+                <tr>
+                  <th >Produit</th>
+                  <th >Catégorie</th>
+                  <th >Actions</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="speculationsystemes">
+                <tr  *ngFor="let speculationsysteme  of speculationsystemes;">
+                  <td>{{speculationsysteme.speculation.libelle}}</td>
+                  <td>{{speculationsysteme.speculation.categorie.libelle}}</td>
+                  <td class="text-truncate">
+                    <a href="javascript:;" class="success p-0" (click)="configSpeculation(speculationsysteme)">
+                      <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                    </a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <app-config-pagination
+                [currentPage]="currentPage"
+                [totalPages]="totalPages"
+                [pageSize]="pageSize"
+                (pageChange)="onPageChange($event)"
+                (pageSizeChange)="onPageSizeChange($event)">
+              </app-config-pagination>
+            </div>
+              </div> <!--fin 1 div-->
+
+              <div class="col-md-6">
+                <div class="card-body table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th >Produit</th>
+                      <th >Elément graphe</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="principalproduitfiche">
+                    <tr >
+                      <td>{{principalproduitfiche.speculation.libelle}}</td>
+                      <td class="text-truncate">
+                        <input type="checkbox"  [checked]="principalproduitfiche.configured">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="card-body table-responsive">
+                  <table class="table m-0" style="padding-top: 0.5rem!important;">
+                    <thead>
+                    <tr>
+                      <th >Produit</th>
+                      <th >Configuré</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="configfichecollectes">
+                    <tr  *ngFor="let configfichecollecte  of configfichecollectes;">
+                      <td>{{configfichecollecte.campagne.libelle}}</td>
+                      <td class="text-truncate">
+                        <input type="checkbox"  [checked]="configfichecollecte.configured">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <app-config-pagination
+                    [currentPage]="currentPage"
+                    [totalPages]="totalPages"
+                    [pageSize]="pageSize"
+                    (pageChange)="onPageChange($event)"
+                    (pageSizeChange)="onPageSizeChange($event)">
+                  </app-config-pagination>
+                </div>
+
+                <div class="card-body table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th >Elément graphe</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="ppconfigs">
+                    <tr  *ngFor="let ppconfig  of ppconfigs;">
+                      <td>{{ppconfig.speculation.libelle}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <app-config-pagination
+                    [currentPage]="currentPage"
+                    [totalPages]="totalPagesPpconfigs"
+                    [pageSize]="pageSize"
+                    (pageChange)="onPageChange($event)"
+                    (pageSizeChange)="onPageSizeChange($event)">
+                  </app-config-pagination>
+                </div>
+              </div>
+
+            </div> <!--fin tab-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Account Settings ends -->

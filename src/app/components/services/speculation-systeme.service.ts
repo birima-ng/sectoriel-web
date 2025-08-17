@@ -38,7 +38,21 @@ constructor(private http: HttpClient) { }
   getSpeculationSystemePages(page: number, size: number): Observable<any> {
      return this.http.get<any>(this.baseUrl+'api/speculation-systeme-page?page='+page+'&size='+size);
   }
+
   getSpeculationSystemePageConfigures(page: number, size: number): Observable<any> {
      return this.http.get<any>(this.baseUrl+'api/speculation-systeme-page/isconfigured?page='+page+'&size='+size);
   }
+
+  getSpeculationSystemePageConfigureFalses(page: number, size: number): Observable<any> {
+     return this.http.get<any>(this.baseUrl+'api/speculation-systeme-page/notconfigured?page='+page+'&size='+size);
+  }
+
+  updateSpeculationSystemeconfiguration(speculations: any): Observable<any> {
+     return this.http.post<any>(this.baseUrl+'api/speculation-systeme/configuration',speculations);
+  }
+
+  updateSpeculationSystemeDetache(speculationsysteme: SpeculationSysteme): Observable<SpeculationSysteme> {
+    return this.http.put<SpeculationSysteme>(this.baseUrl +'api/speculation-systeme/detache/'+ speculationsysteme.id, speculationsysteme);
+  }
+
 }

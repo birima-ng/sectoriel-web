@@ -1,0 +1,15 @@
+::ng-deep .p-table {
+  font-family: Arial, sans-serif !important;
+  font-size: 12px !important;
+}
+
+::ng-deep .p-table .p-datatable-tbody > tr:hover {
+  background-color: #e0f0ff;
+  cursor: pointer;
+}
+.p-component {
+    font-family: 'Open Sans', Arial, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: normal;
+    color: #342E49 !important;
+}
