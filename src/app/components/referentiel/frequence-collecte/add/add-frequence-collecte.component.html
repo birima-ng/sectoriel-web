@@ -1,0 +1,53 @@
+<!--Login Page Starts-->
+<section >
+  <div class="modal-header">
+    <h4 class="modal-title">Fréquence de collecte</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-12">
+
+      <form [formGroup]="addForm">
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="libelle">Libellé</label>
+              <input type="text" formControlName="libelle" class="form-control" placeholder="Libellé" id="libelle"
+                     [ngClass]="{ 'is-invalid': submitted && lf.libelle.invalid, 'is-valid': submitted && !lf.libelle.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.libelle.invalid || lf.libelle.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="libelleen">Libellé En</label>
+              <input type="text" formControlName="libelleen" class="form-control" placeholder="Libellé En" id="libelleen"
+                     [ngClass]="{ 'is-invalid': submitted && lf.libelleen.invalid, 'is-valid': submitted && !lf.libelleen.invalid }"
+                     required>
+              <div *ngIf="submitted && (lf.libelleen.invalid || lf.libelleen.errors?.required)"
+                   class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Sauvegarder</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')"><i class="ft-x mr-1"></i>Fermer</button>
+
+  </div>
+
+</section>
+<!--Login Page Ends-->

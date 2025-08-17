@@ -260,6 +260,12 @@ import {AddSpeculationSystemeComponent} from "./referentiel/speculation/add-spec
 import {AnneeComponent} from "./referentiel/annee/annee.component";
 import {AddAnneeComponent} from "./referentiel/annee/add/add-annee.component";
 
+import {FrequenceCollecteComponent} from "./referentiel/frequence-collecte/frequence-collecte.component";
+import {AddFrequenceCollecteComponent} from "./referentiel/frequence-collecte/add/add-frequence-collecte.component";
+
+import {IndicateurComponent} from "./referentiel/indicateur/indicateur.component";
+import {AddIndicateurComponent} from "./referentiel/indicateur/add/add-indicateur.component";
+
 import {PrincipauxProduitsComponent} from "./referentiel/speculation/principaux-produits/principaux-produits.component";
 import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/configuration-fiche.component";
 
@@ -484,7 +490,11 @@ AddSpeculationSystemeComponent,
 PrincipauxProduitsComponent,
 ConfigurationFicheComponent,
 AnneeComponent,
-AddAnneeComponent
+AddAnneeComponent,
+IndicateurComponent,
+AddIndicateurComponent,
+FrequenceCollecteComponent,
+AddFrequenceCollecteComponent
 
     ]
 })

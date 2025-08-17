@@ -112,6 +112,8 @@ import {SpeculationComponent} from "./referentiel/speculation/speculation.compon
 import {SpeculationSystemeComponent} from "./referentiel/speculation/speculation-systeme/speculation-systeme.component";
 import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/configuration-fiche.component";
 import {AnneeComponent} from "./referentiel/annee/annee.component";
+import {IndicateurComponent} from "./referentiel/indicateur/indicateur.component";
+import {FrequenceCollecteComponent} from "./referentiel/frequence-collecte/frequence-collecte.component";
 const routes: Routes = [
   {
     path: '',
@@ -201,6 +203,22 @@ path: 'systeme',
 component: SystemeComponent, canActivate: [AuthGuard],
 data: {
 title: 'systeme'
+}
+},
+
+{
+path: 'frequence-collecte',
+component: FrequenceCollecteComponent, canActivate: [AuthGuard],
+data: {
+title: 'frequence-collecte'
+}
+},
+
+{
+path: 'indicateur',
+component: IndicateurComponent, canActivate: [AuthGuard],
+data: {
+title: 'indicateur'
 }
 },
 
