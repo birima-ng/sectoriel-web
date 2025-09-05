@@ -24,4 +24,3 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "dist/sectoriel-web/*"
           target: "/var/www/html/sectoriel-web"
-
