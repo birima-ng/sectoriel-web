@@ -13,7 +13,7 @@ jobs:
 
       - name: Build Frontend
         run: |
-          npm install -- forces
+          npm install --legacy-peer-deps
           npm run build -- --configuration production
 
       - name: Deploy to Nginx
