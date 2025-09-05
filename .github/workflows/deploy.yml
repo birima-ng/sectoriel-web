@@ -28,7 +28,7 @@ jobs:
         run: ls -R ./dist
 
       - name: Upload files to server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
