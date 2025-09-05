@@ -28,7 +28,7 @@ annees : Annee[];
 totalPages: number = 0;
 currentPage: number = 0;
 pageSize = 10;
-p=1;
+
     highlighted: boolean = false;
     constructor(
     public toastr: ToastrService,

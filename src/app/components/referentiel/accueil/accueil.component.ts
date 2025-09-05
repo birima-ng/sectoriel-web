@@ -1,12 +1,39 @@
+
 // geo-chart-benin.component.ts
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input, AfterViewInit, ChangeDetectorRef} from '@angular/core';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
+import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
+import {Annee} from "../../modeles/annee.modele";
+import {AnneeService} from "../../services/annee.service";
 declare var google: any;
 
 @Component({
 selector: 'app-accueil',
 templateUrl: './accueil.component.html',
 })
-export class AccueilComponent implements AfterViewInit {
+export class AccueilComponent implements AfterViewInit, OnInit {
+annees: Annee[] = [];
+totalPages: number = 0;
+currentPage: number = 0;
+pageSize = 10;
+
+selectedAnneeId?: number; // pour stocker l'id sélectionné
+
+constructor(
+    public toastr: ToastrService,
+    private cdr: ChangeDetectorRef,
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService,
+    private anneeService: AnneeService) {
+    }
+
+  ngOnInit(): void {
+this.loadItems();
+  }
+
 ngAfterViewInit() {
     google.charts.load('current', { packages: ['geochart'] });
     google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
@@ -49,4 +76,51 @@ ngAfterViewInit() {
 
     chart.draw(data, options);
   }
+
+loadItems(): void {
+  this.anneeService.getAnneePages(this.currentPage, this.pageSize).subscribe(data => {
+    this.annees = data.content;
+    this.totalPages = data.totalPages;
+
+    //this.currentPage = data.number;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  });
 }
+
+goToPage(page: number): void {
+if (page >= 0 && page < this.totalPages) {
+  this.loadItems();
+}
+}
+
+onPageChange(page: number) {
+  this.currentPage = page;
+  this.loadItems();
+}
+
+onPageSizeChange(size: number) {
+  this.pageSize = size;
+  this.currentPage = 0;
+  this.loadItems();
+}
+
+onAnneeChange() {
+    console.log("Année sélectionnée ID:", this.selectedAnneeId);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.loadItems();
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadItems();
+    }
+  }
+
+}
+

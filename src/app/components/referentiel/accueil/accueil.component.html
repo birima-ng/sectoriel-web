@@ -1,5 +1,41 @@
 <!-- Minimal statistics section start -->
 <section id="minimal-statistics">
+ <!-- <p-dropdown
+    [options]="annees"
+    [(ngModel)]="selectedAnneeId"
+    optionLabel="libelle"
+    optionValue="id"
+    placeholder="Sélectionnez une équipe">
+    <ng-template pTemplate="footer">
+      <div class="flex justify-between p-2">
+        <button pButton type="button" label="⬅️ Précédent" (click)="prevPage()" [disabled]="currentPage === 0"></button>
+        <button pButton type="button" label="Suivant ➡️" (click)="nextPage()" [disabled]="currentPage === totalPages - 1"></button>
+      </div>
+    </ng-template>
+  </p-dropdown>-->
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sélectionnez une équipe</mat-label>
+    <mat-select [(value)]="selectedAnneeId" (selectionChange)="onAnneeChange()">
+      <mat-option *ngFor="let annee of annees" [value]="annee.id">
+        {{ annee.libelle }}
+      </mat-option>
+
+      <mat-divider></mat-divider>
+
+      <div class="flex justify-between p-2">
+        <button mat-button color="primary" (click)="prevPage()" [disabled]="currentPage === 0">
+          ⬅️ Précédent
+        </button>
+        <button mat-button color="primary" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">
+          Suivant ➡️
+        </button>
+      </div>
+    </mat-select>
+  </mat-form-field>
+
+
   <!-- geo-chart-benin.component.html -->
   <div id="geochart_benin" style="width: 100%; height: 600px;"></div>
 
