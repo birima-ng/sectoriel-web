@@ -34,5 +34,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}s
           port: 22
-          source: "./dist/**"
+          source: "./dist"
           target: "/var/www/html/sectoriel-web"
+          strip_components: 1
