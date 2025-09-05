@@ -1,27 +1,36 @@
-name: Deploy Frontend
+name: Deploy Angular App
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main   # déclenche uniquement sur la branche main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Build Sectoriel Web
-        run: |
-          npm install --legacy-peer-deps
-          npm run build -- --configuration production
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./sectoriel-web   # 🔹 change si ton Angular est dans un sous-dossier
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+        working-directory: ./sectoriel-web   # 🔹 adapte le chemin
 
       - name: Upload files to server
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "dist/sectoriel-web/*"
+          source: "sectoriel-web/dist/sectoriel-web/*"   # 🔹 vérifie bien que c’est le bon dossier de sortie
           target: "/var/www/html/sectoriel-web"
