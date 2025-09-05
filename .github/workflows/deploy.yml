@@ -1,9 +1,9 @@
-name: Deploy Angular App
+name: Deploy Angular Sectoriel-Web
 
 on:
   push:
     branches:
-      - main   # déclenche uniquement sur la branche main
+      - main
 
 jobs:
   build-and-deploy:
@@ -20,11 +20,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./sectoriel-web   # 🔹 change si ton Angular est dans un sous-dossier
 
       - name: Build Angular app
         run: npm run build -- --configuration production
-        working-directory: ./sectoriel-web   # 🔹 adapte le chemin
+
+      - name: List dist folder
+        run: ls -R ./dist
 
       - name: Upload files to server
         uses: appleboy/scp-action@v0.1.7
@@ -32,5 +33,6 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "sectoriel-web/dist/sectoriel-web/*"   # 🔹 vérifie bien que c’est le bon dossier de sortie
+          port: 22
+          source: "./dist/sectoriel-web/*"
           target: "/var/www/html/sectoriel-web"
