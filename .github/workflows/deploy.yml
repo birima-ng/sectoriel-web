@@ -26,10 +26,6 @@ jobs:
 
       - name: List dist folder
         run: ls -R ./dist
-  - name: Prepare dist content
-    run: |
-      mkdir -p deploy
-      cp -r dist/* deploy/
 
       - name: Upload files to server
         uses: appleboy/scp-action@master
@@ -38,5 +34,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}s
           port: 22
-          source: "./deploy/*"
+          source: "./dist/*"
           target: "/var/www/html/sectoriel-web"
