@@ -19,48 +19,48 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
 /* ======= Conteneur global ======= */
 .container {
   display: flex;
   flex-direction: column;
   width: 900px;
+  max-width: 100%;           /* pour forcer à se réduire sur petit écran */
   border-radius: 15px;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  margin: 20px auto;
 }
 
-/* ======= Partie 1 : Header ======= */
+/* ======= Header avec image ======= */
 .header {
   width: 100%;
-  /*height: 220px;*/
-  height: 120px;
-  background: url('/assets/img/logos/login_pagricole.jpg')
-              no-repeat center center;
-  background-size: cover;
-  position: relative;
 }
 
-.header::after {
-  content: "";
-  position: absolute;
-  bottom: 20px;
-  left: 40px;
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+.header img {
+  width: 100%;   /* occupe toujours toute la largeur */
+  height: auto;  /* conserve les proportions */
+  display: block;
 }
+
 
 /* ======= Partie 2 : Contenu bas (2 colonnes) ======= */
-.content {
+/* Container global */
+/* Conteneur global */
+.content-container {
+  height: 400px; /* Desktop par défaut */
+  min-height: 400px;
   display: flex;
-  height: 400px;
 }
 
-/* Colonne gauche : image */
+/* Image côté gauche */
 .image-side {
+  background: url('/assets/img/logos/logo_production2.png') no-repeat center center;
+  background-size: cover;
+}
+/* Colonne gauche : image */
+/*.image-side {
+min-height: 300px;
   flex: 1;
   background: url('/assets/img/logos/logo_production2.png')
               no-repeat center center;
@@ -69,7 +69,7 @@ body {
 }
 
 .image-side::after {
-  content: "";
+  min-height: 300px;
   position: absolute;
   bottom: 20px;
   left: 20px;
@@ -77,12 +77,11 @@ body {
   color: #fff;
   font-weight: bold;
   text-shadow: 0px 2px 5px rgba(0,0,0,0.6);
-}
-
+}*/
 /* Colonne droite : formulaire */
 .form-side {
   flex: 1;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -105,7 +104,7 @@ body {
 form {
   width: 100%;
   max-width: 300px;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
 }
 
@@ -155,13 +154,33 @@ input:focus {
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .content {
-    flex-direction: column;
-    height: auto;
+/* ======= Responsive ======= */
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    border-radius: 0;
   }
-  .image-side {
-    height: 200px;
+
+  .header img {
+    max-height: 150px;   /* limite la hauteur pour petits écrans */
+    object-fit: contain; /* s'assure que l'image garde ses proportions */
+  }
+}
+
+
+/* Image côté gauche */
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .content-container {
+    height: 800px; /* hauteur totale mobile */
+    flex-direction: column; /* empilement */
+  }
+
+  .image-side,
+  .form-side {
+    flex: 1; /* ⚡ Chaque div prend 50% de la hauteur */
+    min-height: 400px; /* sécurité pour pas que l’une disparaisse */
   }
 }
