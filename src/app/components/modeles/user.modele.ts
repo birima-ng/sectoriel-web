@@ -1,4 +1,5 @@
 import { Profil } from '../modeles/profil.modele';
+import { Systeme } from '../modeles/systeme.modele';
 import { ServiceDepartement } from '../modeles/service-departement.modele';
 import { Fonction } from '../modeles/fonction.modele';
 export class User {
@@ -15,4 +16,5 @@ export class User {
   service: ServiceDepartement;
   fonction: Fonction;
   profile: Profil;
+  systeme: Systeme;
 }

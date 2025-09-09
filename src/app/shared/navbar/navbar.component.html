@@ -268,7 +268,7 @@
               href="javascript:;" data-toggle="dropdown" ngbDropdownToggle>
               <div class="user d-md-flex d-none mr-2">
                 <span class="text-right">{{lnom}}</span><span
-                  class="text-right text-muted font-small-3">{{lorganisation}}</span>
+                  class="text-right text-muted font-small-3">{{lsysteme}}</span>
               </div>
               <img class="avatar" src="assets/ecowas/side_benin.png" alt="avatar" height="35" width="35" />
             </a>
@@ -290,7 +290,7 @@
                 </div>
               </a> -->
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" routerLink="/pages/login">
+              <a class="dropdown-item"  (click)="logOut()">
                 <div class="d-flex align-items-center">
                   <i class="ft-power mr-2"></i><span>Logout</span>
                 </div>

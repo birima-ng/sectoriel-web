@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ActivationComponent } from './activation/activation.component';
 import { PasswordComponent } from './password/password.component';
+import { LoginProductionAgricoleComponent } from "./login-production-agricole/login-production-agricole.component";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -47,6 +48,7 @@ ActivationComponent,
     ForgotPasswordPageComponent,
     LockScreenPageComponent,
     LoginPageComponent,
+    LoginProductionAgricoleComponent,
     MaintenancePageComponent,
     RegisterPageComponent,
 EcowasComponent

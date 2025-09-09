@@ -1,0 +1,167 @@
+.alert-light-danger {
+  background-color: #FEEFD0 !important;
+  color: #F55252  !important;
+  border-color: #FEEFD0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f5f7fa;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ======= Conteneur global ======= */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* ======= Partie 1 : Header ======= */
+.header {
+  width: 100%;
+  /*height: 220px;*/
+  height: 120px;
+  background: url('/assets/img/logos/login_pagricole.jpg')
+              no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+/* ======= Partie 2 : Contenu bas (2 colonnes) ======= */
+.content {
+  display: flex;
+  height: 400px;
+}
+
+/* Colonne gauche : image */
+.image-side {
+  flex: 1;
+  background: url('/assets/img/logos/logo_production2.png')
+              no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.image-side::after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0px 2px 5px rgba(0,0,0,0.6);
+}
+
+/* Colonne droite : formulaire */
+.form-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #fdfdfd;
+}
+
+.form-side h2 {
+  margin-bottom: 20px;
+  color: #228b22;
+  font-size: 26px;
+}
+
+.form-side p {
+  margin-bottom: 30px;
+  color: #555;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #228b22;
+  outline: none;
+  box-shadow: 0 0 5px rgba(34,139,34,0.5);
+}
+
+.btn-login {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #228b22;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-login:hover {
+  background: #1a6b1a;
+}
+
+.extra-links {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.extra-links a {
+  color: #228b22;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    height: auto;
+  }
+  .image-side {
+    height: 200px;
+  }
+}

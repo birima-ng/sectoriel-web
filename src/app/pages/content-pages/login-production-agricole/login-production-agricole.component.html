@@ -1,0 +1,69 @@
+<section id="login">
+  <div class="row auth-height full-height-vh m-0">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="card overflow-hidden">
+        <div class="card-content">
+
+<div class="container">
+  <!-- Partie 1 : Header -->
+  <div class="header"></div>
+
+  <!-- Partie 2 : Bas (2 colonnes) -->
+  <div class="content">
+    <!-- Colonne gauche : Image -->
+    <div class="image-side"></div>
+
+    <!-- Colonne droite : Formulaire -->
+    <div class="form-side">
+      <h2>Connexion</h2>
+      <!--<p>Accédez à vos services dédiés à l’agriculture, l’élevage et la pêche.</p> -->
+
+      <ngb-alert type="light-danger" class="mb-2" *ngIf="isLoginFailed" (close)="isLoginFailed = false">
+        <p class="mb-0">Login failed!</p>
+      </ngb-alert>
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <input type="text" formControlName="username" class="form-control" placeholder="Identifiant"
+                 [ngClass]="{ 'is-invalid': loginFormSubmitted && lf.username.invalid, 'is-valid': loginFormSubmitted && !lf.username.invalid }"
+                 required>
+          <div *ngIf="loginFormSubmitted && (lf.username.invalid || lf.username.errors?.required)"
+               class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+            required</div>
+        </div>
+        <div class="form-group">
+          <input type="password" formControlName="password" class="form-control" placeholder="Mot de passe"
+                 [ngClass]="{ 'is-invalid': loginFormSubmitted && lf.password.invalid, 'is-valid': loginFormSubmitted && !lf.password.invalid }"
+                 required>
+          <div *ngIf="loginFormSubmitted && (lf.password.invalid || lf.password.errors?.required)"
+               class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is required
+          </div>
+        </div>
+        <div class="d-sm-flex justify-content-between mb-3 font-small-2">
+          <div class="remember-me mb-2 mb-sm-0">
+            <div class="checkbox auth-checkbox">
+              <input type="checkbox" formControlName="rememberMe" class="form-control" id="rememberMe">
+              <label for="rememberMe"><span class="font-small-2 mb-3 font-weight-normal">Se Souvenir de Moi</span></label>
+            </div>
+          </div>
+          <!-- <a [routerLink]="['/pages/forgotpassword']">Mot de passe oublié?</a>-->
+        </div>
+        <div class="d-flex justify-content-between flex-sm-row flex-column">
+          <a [routerLink]="['/pages/forgotpassword']">Mot de passe oublié?</a>
+          <!--<a [routerLink]="['/pages/register']" class="btn bg-light-primary mb-2 mb-sm-0">Register</a>-->
+          <a  class="btn-login" (click)="checkLogin()">Connexion</a>
+        </div>
+      </form>
+
+      <div class="extra-links">
+        <a href="#">Mot de passe oublié ?</a> |
+        <a href="#">Créer un compte</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

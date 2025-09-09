@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   lnom = localStorage.getItem('lnom');
   lorganisation = localStorage.getItem('lorganisation');
-
+  lsysteme = localStorage.getItem('systeme');s
   @ViewChild('search') searchElement: ElementRef;
   @ViewChildren('searchResults') searchResults: QueryList<any>;
 
@@ -229,4 +229,13 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleSidebar() {
     this.layoutService.toggleSidebarSmallScreen(this.hideSidebar);
   }
+
+  logOut() {
+console.log("################################# -- birima "+localStorage.getItem('url'));
+  this.router.navigate([localStorage.getItem('url')]);
+    localStorage.clear();
+    localStorage.removeItem('access_token');
+
+  }
+
 }

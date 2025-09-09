@@ -11,6 +11,7 @@ import { RegisterPageComponent } from "./register/register-page.component";
 import { EcowasComponent } from "./ecowas/ecowas.component";
 import { ActivationComponent } from "./activation/activation.component";
 import { PasswordComponent } from './password/password.component';
+import { LoginProductionAgricoleComponent } from "./login-production-agricole/login-production-agricole.component";
 const routes: Routes = [
   {
     path: '',
@@ -69,6 +70,13 @@ title: 'Coming Soon page'
           title: 'Login Page'
         }
       },
+{
+path: 'login-production-agricole',
+component: LoginProductionAgricoleComponent,
+data: {
+title: 'Login Page'
+}
+},
       {
         path: 'maintenance',
         component: MaintenancePageComponent,

@@ -9,12 +9,12 @@ import { UserService } from '../../../components/services/user.service';
 import { User } from '../../../components/modeles/user.modele';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  selector: 'app-login-production-agricole',
+  templateUrl: './login-production-agricole.component.html',
+  styleUrls: ['./login-production-agricole.component.scss']
 })
 
-export class LoginPageComponent {
+export class LoginProductionAgricoleComponent {
 invalidLogin = false;
 submitted=false;
 lng="en";
@@ -74,18 +74,23 @@ console.log("############################################### data.token", data.t
       localStorage.setItem('access_token', data.token);
     this.userService.getUserByUsername(this.loginForm.value.username).subscribe(
       data => {
-       this.spinner.hide();
+        this.spinner.hide();
        console.log("############################################", data);
        localStorage.setItem('lnom', data.prenom+" " +data.nom);
+       //localStorage.setItem('lorganisation', data.organisationnelle.nom);
        localStorage.setItem('lorganisation', "Service");
+//localStorage.setItem('systeme', "Service");
        localStorage.setItem('systeme', data.systeme.libelle);
        localStorage.setItem('url', data.systeme.url);
-       localStorage.setItem('pays', "Service");
+localStorage.setItem('pays', "Service");
+
        localStorage.setItem('profil', data.profile.id);
-       this.profilactionService.getProfilActionRole(data.profile.id).subscribe( data => {
-       const actionsJson = JSON.stringify(data);
-       localStorage.setItem('roles', actionsJson);
-       this.router.navigate(['/components/accueil']);
+    this.profilactionService.getProfilActionRole(data.profile.id).subscribe( data => {
+    const actionsJson = JSON.stringify(data);
+    localStorage.setItem('roles', actionsJson);
+console.log("############################################ roles ",data);
+
+   this.router.navigate(['/components/accueil']);
       },
       error => {
     console.log("error avant !!!");
@@ -116,11 +121,5 @@ console.log("############################################### data.token", data.t
 
 }
 
-  logOut() {
-    this.router.navigate([localStorage.getItem('url')]);
-    localStorage.clear();
-    localStorage.removeItem('access_token');
-
-  }
 
 }
