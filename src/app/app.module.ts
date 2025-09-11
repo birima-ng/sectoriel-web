@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from "@angular/core";
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthInterceptor } from './shared/auth/authconfig.interceptor';
 import { AngularFireModule } from "@angular/fire";
@@ -45,6 +45,7 @@ var firebaseConfig = {
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
+import { KeycloakService } from 'app/components/services/keycloak.service';
 // Enregistrement de la locale française
 registerLocaleData(localeFr, 'fr-FR');
 //import {GoogleMapsModule} from '@angular/google-maps';
@@ -56,6 +57,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}
+
+export function initializeKeycloak(keycloak: KeycloakService) {
+  return () => keycloak.init();
 }
 
 @NgModule({
@@ -84,6 +89,13 @@ export function createTranslateLoader(http: HttpClient) {
     PerfectScrollbarModule
   ],
   providers: [
+ KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    },
     { provide: LOCALE_ID, useValue: 'fr-FR' } ,
     AuthService,
     AuthGuard,
