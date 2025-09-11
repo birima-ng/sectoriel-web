@@ -48,18 +48,17 @@
               <input type="checkbox" formControlName="rememberMe" class="form-control" id="rememberMe">
               <label for="rememberMe"><span class="font-small-2 mb-3 font-weight-normal">Se Souvenir de Moi</span></label>
             </div>
+
+          </div>
+          <div class="remember-me mb-2 mb-sm-0">
+            <a  class="btn-login" (click)="checkLogin()">Connexion</a>
           </div>
           <!-- <a [routerLink]="['/pages/forgotpassword']">Mot de passe oublié?</a>-->
-        </div>
-        <div class="d-flex justify-content-between flex-sm-row flex-column">
-          <a [routerLink]="['/pages/forgotpassword']">Mot de passe oublié?</a>
-          <!--<a [routerLink]="['/pages/register']" class="btn bg-light-primary mb-2 mb-sm-0">Register</a>-->
-          <a  class="btn-login" (click)="checkLogin()">Connexion</a>
         </div>
       </form>
 
       <div class="extra-links">
-        <a href="#">Mot de passe oublié ?</a> |
+        <a [routerLink]="['/pages/forgotpassword']">Mot de passe oublié?</a> |
         <a href="#">Créer un compte</a>
       </div>
     </div>
