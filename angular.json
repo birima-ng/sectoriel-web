@@ -39,6 +39,11 @@
               "src/assets",
               "src/favicon.ico"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/sass"
+              ]
+            },
             "styles": [
               "node_modules/sweetalert2/dist/sweetalert2.min.css",
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
