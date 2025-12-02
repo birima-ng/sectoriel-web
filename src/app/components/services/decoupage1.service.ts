@@ -35,7 +35,20 @@ constructor(private http: HttpClient) { }
          }));
   }
 
+  getDecoupage1sPays() {
+      return this.http.get<any>(this.baseUrl+'api/decoupage1/pays').pipe(
+       map(
+         decoupage1Data => {
+          return decoupage1Data;
+         }));
+  }
+
   getDecoupage1Pages(page: number, size: number): Observable<any> {
      return this.http.get<any>(this.baseUrl+'api/decoupage1-page?page='+page+'&size='+size);
   }
+
+  getDecoupage1PagesPays(page: number, size: number): Observable<any> {
+     return this.http.get<any>(this.baseUrl+'api/decoupage1-page/pays?page='+page+'&size='+size);
+  }
+
 }

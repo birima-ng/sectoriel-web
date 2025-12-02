@@ -38,4 +38,12 @@ constructor(private http: HttpClient) { }
   getIndicateurPages(page: number, size: number): Observable<any> {
      return this.http.get<any>(this.baseUrl+'api/indicateur-page?page='+page+'&size='+size);
   }
+
+  getIndicateursSysteme() {
+      return this.http.get<any>(this.baseUrl+'api/indicateur/systeme').pipe(
+       map(
+         indicateurData => {
+          return indicateurData;
+         }));
+  }
 }

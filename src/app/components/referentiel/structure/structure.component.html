@@ -3,7 +3,15 @@
     <div class="content-header">Structure</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+    <div class="content-header">
+
+      <app-list-actions
+        [addActionCode]="'ACT_STRUCTURE_SPA'"
+        (add)="openContent()">
+      </app-list-actions>
+      <!--<button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -41,12 +49,13 @@
                     <td>{{structure.adresse}}</td>
                     <td>{{structure.pays.libelle}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(structure)">
-                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                      </a>
-                      <a href="javascript:;" class="danger p-0" (click)="formDelete(structure.id)">
-                        <i class="ft-x font-medium-3"></i>
-                      </a>
+                      <app-list-actions
+                        [item]="structure"
+                        [editActionCode]="'c54673bc-f08d-4c35-8911-f0507da0ce19'"
+                        [deleteActionCode]="'20887c43-c525-4efd-a18f-6efcbbc474e4'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
 
                         </td>
                   </tr>

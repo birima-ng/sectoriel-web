@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-11">
+    <div class="content-header">Campagne agricol</div>
+  </div>
+  <div class="col-1">
+    <div class="content-header">
+
+      <app-list-actions
+        [addActionCode]="'c7592747-1621-47b2-aee3-2614637b186f'"
+        (add)="openContent()">
+      </app-list-actions>
+      <!--<button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+
+    </div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+
+              <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th width="10%">Code</th>
+                    <th width="40%">Libellé</th>
+                    <th width="20%">Date debut</th>
+                    <th width="20%">Date fin</th>
+                    <th width="10%">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="campagneagricols">
+                  <tr  *ngFor="let campagneagricol  of campagneagricols;">
+                    <td>{{campagneagricol.code}}</td>
+                    <td>{{campagneagricol.libelle}}</td>
+                    <td>{{campagneagricol.dateDebut | date:'dd/MM/yyyy' }}</td>
+                    <td>{{campagneagricol.dateFin | date:'dd/MM/yyyy' }}</td>
+                    <td class="text-truncate">
+                      <app-list-actions
+                        [item]="campagneagricol"
+                        [editActionCode]="'e881f4ce-b53a-4c02-bf75-39b69b1777ff'"
+                        [deleteActionCode]="'ea99184c-e95c-4e2b-9c3e-43e92d86631e'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <app-config-pagination
+                  [currentPage]="currentPage"
+                  [totalPages]="totalPages"
+                  [pageSize]="pageSize"
+                  (pageChange)="onPageChange($event)"
+                  (pageSizeChange)="onPageSizeChange($event)">
+                </app-config-pagination>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

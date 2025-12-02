@@ -24,18 +24,46 @@
           <div class="card-body">
 
               <div class="card-body table-responsive">
+                <form [formGroup]="addForm">
+                <div class="form-row">
+                  <div class="col-10">
+                    <div class="form-group mb-2">
+                      <label for="feature">Feature</label>
+                      <select class="form-control"  [(ngModel)]="feature" [compareWith]="compareFn" formControlName="feature" id="feature" name="feature" [ngClass]="{ 'is-invalid': submitted && lf.feature.invalid, 'is-valid': submitted && !lf.feature.invalid }" required>
+                        <option [ngValue]="null" >-- Feature --</option>
+                        <option *ngFor="let feature of features;" [ngValue]="feature"  >{{feature.nom }} --> {{feature.module.nom }} </option>
+
+                      </select>
+                      <div *ngIf="submitted && (lf.feature.invalid || lf.feature.errors?.required)"
+                           class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
+                        required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2">
+                    <div class="form-group mb-2">
+                    <button type="button" class="btn btn-primary mr-2" (click)="onSubmit()"><i class="ft-check-square mr-1"></i>Rechercher</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                </form>
+
                 <table class="table m-0">
                   <thead>
                   <tr>
-                    <th width="5%">Code</th>
+                    <th width="25%">ID</th>
+                    <th width="10%">Code</th>
                     <th width="25%">Nom</th>
-                    <th width="25%">Feature</th>
-                    <th width="25%">Module</th>
-                    <th width="20%">Actions</th>
+                    <th width="20%">Feature</th>
+                    <th width="15%">Module</th>
+                    <th width="5%">Actions</th>
                   </tr>
                   </thead>
                   <tbody *ngIf="actions">
                   <tr  *ngFor="let action  of actions;">
+                    <td>{{action.id}}</td>
                     <td>{{action.code}}</td>
                     <td>{{action.nom}}</td>
                     <td>{{action.feature.nom}}</td>

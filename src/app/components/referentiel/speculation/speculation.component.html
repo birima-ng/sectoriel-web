@@ -3,7 +3,14 @@
     <div class="content-header">Produits et Spéculations</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+    <div class="content-header">
+      <app-list-actions
+        [addActionCode]="'07ed5c7d-03ea-41a4-be9b-0e9c2cad9861'"
+        (add)="openContent()">
+      </app-list-actions>
+      <!--<button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -41,12 +48,13 @@
                     <td>{{speculation.description}}</td>
                     <td>{{speculation.categorie.libelle}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(speculation)">
-                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                      </a>
-                      <a href="javascript:;" class="danger p-0" (click)="formDelete(speculation.id)">
-                        <i class="ft-x font-medium-3"></i>
-                      </a>
+                      <app-list-actions
+                        [item]="unite"
+                        [editActionCode]="'4241fba6-194f-4568-99a7-af811202f6cd'"
+                        [deleteActionCode]="'3acd6ead-c3fc-42f5-a67a-cd08cd2a2ca6'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
 
                         </td>
                   </tr>

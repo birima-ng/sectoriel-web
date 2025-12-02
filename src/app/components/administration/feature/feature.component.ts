@@ -39,11 +39,28 @@ p=1;
     }
 
   ngOnInit(): void {
-   this.getAllFeature();
+   this.getFeaturesSysteme();
   }
     ngAfterViewChecked() {
     }
 
+getFeaturesSysteme() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ console.log("################1");
+ this.featureService.getFeaturesSysteme().subscribe( data => {
+ this.spinner.hide();
+ this.features = data;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+ console.log("################2");
+}
 
 getAllFeature() {
     this.spinner.show(undefined,

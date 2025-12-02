@@ -10,6 +10,7 @@ export class ListActionsComponent {
 @Input() addActionCode: string;
 @Input() editActionCode: string;
 @Input() deleteActionCode: string;
+@Input() configuredActionCode: string;
 @Output() edit = new EventEmitter<any>();
 @Output() delete = new EventEmitter<any>();
 @Output() add = new EventEmitter<any>();

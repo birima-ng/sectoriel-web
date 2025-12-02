@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy,  ViewEncapsulation, Input, ViewChild} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
 import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
@@ -8,16 +8,21 @@ import { ChangeDetectorRef } from '@angular/core';
 import {Indicateur} from "../../modeles/indicateur.modele";
 import {IndicateurService} from "../../services/indicateur.service";
 import { ToastrService } from 'ngx-toastr';
+import { DatatableComponent, ColumnMode } from "@swimlane/ngx-datatable";
 declare var window: any;
 
 @Component({
     selector: 'app-indicateur',
     templateUrl: './indicateur.component.html',
-    styleUrls: ['./indicateur.component.scss'],
+styleUrls: [
+"./indicateur.component.scss",
+"../../../../assets/sass/libs/datatables.scss",
+],
+encapsulation: ViewEncapsulation.None,
 })
 
 export class IndicateurComponent implements OnInit {
-
+@ViewChild('tableRowDetails') tableRowDetails: any;
 addForm: FormGroup;
 supForm: FormGroup;
 submitted = false;
@@ -29,6 +34,7 @@ totalPages: number = 0;
 currentPage: number = 0;
 pageSize = 10;
 p=1;
+public ColumnMode = ColumnMode;
     highlighted: boolean = false;
     constructor(
     public toastr: ToastrService,
@@ -156,5 +162,11 @@ onPageSizeChange(size: number) {
   this.currentPage = 0;
   this.loadItems();
 }
+
+  rowDetailsToggleExpand(row) {
+    this.tableRowDetails.rowDetail.toggleExpandRow(row);
+  }
+
+
 }
 

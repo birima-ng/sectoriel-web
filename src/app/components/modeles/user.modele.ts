@@ -2,6 +2,7 @@ import { Profil } from '../modeles/profil.modele';
 import { Systeme } from '../modeles/systeme.modele';
 import { ServiceDepartement } from '../modeles/service-departement.modele';
 import { Fonction } from '../modeles/fonction.modele';
+import { Pays } from '../modeles/pays.modele';
 export class User {
   id: string;
   prenom: string;
@@ -17,4 +18,5 @@ export class User {
   fonction: Fonction;
   profile: Profil;
   systeme: Systeme;
+  pays: Pays;
 }

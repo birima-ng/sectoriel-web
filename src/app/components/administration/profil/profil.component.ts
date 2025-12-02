@@ -27,6 +27,7 @@ edited=true;
 formModal: any;
 formModalSup: any;
 profils : Profil[];
+profil : Profil;
 p=1;
     highlighted: boolean = false;
     constructor(

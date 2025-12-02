@@ -266,8 +266,17 @@ import {AddFrequenceCollecteComponent} from "./referentiel/frequence-collecte/ad
 import {IndicateurComponent} from "./referentiel/indicateur/indicateur.component";
 import {AddIndicateurComponent} from "./referentiel/indicateur/add/add-indicateur.component";
 
+import {GenerationIndicateurComponent} from "./referentiel/indicateur/generation-indicateur/generation-indicateur.component";
+import {ValidationIndicateurComponent} from "./referentiel/indicateur/validation-indicateur/validation-indicateur.component";
+
+import {ProductionAgricoleComponent} from "./referentiel/fiche-production-agricole/production-agricole/production-agricole.component";
+import {UtilisationProductionComponent} from "./referentiel/fiche-production-agricole/utilisation-production/utilisation-production.component";
+
 import {PrincipauxProduitsComponent} from "./referentiel/speculation/principaux-produits/principaux-produits.component";
 import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/configuration-fiche.component";
+
+import {CampagneAgricolComponent} from "./referentiel/campagne-agricol/campagne-agricol.component";
+import {AddCampagneAgricolComponent} from "./referentiel/campagne-agricol/add/add-campagne-agricol.component";
 
 import {ConfigPrixComponent} from "./referentiel/config-prix/config-prix.component";
 import {GoogleMapPopupComponent} from 'app/components/referentiel/map/google-map-popup/google-map-popup.component';
@@ -285,8 +294,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+
 @NgModule({
     imports: [
+PerfectScrollbarModule,
 MatFormFieldModule,
 MatSelectModule,
 MatDividerModule,
@@ -337,6 +349,8 @@ TypeProduitComponent,
 AddTypeProduitComponent,
 CategorieComponent,
 AddCategorieComponent,
+CampagneAgricolComponent,
+AddCampagneAgricolComponent,
 DragDropConfigComponent,
 ConfigSecteurActiviteComponent,
 EntrepriseComponent,
@@ -502,6 +516,10 @@ AnneeComponent,
 AddAnneeComponent,
 IndicateurComponent,
 AddIndicateurComponent,
+GenerationIndicateurComponent,
+ValidationIndicateurComponent,
+UtilisationProductionComponent,
+ProductionAgricoleComponent,
 FrequenceCollecteComponent,
 AddFrequenceCollecteComponent
 

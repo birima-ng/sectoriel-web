@@ -5,11 +5,13 @@ import {Action} from 'app/components/modeles/action.modele';
 import {ActionService} from 'app/components/services/action.service';
 import {DecimalPipe} from '@angular/common';
 import { NgxSpinnerService } from "ngx-spinner";
-import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators, FormControl, UntypedFormGroup, UntypedFormControl} from "@angular/forms";
 import { AddActionComponent } from './add/add-action.component';
 import { ModalConfirmComponent } from 'app/components/modal-confirm/modal-confirm.component';
 import { ChangeDetectorRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import {Feature} from 'app/components/modeles/feature.modele';
+import {FeatureService} from 'app/components/services/feature.service';
 declare var window: any;
 
 @Component({
@@ -20,16 +22,23 @@ declare var window: any;
 
 export class ActionComponent implements OnInit {
 
-addForm: FormGroup;
 supForm: FormGroup;
 submitted = false;
 edited=true;
 formModal: any;
 formModalSup: any;
 actions : Action[];
+features: Feature [];
+feature: Feature;
 p=1;
+
+addForm = new UntypedFormGroup({
+    feature: new UntypedFormControl('', [Validators.required])
+  });
+
     highlighted: boolean = false;
     constructor(
+    private featureService: FeatureService,
     public toastr: ToastrService,
     private cdr: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -39,11 +48,48 @@ p=1;
     }
 
   ngOnInit(): void {
-   this.getAllAction();
+   this.feature = null;
+   this.getActionBySysteme();
+   this.getFeaturesSysteme();
   }
     ngAfterViewChecked() {
     }
 
+getActionBySysteme() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+  console.log("################1");
+  this.actionService.getActionBySysteme().subscribe( data => {
+  this.spinner.hide();
+  this.actions = data;
+  this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+  console.log("################2");
+}
+
+getActionByFeatureId(id: string) {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ console.log("################1");
+ this.actionService.getActionByFeatureId(id).subscribe( data => {
+ this.spinner.hide();
+ this.actions = data;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+ console.log("################2");
+}
 
 getAllAction() {
     this.spinner.show(undefined,
@@ -128,6 +174,40 @@ console.log("############### ID",id);
     console.log("error avant !!!");
       });
 }
+
+   getFeaturesSysteme() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+    console.log("################1");
+    this.featureService.getFeaturesSysteme().subscribe( data => {
+    this.spinner.hide();
+    this.features = data;
+    this.cdr.detectChanges(); // Forcer la détection des changements
+    console.log("################",data); });
+    console.log("################2");
+  }
+
+  get lf() {
+    return this.addForm.controls;
+  }
+
+  compareFn(a, b) {
+    if(a==b)
+       return true
+     else
+    return a && b && a.id == b.id;
+  }
+
+  onSubmit() {
+    console.log("################################ this.addForm.value ", this.addForm.value.feature.id);
+    this.getActionByFeatureId(this.addForm.value.feature.id);
+  }
 
 }
 

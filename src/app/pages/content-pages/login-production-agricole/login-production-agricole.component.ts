@@ -75,7 +75,7 @@ console.log("############################################### data.token", data.t
     this.userService.getUserByUsername(this.loginForm.value.username).subscribe(
       data => {
         this.spinner.hide();
-       console.log("############################################", data);
+       console.log("############################################ data getUserByUsername", data);
        localStorage.setItem('lnom', data.prenom+" " +data.nom);
        //localStorage.setItem('lorganisation', data.organisationnelle.nom);
        localStorage.setItem('lorganisation', "Service");
@@ -83,7 +83,8 @@ console.log("############################################### data.token", data.t
        localStorage.setItem('systeme', data.systeme.libelle);
        localStorage.setItem('url', data.systeme.url);
 localStorage.setItem('pays', "Service");
-
+localStorage.setItem('codePays', data.pays.code);
+console.log("############################################ data  data.pays.code",  data.pays.code);
        localStorage.setItem('profil', data.profile.id);
     this.profilactionService.getProfilActionRole(data.profile.id).subscribe( data => {
     const actionsJson = JSON.stringify(data);

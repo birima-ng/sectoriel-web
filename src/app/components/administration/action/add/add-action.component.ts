@@ -48,7 +48,7 @@ feature: Feature;
   }
 
 ngOnInit(): void {
-   this.getAllFeature();
+   this.getFeaturesSysteme();
 if(this.action1 == 'edit'){
       this.addForm.patchValue({
       id: this.entity.id,
@@ -142,6 +142,24 @@ this.toastr.success('Action modifié avec succès!', 'STOCK-PRIX');
 
 );
 
+}
+
+getFeaturesSysteme() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-triangle-path',
+        size: 'medium',
+        bdColor: 'rgba(0, 0, 0, 0.8)',
+        color: '#fff',
+        fullScreen: true
+      });
+ console.log("################1");
+ this.featureService.getFeaturesSysteme().subscribe( data => {
+ this.spinner.hide();
+ this.features = data;
+this.cdr.detectChanges(); // Forcer la détection des changements
+  console.log("################",data); });
+ console.log("################2");
 }
 
 getAllFeature() {

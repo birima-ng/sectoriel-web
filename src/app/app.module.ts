@@ -13,7 +13,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from "@ngrx/store";
 import { DragulaService } from "ng2-dragula";
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -61,6 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
   imports: [
+    NgxDatatableModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(fromApp.appReducer),
     AppRoutingModule,

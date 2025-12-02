@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   lnom = localStorage.getItem('lnom');
   lorganisation = localStorage.getItem('lorganisation');
-  lsysteme = localStorage.getItem('systeme');s
+  lsysteme = localStorage.getItem('systeme');
   @ViewChild('search') searchElement: ElementRef;
   @ViewChildren('searchResults') searchResults: QueryList<any>;
 

@@ -7,21 +7,41 @@ import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
 import {Annee} from "../../modeles/annee.modele";
 import {AnneeService} from "../../services/annee.service";
+import {Indicateur} from "../../modeles/indicateur.modele";
+import {IndicateurService} from "../../services/indicateur.service";
+import {ValeurIndicateur} from "../../modeles/valeur-indicateur.modele";
+import {ValeurIndicateurService} from "../../services/valeur-indicateur.service";
 declare var google: any;
+import { NgForm, UntypedFormGroup, UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
 selector: 'app-accueil',
 templateUrl: './accueil.component.html',
 })
 export class AccueilComponent implements AfterViewInit, OnInit {
-annees: Annee[] = [];
 totalPages: number = 0;
 currentPage: number = 0;
 pageSize = 10;
+submitted=false;
 
+indicateurs : Indicateur[];
+indicateur: Indicateur;
+
+valeurindicateurs : ValeurIndicateur[];
+valeurindicateur: ValeurIndicateur;
+
+annees : Annee[];
+annee: Annee;
+codePays = '';
 selectedAnneeId?: number; // pour stocker l'id sélectionné
-
+addForm = new UntypedFormGroup({
+id: new UntypedFormControl(''),
+    annee: new UntypedFormControl(''),
+    indicateur: new UntypedFormControl('')
+  });
 constructor(
+    private valeurindicateurService: ValeurIndicateurService,
+    private indicateurService: IndicateurService,
     public toastr: ToastrService,
     private cdr: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -31,18 +51,26 @@ constructor(
     }
 
   ngOnInit(): void {
-this.loadItems();
+     this.codePays = localStorage.getItem('codePays');//
+     //this.annee = null;
+     //this.indicateur = null;
+     this.loadItems();
+     //this.getAllIndicateurSysteme();
+     //this.getValeurIndicateurSearch('indicateurId', 'periode', 'campagneagricoleId', 'paysId');
+ // définir la première valeur automatiquement
+  //this.addForm.get('annee')?.setValue(this.annees[0]);
+     //this.getValeurIndicateurPeriodeSearch(this.indicateur.id, this.annee.id);
+
   }
 
-ngAfterViewInit() {
-    google.charts.load('current', { packages: ['geochart'] });
-    google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
+  ngAfterViewInit() {
+    /*google.charts.load('current', { packages: ['geochart'] });
+    google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));*/
   }
-
-  drawBeninByRegion() {
+/*
     const data = google.visualization.arrayToDataTable([
       ['Department', 'Value'],
-      ['Alibori', 30],
+      ['ALIBORI', 30],
       ['Atakora', 50],
       ['Atlantique', 70],
       ['Borgou', 45],
@@ -51,13 +79,32 @@ ngAfterViewInit() {
       ['Kouffo', 65],
       ['Littoral', 90],
       ['Mono', 60],
-      ['Ouémé', 80],
+      ['OUÉMÉ', 80],
       ['Plateau', 35],
       ['Zou', 75],
     ]);
+*/
+  drawBeninByRegion() {
+
+    const data = google.visualization.arrayToDataTable([
+      ['Department', 'Value'],
+ ...this.valeurindicateurs.map(r => [r.region.libelle, r.valeur])
+    /*  ['ALIBORI', 30],
+      ['Atakora', 50],
+      ['Atlantique', 70],
+      ['Borgou', 45],
+      ['Collines', 55],
+      ['Donga', 40],
+      ['Kouffo', 65],
+      ['Littoral', 90],
+      ['Mono', 60],
+      ['OUÉMÉ', 80],
+      ['Plateau', 35],
+      ['Zou', 75],*/
+    ]);
 
     const options = {
-      region: 'BJ',            // ISO Alpha-2 du Bénin
+      region: localStorage.getItem('codePays'),            // ISO Alpha-2 du Bénin BJ
       resolution: 'provinces', // Provinces (départements)
       backgroundColor: '#f9f9f9',
       datalessRegionColor: '#f0f0f0',
@@ -78,12 +125,34 @@ ngAfterViewInit() {
   }
 
 loadItems(): void {
-  this.anneeService.getAnneePages(this.currentPage, this.pageSize).subscribe(data => {
+    /*this.anneeService.getAnneePages(this.currentPage, this.pageSize).subscribe(data => {
     this.annees = data.content;
     this.totalPages = data.totalPages;
+    this.annee = data.content[0];*/
 
-    //this.currentPage = data.number;
-this.cdr.detectChanges(); // Forcer la détection des changements
+    this.anneeService.getAnnees().subscribe(data => {
+    this.annees = data;
+    this.annee = data[0];
+
+//
+this.indicateurService.getIndicateursSysteme().subscribe( dataIndicateur => {
+ this.indicateurs = dataIndicateur;
+ this.indicateur = dataIndicateur[0];
+
+//
+ this.valeurindicateurService.getValeurIndicateurPeriodeSearch(this.indicateur.id, this.annee.libelle+"").subscribe( data => {
+ this.valeurindicateurs = data;
+ console.log("################ this.valeurindicateurs 2", this.valeurindicateurs);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+
+ google.charts.load('current', { packages: ['geochart'] });
+ google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
+ });
+
+ this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+
+    this.cdr.detectChanges(); // Forcer la détection des changements
   });
 }
 
@@ -121,6 +190,73 @@ onAnneeChange() {
       this.loadItems();
     }
   }
+
+  get lf() {
+    return this.addForm.controls;
+  }
+
+ compareFn(a, b) {
+  if(a==b)
+     return true
+  else
+     return a && b && a.id == b.id;
+  }
+
+getAllIndicateur() {
+ console.log("################1");
+ this.indicateurService.getIndicateurs().subscribe( data => {
+ this.indicateurs = data;
+//this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+
+getAllIndicateurSysteme() {
+ console.log("################1");
+ this.indicateurService.getIndicateursSysteme().subscribe( data => {
+ this.indicateurs = data;
+ this.indicateur = data[0];
+ this.cdr.detectChanges(); // Forcer la détection des changements
+ });
+}
+
+
+ getValeurIndicateurSearch(indicateurId: string, periode: string, campagneagricoleId: string, paysId: string) {
+ console.log("################1");
+ this.valeurindicateurService.getValeurIndicateurSearch(indicateurId, periode, campagneagricoleId, paysId).subscribe( data => {
+ this.valeurindicateurs = data;
+ console.log("################ this.valeurindicateurs 2", this.valeurindicateurs);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+
+ google.charts.load('current', { packages: ['geochart'] });
+ google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
+ });
+}
+
+getValeurIndicateurPeriodeSearch(indicateurId: string, periode: string) {
+ console.log("################1");
+ this.valeurindicateurService.getValeurIndicateurPeriodeSearch(indicateurId, periode).subscribe( data => {
+ this.valeurindicateurs = data;
+ console.log("################ this.valeurindicateurs 2", this.valeurindicateurs);
+ this.cdr.detectChanges(); // Forcer la détection des changements
+
+ google.charts.load('current', { packages: ['geochart'] });
+ google.charts.setOnLoadCallback(this.drawBeninByRegion.bind(this));
+ });
+}
+
+onChangeAnnee(annee: Annee) {
+if(annee && this.indicateur) {
+console.log("################ annee", annee.libelle);
+this.getValeurIndicateurPeriodeSearch(this.indicateur.id, annee.libelle+"");
+}
+}
+
+onChangeIndicateur(indicateur: Indicateur) {
+if(this.annee && indicateur) {
+console.log("################ indicateur", indicateur.id);
+this.getValeurIndicateurPeriodeSearch(indicateur.id, this.annee.libelle+"");
+}
+}
 
 }
 

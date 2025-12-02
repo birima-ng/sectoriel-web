@@ -34,6 +34,8 @@ import { ToastrService } from 'ngx-toastr';
 export class UserComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
+@ViewChild('tableRowDetails') tableRowDetails: any;
+
 unitefdss: UniteFds[];
 unitefds: UniteFds;
 
@@ -49,6 +51,7 @@ public rows = [];
   public ColumnMode = ColumnMode;
   public limitRef = 10;
    users : User[];
+   user : User;
   // column header
   public columns = [
     { name: "Username", prop: "username" },
@@ -181,7 +184,7 @@ else
         modalRef.componentInstance.entity = user;
     }
 
-    formDelete(id: string) {
+    formDelete(user: User) {
     const modalRef = this.modalService.open(ModalConfirmComponent);
     modalRef.componentInstance.title = 'Confirmation';
     modalRef.componentInstance.message = 'Voulez-vous supprimer cet élément ?';
@@ -189,7 +192,7 @@ else
     modalRef.result.then((result) => {
       if (result === 'Yes') { // suppression de l'element
          console.log("YES");
-         this.onDelete(id);
+         this.onDelete(user.id);
       } else if (result === 'No') {
         console.log("NO");
       }
@@ -219,4 +222,10 @@ else
     console.log("error avant !!!");
       });
 }
+
+
+  rowDetailsToggleExpand(row) {
+    this.tableRowDetails.rowDetail.toggleExpandRow(row);
+  }
+
 }

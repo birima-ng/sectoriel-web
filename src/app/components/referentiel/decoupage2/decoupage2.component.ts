@@ -25,6 +25,7 @@ edited=true;
 formModal: any;
 formModalSup: any;
 decoupage2s : Decoupage2[];
+decoupage2 : Decoupage2;
 totalPages: number = 0;
 currentPage: number = 0;
 pageSize = 15;
@@ -55,7 +56,7 @@ loadItems() {
         fullScreen: true
       });
  console.log("################1");
- this.decoupage2Service.getDecoupage2Pages(this.currentPage, this.pageSize).subscribe( data => {
+ this.decoupage2Service.getDecoupage2PagesPays(this.currentPage, this.pageSize).subscribe( data => {
  this.spinner.hide();
  this.decoupage2s = data.content;
  this.totalPages = data.totalPages;

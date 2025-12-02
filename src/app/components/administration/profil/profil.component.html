@@ -3,7 +3,14 @@
     <div class="content-header">Profil</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+    <div class="content-header">
+      <app-list-actions
+        [item]="profil"
+        [addActionCode]="'ADD_PROFIL_SPA'"
+        (add)="openContent()">
+      </app-list-actions>
+      <!--<button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button>-->
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -37,14 +44,25 @@
                     <td>{{profil.code}}</td>
                     <td>{{profil.nom}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(profil)">
+                      <!--<a href="javascript:;" class="success p-0" (click)="formEdit(profil)">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
                       </a>
                       <a href="javascript:;" class="danger p-0" (click)="formDelete(profil.id)">
                         <i class="ft-x font-medium-3 mr-2"></i>
                       </a>
                       <a routerLink="/components/profil-config" [queryParams]="{ vwp: profil.id }" class="warning p-0">
-                        <i class="ft-edit font-medium-3 "></i></a>
+                        <i class="ft-edit font-medium-3 "></i></a>-->
+                      <app-list-actions
+                        [item]="profil"
+                        [editActionCode]="'MOD_PROFIL_SPA'"
+                        [deleteActionCode]="'DEL_PROFIL_SPA'"
+                        [configuredActionCode]="'7de729ae-4b31-4f5c-ba34-cb78c3fae484'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)"
+                        [routerLink]="'/components/profil-config'"
+                        [queryParams]="{ vwp: profil.id }"
+                      >
+                      </app-list-actions>
                         </td>
                   </tr>
                   </tbody>

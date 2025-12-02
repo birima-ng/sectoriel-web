@@ -114,6 +114,14 @@ import {ConfigurationFicheComponent} from "./referentiel/configuration-fiche/con
 import {AnneeComponent} from "./referentiel/annee/annee.component";
 import {IndicateurComponent} from "./referentiel/indicateur/indicateur.component";
 import {FrequenceCollecteComponent} from "./referentiel/frequence-collecte/frequence-collecte.component";
+import {CampagneAgricolComponent} from "./referentiel/campagne-agricol/campagne-agricol.component";
+
+import {GenerationIndicateurComponent} from "./referentiel/indicateur/generation-indicateur/generation-indicateur.component";
+import {ValidationIndicateurComponent} from "./referentiel/indicateur/validation-indicateur/validation-indicateur.component";
+
+import {ProductionAgricoleComponent} from "./referentiel/fiche-production-agricole/production-agricole/production-agricole.component";
+import {UtilisationProductionComponent} from "./referentiel/fiche-production-agricole/utilisation-production/utilisation-production.component";
+
 const routes: Routes = [
   {
     path: '',
@@ -151,10 +159,50 @@ title: 'cumule'
 },
 
 {
+path: 'generation-indicateur',
+component: GenerationIndicateurComponent, canActivate: [AuthGuard],
+data: {
+title: 'génération indicateur'
+}
+},
+
+{
+path: 'utilisation-production',
+component: UtilisationProductionComponent, canActivate: [AuthGuard],
+data: {
+title: 'utilisation production'
+}
+},
+
+{
+path: 'production-agricole',
+component: ProductionAgricoleComponent, canActivate: [AuthGuard],
+data: {
+title: 'production agricole'
+}
+},
+
+{
+path: 'validation-indicateur',
+component: ValidationIndicateurComponent, canActivate: [AuthGuard],
+data: {
+title: 'validation indicateur'
+}
+},
+
+{
 path: 'structure',
 component: StructureComponent, canActivate: [AuthGuard],
 data: {
 title: 'structure'
+}
+},
+
+{
+path: 'campagne-agricol',
+component: CampagneAgricolComponent, canActivate: [AuthGuard],
+data: {
+title: 'campagne agricol'
 }
 },
 

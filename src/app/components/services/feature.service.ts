@@ -37,6 +37,14 @@ constructor(private http: HttpClient) { }
          }));
   }
 
+  getFeaturesSysteme() {
+      return this.http.get<any>(this.baseUrl+'api/feature/systeme').pipe(
+       map(
+         featureData => {
+          return featureData;
+         }));
+  }
+
   getFeatureByModuleId(id: string): Observable<Feature[]>  {
       return this.http.get<any>(this.baseUrl+'api/feature/'+id+'/module').pipe(
        map(

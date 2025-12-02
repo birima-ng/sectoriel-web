@@ -3,7 +3,14 @@
     <div class="content-header">Unité de mesure</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+    <div class="content-header">
+      <app-list-actions
+        [addActionCode]="'5d668cc9-8692-4abe-a6ae-6d22fc482b71'"
+        (add)="openContent()">
+      </app-list-actions>
+      <!--<button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -39,12 +46,13 @@
                     <td>{{unite.libelle}}</td>
                     <td>{{unite.typeunite.libelle}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(unite)">
-                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                      </a>
-                      <a href="javascript:;" class="danger p-0" (click)="formDelete(unite.id)">
-                        <i class="ft-x font-medium-3"></i>
-                      </a>
+                      <app-list-actions
+                        [item]="unite"
+                        [editActionCode]="'bc2baab0-bf9c-442f-b81b-bdf08665e91f'"
+                        [deleteActionCode]="'3c5eb215-2962-4bc8-aeca-ee503ddee325'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
 
                         </td>
                   </tr>

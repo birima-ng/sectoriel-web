@@ -3,7 +3,14 @@
     <div class="content-header">Decoupage 1</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+    <div class="content-header">
+     <!--<button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+      <app-list-actions
+        [item]="decoupage1"
+        [addActionCode]="'6cbd3dea-8ab9-4141-85be-95d0b19d7457'"
+        (add)="openContent()">
+      </app-list-actions>
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -27,7 +34,7 @@
                 <table class="table m-0">
                   <thead>
                   <tr>
-                    <th width="10%">Code</th>
+                    <th width="10%">Code 1</th>
                     <th width="40%">Libellé</th>
                     <th width="40%">Pays</th>
                     <th width="10%">Actions</th>
@@ -39,12 +46,13 @@
                     <td>{{decoupage1.libelle}}</td>
                     <td>{{decoupage1.pays.libelle}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(decoupage1)">
-                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                      </a>
-                      <a href="javascript:;" class="danger p-0" (click)="formDelete(decoupage1.id)">
-                        <i class="ft-x font-medium-3"></i>
-                      </a>
+                      <app-list-actions
+                        [item]="decoupage1"
+                        [editActionCode]="'efd2c0ed-6d42-4b70-908b-9b6ba87c5b06'"
+                        [deleteActionCode]="'d047ef60-ce53-4180-92f3-49ff9624c948'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
 
                         </td>
                   </tr>

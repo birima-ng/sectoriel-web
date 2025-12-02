@@ -1,0 +1,137 @@
+<nav>
+  <div class="row">
+  <div class="col-11">
+    <div class="content-header">Validation indicateur</div>
+  </div>
+  <!--<div class="col-1">
+    <div class="content-header1">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+  </div>-->
+  </div>
+</nav>
+<!--Grid options Starts-->
+<section id="ngx-datatable-row-details">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       <!-- <div class="card-header">
+          <div class="col-11">
+
+          </div>
+          <div class="col-1">
+            <div class="content-header">    <button type="button" class="btn btn-primary mr-2" (click)="openContent()"><i class="ft-check-square mr-1"></i>Ajouter</button></div>
+          </div>
+
+        </div>-->
+        <div class="card-content">
+          <div class="card-body">
+            <!-- ngx-datatable-row-details -->
+            <ngx-datatable #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force"
+                           [headerHeight]="50" [footerHeight]="0" [rowHeight]="50" [limit]="pageSize" [rows]="indicateurs" [scrollbarH]="true">
+              <!-- Row Detail Template -->
+              <ngx-datatable-row-detail [rowHeight]="50">
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                  <div class="ml-4 my-1">
+                    <div><strong>Adresse : </strong> {{ row.libellefr }}</div>
+                    <div><strong>Téléphone :</strong> {{ row.libellefr }}</div>
+                  </div>
+                </ng-template>
+              </ngx-datatable-row-detail>
+              <ngx-datatable-column [resizeable]="false" [sortable]="false" [draggable]="false"
+                                    [canAutoResize]="false" [width]="1">
+                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                  <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded"
+                     [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                     (click)="rowDetailsToggleExpand(row)">
+                  </a>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Libelle" prop="libellefr" [width]="400" [cellClass]="'wrap-text'" >
+                <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+                  <div class="d-flex align-items-center">
+                    <div class="cell-line-height">
+                      <p class="font-medium-0 line-height-1 mb-0">{{ row.libellefr }}</p>
+                      <span class="text-muted font-small-2">
+                        {{ row.frequencecollecte.libelle }}</span>
+                    </div>
+                  </div>
+                </ng-template>
+
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Unité" prop="unite.libelle" [width]="8">
+
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Status" prop="codeformule" [width]="8">
+                <ng-template let-status="value" ngx-datatable-cell-template>
+                  <div class="badge badge-pill"
+                       [ngClass]="{'bg-light-success': status != '', 'bg-light-danger':status == ''}">
+                    {{ status != '' ? "Configuré" : (status == '' ? "Non configuré" : (status == 3 ? "Rejected" : (status == 4 ? "Resigned" : status == 5 ? "Applied" : "Applied"))) }}
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Actions" [width]="10">
+                <ng-template ngx-datatable-cell-template let-row="row">
+                  <app-list-actions
+                    [item]="row"
+                    [editActionCode]="'a62b8a12-3f63-4af6-8e5c-aa6c997ee1b7'"
+                    [deleteActionCode]="'de2b95ca-a39c-44a0-baf0-6fc1b2b72bf8'"
+                    (edit)="formEdit($event)"
+                    (delete)="formDelete($event)">
+                  </app-list-actions>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+            <app-config-pagination
+              [currentPage]="currentPage"
+              [totalPages]="totalPages"
+              [pageSize]="pageSize"
+              (pageChange)="onPageChange($event)"
+              (pageSizeChange)="onPageSizeChange($event)">
+            </app-config-pagination>
+            <!-- ngx-datatable-row-details -->
+
+             <!-- <div class="card-body table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th>Libellé</th>
+                    <th>Unité de messure</th>
+                    <th>Système</th>
+                    <th >Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="indicateurs">
+                  <tr  *ngFor="let indicateur  of indicateurs;">
+                    <td>{{indicateur.libellefr}}</td>
+                    <td>{{indicateur.unite.libelle}}</td>
+                    <td>{{indicateur.systeme.libelle}}</td>
+                    <td class="text-truncate">
+                      <a href="javascript:;" class="success p-0" (click)="formEdit(indicateur)">
+                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                      </a>
+                      <a href="javascript:;" class="danger p-0" (click)="formDelete(indicateur.id)">
+                        <i class="ft-x font-medium-3"></i>
+                      </a>
+
+                        </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <app-config-pagination
+                  [currentPage]="currentPage"
+                  [totalPages]="totalPages"
+                  [pageSize]="pageSize"
+                  (pageChange)="onPageChange($event)"
+                  (pageSizeChange)="onPageSizeChange($event)">
+                </app-config-pagination>
+              </div>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+

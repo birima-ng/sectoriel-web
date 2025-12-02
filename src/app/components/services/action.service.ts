@@ -50,4 +50,12 @@ constructor(private http: HttpClient) { }
           return actionData;
          }));
   }
+
+  getActionBySysteme() {
+      return this.http.get<any>(this.baseUrl+'api/action/systeme').pipe(
+       map(
+         actionData => {
+          return actionData;
+         }));
+  }
 }

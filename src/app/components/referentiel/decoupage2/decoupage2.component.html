@@ -3,7 +3,15 @@
     <div class="content-header">Decoupage 2</div>
   </div>
   <div class="col-1">
-    <div class="content-header">    <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button></div>
+    <div class="content-header">
+     <!-- <button type="button" class="btn btn-primary mr-0" (click)="openContent()"><i class="ft-check-square mr-0"></i>Ajouter</button>-->
+      <app-list-actions
+        [item]="decoupage2"
+        [addActionCode]="'8a77f8c2-932a-4d4f-b458-4975b697ea3f'"
+        (add)="openContent()">
+      </app-list-actions>
+
+    </div>
   </div>
 </div>
 <!--Grid options Starts-->
@@ -39,12 +47,13 @@
                     <td>{{decoupage2.libelle}}</td>
                     <td>{{decoupage2.decoupage1.libelle}}</td>
                     <td class="text-truncate">
-                      <a href="javascript:;" class="success p-0" (click)="formEdit(decoupage2)">
-                        <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                      </a>
-                      <a href="javascript:;" class="danger p-0" (click)="formDelete(decoupage2.id)">
-                        <i class="ft-x font-medium-3"></i>
-                      </a>
+                      <app-list-actions
+                        [item]="decoupage1"
+                        [editActionCode]="'289def32-fc13-426d-b3d9-c91aa63fc30a'"
+                        [deleteActionCode]="'6e9ca58d-abb0-4e3e-9cbd-deb5ae51c71a'"
+                        (edit)="formEdit($event)"
+                        (delete)="formDelete($event)">
+                      </app-list-actions>
 
                         </td>
                   </tr>

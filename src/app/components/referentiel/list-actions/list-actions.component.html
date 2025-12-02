@@ -20,6 +20,10 @@
       (click)="formDelete()"
       *ngIf="isActionAllowed(deleteActionCode)"
   >
-    <i class="ft-x font-medium-3"></i>
+    <i class="ft-x font-medium-3 mr-2"></i>
   </a>
+
+  <a *ngIf="isActionAllowed(configuredActionCode)" [routerLink]="routerLink" [queryParams]="queryParams" class="warning mr-2">
+    <i class="ft-edit font-medium-3 mr-2"></i></a>
+
 </div>
